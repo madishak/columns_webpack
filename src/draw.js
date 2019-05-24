@@ -1,15 +1,16 @@
 class Draw {
-    constructor(sequence) {
-        this.arrayAndIndexes = sequence;
-        this.arr = this.arrayAndIndexes.arr;
+    constructor(array) {
+        this.arr = array;
+        this.columnIndexArr = [];
 
     }
-
 
 
     drawArray() {
 
         const fixedColumnHeight = 15;
+
+        const offset = 30;
 
         let container = document.createElement('div');
         container.className = "line__inner";
@@ -22,37 +23,39 @@ class Draw {
             newDiv.innerHTML = this.arr[i];
             newDiv.id = this.arr[i];
             newDiv.className = "line";
+            this.columnIndexArr.push(i);
             container.appendChild(newDiv);
-            newDiv.style.height = fixedColumnHeight * this.arr[i]+'px';
-            newDiv.style.display = 'inline-block';
+            newDiv.style.height = `${fixedColumnHeight * this.arr[i]}px`;
+            newDiv.style.left =  `${i * offset}px`;
         }
 
     }
 
-    movement() {
-        let listOfIndexes = this.arrayAndIndexes.indexes;   //indexes' stack (sort steps)
+
+    movement(newArr) {
+
+        const columnMargin = 30;
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
-        return listOfIndexes.forEach((pos, i) => {
 
+        for (let i = 0; i < newArr.length; i++) {
+            if (newArr[i] !== this.arr[i]) {
+                [this.columnIndexArr[i], this.columnIndexArr[i+1]] = [this.columnIndexArr[i+1], this.columnIndexArr[i]];
+                break;
+            }
+        }
+        for (let i = 0; i < columns.length; i++) {
+            columns[this.columnIndexArr[i]].style.left = `${i * columnMargin}px`;
+        }
+        this.arr = [...newArr];// плохо
 
-            columns.forEach((col, ind) => {
-                const elemOffset = col.offsetWidth;
-
-
-                if (ind === pos) {
-                    col.style.backgroundColor = 'red';
-                    col.style.left = pos + elemOffset + 'px';
-                }
-
-            });
-        })
 
 
     }
 
 
 }
+
 
 export default Draw;
