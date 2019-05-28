@@ -34,6 +34,12 @@ class Draw {
 
     movement(newArr) {
 
+        const bg = {
+            first : 0,
+            second : 1
+        };
+
+
         const columnMargin = 30;
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
@@ -42,15 +48,21 @@ class Draw {
         for (let i = 0; i < newArr.length; i++) {
             if (newArr[i] !== this.arr[i]) {
                 [this.columnIndexArr[i], this.columnIndexArr[i+1]] = [this.columnIndexArr[i+1], this.columnIndexArr[i]];
+                bg.first = this.columnIndexArr[i];
+                bg.second = this.columnIndexArr[i+1];
+
                 break;
             }
         }
         for (let i = 0; i < columns.length; i++) {
             columns[this.columnIndexArr[i]].style.left = `${i * columnMargin}px`;
+            columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
+            columns[bg.first].style.backgroundColor = 'red';
+            columns[bg.second].style.backgroundColor = 'red';
+
+
         }
         this.arr = [...newArr];// плохо
-
-
 
     }
 
