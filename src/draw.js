@@ -15,7 +15,7 @@ class Draw {
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
-        document.body.appendChild(container);
+
 
         for (let i = 0; i < this.arr.length; i++) {
 
@@ -24,11 +24,11 @@ class Draw {
             newDiv.id = this.arr[i];
             newDiv.className = "line";
             this.columnIndexArr.push(i);
-            container.appendChild(newDiv);
             newDiv.style.height = `${fixedColumnHeight * this.arr[i]}px`;
             newDiv.style.left =  `${i * offset}px`;
+            container.appendChild(newDiv);
         }
-
+        document.body.appendChild(container);
     }
 
 
