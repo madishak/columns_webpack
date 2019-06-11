@@ -24,8 +24,6 @@ const renderHTML = () => {
     input.type = "text";
     input.placeholder = "Enter numbers";
     input.id = "input";
-    // const val  = document.querySelector('input').value;
-    input.value = '865641';
     form.appendChild(input);
 
     const buttonsInner = makeElement('div', "form__button-inner");

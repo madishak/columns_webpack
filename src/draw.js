@@ -8,9 +8,9 @@ class Draw {
 
     drawArray() {
 
-        const fixedColumnHeight = 15;
+        const FIXED_COLUMN_HEIGHT = 15;
 
-        const offset = 30;
+        const OFFSET = 30;
 
         let container = document.createElement('div');
         container.className = "line__inner";
@@ -24,8 +24,8 @@ class Draw {
             newDiv.id = this.arr[i];
             newDiv.className = "line";
             this.columnIndexArr.push(i);
-            newDiv.style.height = `${fixedColumnHeight * this.arr[i]}px`;
-            newDiv.style.left =  `${i * offset}px`;
+            newDiv.style.height = `${FIXED_COLUMN_HEIGHT * this.arr[i]}px`;
+            newDiv.style.left =  `${i * OFFSET}px`;
             container.appendChild(newDiv);
         }
         document.body.appendChild(container);
@@ -40,7 +40,7 @@ class Draw {
         };
 
 
-        const columnMargin = 30;
+        const COLUMN_MARGIN = 30;
 
         const [...columns] = document.getElementsByClassName('line'); //columns => HTML objects
 
@@ -55,7 +55,7 @@ class Draw {
             }
         }
         for (let i = 0; i < columns.length; i++) {
-            columns[this.columnIndexArr[i]].style.left = `${i * columnMargin}px`;
+            columns[this.columnIndexArr[i]].style.left = `${i * COLUMN_MARGIN}px`;
             columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
             columns[bg.first].style.backgroundColor = 'red';
             columns[bg.second].style.backgroundColor = 'red';
