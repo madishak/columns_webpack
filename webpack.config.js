@@ -15,7 +15,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Madina Karachai - Columns',
-            //link: 'rel="shortcut icon" href="../tree.ico" type="image/x-icon"'
+            link: 'rel="shortcut icon" href="../tree.ico" type="image/x-icon"'
         })
     ],
     output: {
@@ -34,3 +34,4 @@ module.exports = {
         ]
     }
 };
+

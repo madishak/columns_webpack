@@ -11,6 +11,7 @@ const inputShow = document.getElementById('input');
 inputShow.addEventListener('change', () => renderCollection());
 
 
+
 const renderCollection = () => {
     let inputValue = document.querySelector('#input').value;
     console.log(inputValue);
