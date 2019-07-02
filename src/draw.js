@@ -29,6 +29,7 @@ class Draw {
             container.appendChild(newDiv);
         }
         document.body.appendChild(container);
+
     }
 
 

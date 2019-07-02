@@ -1,6 +1,15 @@
 class Sort {
     constructor(numberString) {
-        this.numsArr = numberString.split("").map(element => Number(element));
+        this.numsArr = numberString.split("").map(element => {
+            Number(element);
+
+            if (isNaN(element)) {
+                console.log('Введите цифры, вместо букв');
+                return element;
+            }
+            return element;
+
+        });
         this.arr = this.numsArr.slice(0);
         this.listOfIndexes = [];
     }
