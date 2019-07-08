@@ -39,10 +39,19 @@ const renderHTML = () => {
     buttonNext.type = "button";
     buttonsInner.appendChild(buttonNext);
 
+    const deleteValue = makeElement('button', "form__button", "удалить значение");
+    deleteValue.id = "del";
+    deleteValue.type = "button";
+    buttonsInner.appendChild(deleteValue);
+
+    const linesWrapper = makeElement('div', 'lines__wrapper');
+    document.body.appendChild(linesWrapper);
+
     return {
         "input": input,
         "butBack": buttonBack,
-        "butNext": buttonNext
+        "butNext": buttonNext,
+        "delVal": deleteValue
 
     };
 };

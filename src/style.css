@@ -73,6 +73,19 @@ blockquote, q {
 
 }
 
+.lines__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+
+}
+
+.line__inner {
+    display: block;
+}
+
 .line {
     position: absolute;
     left: 0;

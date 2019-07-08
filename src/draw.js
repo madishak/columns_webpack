@@ -12,9 +12,12 @@ class Draw {
 
         const OFFSET = 30;
 
+        let linesWrapper = document.querySelector('.lines__wrapper');
+
         let container = document.createElement('div');
         container.className = "line__inner";
         container.id = "line__inner";
+        linesWrapper.appendChild(container);
 
 
         for (let i = 0; i < this.arr.length; i++) {
@@ -28,7 +31,7 @@ class Draw {
             newDiv.style.left =  `${i * OFFSET}px`;
             container.appendChild(newDiv);
         }
-        document.body.appendChild(container);
+        //document.body.appendChild(container);
 
     }
 
@@ -48,6 +51,7 @@ class Draw {
 
         for (let i = 0; i < newArr.length; i++) {
             if (newArr[i] !== this.arr[i]) {
+
                 [this.columnIndexArr[i], this.columnIndexArr[i+1]] = [this.columnIndexArr[i+1], this.columnIndexArr[i]];
                 bg.first = this.columnIndexArr[i];
                 bg.second = this.columnIndexArr[i+1];
@@ -63,6 +67,8 @@ class Draw {
 
 
         }
+
+
         this.arr = [...newArr];// плохо
 
     }
