@@ -1,56 +1,44 @@
-const makeElement = (tag, className, text) => {
-    const element = document.createElement(tag);
+import createElement from './components/createElement.js';
+import button from "./components/button"
 
-    if (className) {
-        element.classList.add(className);
-    }
-
-    if (text) {
-        element.textContent = text;
-    }
-
-    return element;
-};
 
 const renderHTML = () => {
-    const wrapper = makeElement('div', 'wrapper');
+
+    const wrapper = createElement('div', 'wrapper');
     document.body.appendChild(wrapper);
 
-    const form = makeElement('form', 'form');
+    const form = createElement('form', 'form');
     wrapper.appendChild(form);
 
-
-    const input = makeElement('input', 'form__input');
+    const input = createElement('input', 'form__input');
     input.type = "text";
-    input.placeholder = "Enter numbers";
-    input.id = "input";
+    input.id = 'input';
+    input.placeholder = 'Enter numbers';
     form.appendChild(input);
 
-    const buttonsInner = makeElement('div', "form__button-inner");
+    const buttonsInner = createElement('div', "form__button-inner");
     form.appendChild(buttonsInner);
 
-    const buttonBack = makeElement('button', "form__button", "назад");
-    buttonBack.id = "dec";
-    buttonBack.type = "button";
-    buttonsInner.appendChild(buttonBack);
+    // const buttonBack = createElement('button', "form__button", "назад");
+    // buttonBack.id = "dec";
+    // buttonBack.type = "button";
+    // buttonsInner.appendChild(buttonBack);
+    //
+    // const buttonNext = createElement('button', "form__button", "вперед");
+    // buttonNext.id = "inc";
+    // buttonNext.type = "button";
+    // buttonsInner.appendChild(buttonNext);
 
-    const buttonNext = makeElement('button', "form__button", "вперед");
-    buttonNext.id = "inc";
-    buttonNext.type = "button";
-    buttonsInner.appendChild(buttonNext);
-
-    const deleteValue = makeElement('button', "form__button", "удалить значение");
-    deleteValue.id = "del";
-    deleteValue.type = "button";
+    let deleteValue = button('form__button', 'удалить значение', 'del');
     buttonsInner.appendChild(deleteValue);
 
-    const linesWrapper = makeElement('div', 'lines__wrapper');
+    const linesWrapper = createElement('div', 'lines__wrapper');
     document.body.appendChild(linesWrapper);
 
     return {
         "input": input,
-        "butBack": buttonBack,
-        "butNext": buttonNext,
+        // "butBack": buttonBack,
+        // "butNext": buttonNext,
         "delVal": deleteValue
 
     };

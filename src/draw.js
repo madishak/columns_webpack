@@ -1,7 +1,10 @@
+import createElement from './components/createElement'
+
 class Draw {
     constructor(array) {
         this.arr = array;
         this.columnIndexArr = [];
+        //this.container = document.createElement('div');
 
     }
 
@@ -14,10 +17,10 @@ class Draw {
 
         let linesWrapper = document.querySelector('.lines__wrapper');
 
-        let container = document.createElement('div');
-        container.className = "line__inner";
-        container.id = "line__inner";
+
+        let container = createElement('div', 'line__inner');
         linesWrapper.appendChild(container);
+
 
 
         for (let i = 0; i < this.arr.length; i++) {
@@ -31,7 +34,7 @@ class Draw {
             newDiv.style.left =  `${i * OFFSET}px`;
             container.appendChild(newDiv);
         }
-        //document.body.appendChild(container);
+
 
     }
 
