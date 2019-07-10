@@ -10,14 +10,27 @@ renderHTML();
 
 const inputShow = document.getElementById('input');
 
+
+const strToArray = (str) => {
+    return str.split("").map(element => {
+        Number(element);
+
+        if (isNaN(element)) {
+            console.log('Введите цифры, вместо букв');
+            return element;
+        }
+        return element;
+
+    });
+};
+
+
 inputShow.addEventListener('change', () => {
-    renderCollection(inputShow.value);
+    const newArr = strToArray(inputShow.value);
+    renderCollection(newArr);
 });
 
-
-
 const renderCollection = (inputValue) => {
-    //let inputValue = document.querySelector('#input').value;
     console.log(inputValue);
 
     const sort = new Sort(inputValue);
