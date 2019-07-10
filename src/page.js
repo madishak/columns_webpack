@@ -1,6 +1,7 @@
 import createElement from './ui/createElement.js';
 import button from "./ui/button"
 import inputText from "./ui/input"
+import { linesWrapper } from "./ui/linesWrapper"
 
 const renderHTML = () => {
 
@@ -33,8 +34,12 @@ const renderHTML = () => {
     let deleteValue = button('form__button', 'удалить значение', 'del');
     buttonsInner.appendChild(deleteValue);
 
-    const linesWrapper = createElement('div', 'lines__wrapper');
-    document.body.appendChild(linesWrapper);
+    const containerForColumns = createElement('div', 'columns__container');
+    containerForColumns.appendChild(linesWrapper);
+    document.body.appendChild(containerForColumns);
+
+    // const linesWrapper = createElement('div', 'lines__wrapper');
+    // document.body.appendChild(linesWrapper);
 
     return {
         "input": input,

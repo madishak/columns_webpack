@@ -1,9 +1,13 @@
 import renderHTML from './page.js';
 import Sort from './sort';
 import Draw from './draw';
+import createElement from "./ui/createElement";
 import button from "./ui/button"
+import { linesWrapper }  from "./ui/linesWrapper"
+import { buttonsInner} from "./ui/buttonsInner";
 
 import './style.css';
+
 
 renderHTML();
 
@@ -47,7 +51,11 @@ const renderCollection = (inputValue) => {
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
     buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
-    document.body.append(buttonBack, buttonNext);
+    //buttonsInner = createElement('div', "form__button-inner");
+    buttonsInner.appendChild(buttonBack);
+    buttonsInner.appendChild(buttonNext);
+    linesWrapper.appendChild(buttonsInner);
+
 
     const deleteVal = document.getElementById('del');
     deleteVal.addEventListener('click',() => inputShow.value = "");

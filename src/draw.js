@@ -1,10 +1,11 @@
 import createElement from './ui/createElement'
+import { linesWrapper } from "./ui/linesWrapper"
 
 class Draw {
     constructor(array) {
         this.arr = array;
         this.columnIndexArr = [];
-        //this.container = document.createElement('div');
+        //this.container = createElement('div', 'cont');
 
     }
 
@@ -15,7 +16,7 @@ class Draw {
 
         const OFFSET = 30;
 
-        let linesWrapper = document.querySelector('.lines__wrapper');
+        //let linesWrapper = document.querySelector('.lines__wrapper');
 
 
         let container = createElement('div', 'line__inner');
