@@ -1,7 +1,7 @@
 import renderHTML from './page.js';
 import Sort from './sort';
 import Draw from './draw';
-import button from "./components/button"
+import button from "./ui/button"
 
 import './style.css';
 

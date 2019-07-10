@@ -1,4 +1,4 @@
-import createElement from './components/createElement'
+import createElement from './ui/createElement'
 
 class Draw {
     constructor(array) {

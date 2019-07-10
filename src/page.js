@@ -1,6 +1,6 @@
-import createElement from './components/createElement.js';
-import button from "./components/button"
-
+import createElement from './ui/createElement.js';
+import button from "./ui/button"
+import inputText from "./ui/input"
 
 const renderHTML = () => {
 
@@ -10,10 +10,11 @@ const renderHTML = () => {
     const form = createElement('form', 'form');
     wrapper.appendChild(form);
 
-    const input = createElement('input', 'form__input');
-    input.type = "text";
-    input.id = 'input';
-    input.placeholder = 'Enter numbers';
+    // const input = createElement('input', 'form__input');
+    // input.type = "text";
+    // input.id = 'input';
+    // input.placeholder = 'Enter numbers';
+    const input = inputText('', 'form__input', 'input', 'Enter numbers');
     form.appendChild(input);
 
     const buttonsInner = createElement('div', "form__button-inner");
