@@ -101,6 +101,7 @@ blockquote, q {
     display: flex;
     justify-content: space-around;
     width: inherit;
+    padding-bottom: 5px;
 }
 
 .lines__button {
