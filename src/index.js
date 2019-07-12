@@ -1,19 +1,14 @@
 import renderHTML from './page.js';
 import Sort from './sort';
 import Draw from './draw';
-import createElement from "./ui/createElement";
 import button from "./ui/button"
-import { linesWrapper }  from "./ui/linesWrapper"
-import { buttonsInner} from "./ui/buttonsInner";
+import createElement from "./ui/createElement"
 
 import './style.css';
 
-
 renderHTML();
 
-
 const inputShow = document.getElementById('input');
-
 
 const strToArray = (str) => {
     return str.split("").map(element => {
@@ -28,36 +23,34 @@ const strToArray = (str) => {
     });
 };
 
-
 inputShow.addEventListener('change', () => {
     const newArr = strToArray(inputShow.value);
     renderCollection(newArr);
 });
 
-const renderCollection = (inputValue) => {
-    console.log(inputValue);
+const renderCollection = inputValue => {
 
-    const sort = new Sort(inputValue);
-    const draw = new Draw(sort.arr);
-
+    let sort = new Sort(inputValue);
+    let draw = new Draw(inputValue);
 
     draw.drawArray();
-    draw.movement(sort.arr);
 
+    const buttonBack = button("lines__button", "назад", 'dec');
 
-    const buttonBack = button("form__button", "назад", 'dec');
-    const buttonNext = button("form__button", "вперед", 'inc');
+    const buttonNext = button("lines__button", "вперед", 'inc');
+
 
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
     buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
-    //buttonsInner = createElement('div', "form__button-inner");
-    buttonsInner.appendChild(buttonBack);
-    buttonsInner.appendChild(buttonNext);
-    linesWrapper.appendChild(buttonsInner);
+    const buttonsInner = createElement('div', "lines__button-inner");
+    buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
 
-    const deleteVal = document.getElementById('del');
-    deleteVal.addEventListener('click',() => inputShow.value = "");
+    draw.linesButtonsContainer.appendChild(buttonsInner);
+
+
+    let deleteVal = document.querySelector('#del');
+    deleteVal.addEventListener('click', () => (inputShow.value = ''));
 };
 
