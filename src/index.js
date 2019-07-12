@@ -1,4 +1,4 @@
-import renderHTML from './page.js';
+import renderHTML from './ui/page.js';
 import Sort from './sort';
 import Draw from './draw';
 import button from "./ui/button"

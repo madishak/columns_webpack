@@ -1,6 +1,6 @@
-import createElement from './ui/createElement.js';
-import button from "./ui/button"
-import inputText from "./ui/input"
+import createElement from './createElement.js';
+import button from "./button"
+import inputText from "./input"
 
 const renderHTML = () => {
     const wrapper = createElement('div', 'wrapper');
