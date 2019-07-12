@@ -42,7 +42,7 @@ blockquote, q {
 
 .wrapper {
     margin: 0 auto;
-    padding: 30px 0 0 0 ;
+    padding: 30px 0 0 0;
     width: 1120px;
     height: auto;
 }
@@ -65,12 +65,11 @@ blockquote, q {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    width:  auto;
+    width: auto;
 }
 
 .form__button {
     margin: 20px 5px 0 5px;
-
 }
 
 .lines__wrapper {
@@ -78,20 +77,15 @@ blockquote, q {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-between;
-
-
 }
 
-.line__inner {
-    display: flex;
-    flex-direction: column;
-    height: 180px;
-
+.lines__inner {
+    position: relative;
+    height: 190px;
 }
 
 .line {
     position: absolute;
-    left: 0;
     transition: left 0.6s;
     border: 1px solid yellow;
     background-color: dodgerblue;
@@ -101,8 +95,14 @@ blockquote, q {
     font-size: 90%;
     margin: 15px;
     text-align: center;
-
-
 }
 
+.lines__button-inner{
+    display: flex;
+    justify-content: space-around;
+    width: inherit;
+}
 
+.lines__button {
+    margin: 0 10px;
+}
