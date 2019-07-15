@@ -38,6 +38,19 @@ const renderCollection = inputValue => {
 
     draw.drawArray();
 
+    const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
+
+    inputValue.forEach(value => {
+        console.log(value);
+        if (value === '') {
+            return draw.linesButtonsContainer.appendChild(errorMessage);
+
+        }
+
+
+    });
+
+
     const buttonBack = button("lines__button", "назад", 'dec');
 
     const buttonNext = button("lines__button", "вперед", 'inc');
@@ -52,17 +65,8 @@ const renderCollection = inputValue => {
 
     draw.linesButtonsContainer.appendChild(buttonsInner);
 
-    const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
-
-    inputValue.forEach(value => {
-        console.log(value);
-        if (value === '') {
-            return draw.linesButtonsContainer.appendChild(errorMessage);
-
-        }
 
 
-    });
 
 
 };
