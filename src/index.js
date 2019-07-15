@@ -11,37 +11,24 @@ renderHTML();
 const inputShow = document.getElementById('input');
 
 const strToArray = (str) => {
-    const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
-
-    const isNumber = (list) => {
-        return list.split("").some(element => {
-            if(!element){
-            return document.body.appendChild(errorMessage);
-        }
-
-    });
-    };
-    const newArr = if () {
-
-    }
-    console.log(typeof newArr)
-
     return str.split("").map(element => {
+        let result;
         Number(element);
 
-        // if (isNaN(element)) {
-        //     console.log('Введите цифры, вместо букв');
-        //
-        //     //return document.body.appendChild(errorMessage);
-        // }
-        return element;
+        if (isNaN(element)) {
+            result = '';
+        } else {
+            result = element;
+        }
+
+        return result;
 
     });
 };
 
 inputShow.addEventListener('change', () => {
     const newArr = strToArray(inputShow.value);
-    renderCollection(newArr);
+    return renderCollection(newArr);
 });
 
 const renderCollection = inputValue => {
@@ -65,8 +52,20 @@ const renderCollection = inputValue => {
 
     draw.linesButtonsContainer.appendChild(buttonsInner);
 
+    const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
 
-    let deleteVal = document.querySelector('#del');
-    deleteVal.addEventListener('click', () => (inputShow.value = ''));
+    inputValue.forEach(value => {
+        console.log(value);
+        if (value === '') {
+            return draw.linesButtonsContainer.appendChild(errorMessage);
+
+        }
+
+
+    });
+
+
 };
 
+let deleteVal = document.querySelector('#del');
+deleteVal.addEventListener('click', () => (inputShow.value = ''));
