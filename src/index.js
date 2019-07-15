@@ -11,13 +11,29 @@ renderHTML();
 const inputShow = document.getElementById('input');
 
 const strToArray = (str) => {
+    const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
+
+    const isNumber = (list) => {
+        return list.split("").some(element => {
+            if(!element){
+            return document.body.appendChild(errorMessage);
+        }
+
+    });
+    };
+    const newArr = if () {
+
+    }
+    console.log(typeof newArr)
+
     return str.split("").map(element => {
         Number(element);
 
-        if (isNaN(element)) {
-            console.log('Введите цифры, вместо букв');
-            return element;
-        }
+        // if (isNaN(element)) {
+        //     console.log('Введите цифры, вместо букв');
+        //
+        //     //return document.body.appendChild(errorMessage);
+        // }
         return element;
 
     });
