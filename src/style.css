@@ -82,6 +82,7 @@ blockquote, q {
 .lines__inner {
     position: relative;
     height: 190px;
+
 }
 
 .line {
@@ -97,13 +98,20 @@ blockquote, q {
     text-align: center;
 }
 
+
 .lines__button-inner{
     display: flex;
     justify-content: space-around;
-    width: inherit;
-    padding-bottom: 5px;
+    /*width: inherit;*/
+    padding: 5px 0;
 }
 
 .lines__button {
     margin: 0 10px;
+}
+
+.error__message {
+    margin: 10px 0 0 10px;
+    padding: 5px 20px;
+    border: 2px solid red;
 }
