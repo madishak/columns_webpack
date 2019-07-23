@@ -3,22 +3,25 @@ class Sort {
         this.arr = array.slice(0);
         this.listOfIndexes = [];
         //this.newArr = this.listOfIndexes.reverse();
-        //this.listOfIndexesNext = [];
+        this.listOfIndexesBack = [];
     }
 
 
     decreaseSort() {
         for (let i = 0; i < this.arr.length; i++) {
-            if (this.listOfIndexes.length !== 0) {
-                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
-                this.listOfIndexes.shift(this.listOfIndexes[0]);
-                this.listOfIndexes.shift(this.listOfIndexes[1]);
+            if (this.listOfIndexesBack.length !== 0) {
+                [this.arr[this.listOfIndexesBack[0]], this.arr[this.listOfIndexesBack[1]]] = [this.arr[this.listOfIndexesBack[1]], this.arr[this.listOfIndexesBack[0]]];
+                this.listOfIndexes = [this.listOfIndexesBack[0], this.listOfIndexesBack[1], ...this.listOfIndexes];
+                this.listOfIndexesBack.shift(this.listOfIndexesBack[0]);
+                this.listOfIndexesBack.shift(this.listOfIndexesBack[1]);
+
 
                 return this.arr;
             }
 
         }
-        console.log(this.arr);
+        //console.log(this.arr);
+        //console.log(this.listOfIndexes);
         return this.arr;
     }
 
@@ -30,15 +33,16 @@ class Sort {
                 for (let j = 0; j < this.arr.length-i-1; j++) {
                     if (this.arr[j] > this.arr[j+1]) {
                         [this.arr[j], this.arr[j+1]] = [this.arr[j+1], this.arr[j]];
-                        this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
-                        //this.listOfIndexesNext = [...this.listOfIndexesNext, j, j+1];
+                        //this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
+                        this.listOfIndexes = [...this.listOfIndexes, j, j+1];
 
-                        return  this.arr;
+                        //return  this.arr;
                     }
 
                 }
 
             }
+            console.log(this.listOfIndexes);
 
         return  this.arr;
 
@@ -46,19 +50,21 @@ class Sort {
     }
 
     change() {
-        let listOfIndexes = this.listOfIndexes.slice(0);
+       // let listOfIndexes = this.listOfIndexes.slice(0);
         //console.log(this.arr);
-        console.log(listOfIndexes);
+        //console.log(this.listOfIndexes);
 
         for (let j = 0; j < this.arr.length; j++) {
 
 
-                    if (listOfIndexes.length !== 0) {
-                        [this.arr[listOfIndexes[0]], this.arr[listOfIndexes[1]]] = [this.arr[listOfIndexes[1]], this.arr[listOfIndexes[0]]];
-                        listOfIndexes.shift(listOfIndexes[0]);
-                        listOfIndexes.shift(listOfIndexes[1]);
+                    if (this.listOfIndexes.length !== 0) {
+                        [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
+                        this.listOfIndexesBack.unshift(this.listOfIndexes[0]);
+                        this.listOfIndexesBack.unshift(this.listOfIndexes[1]);
+                        this.listOfIndexes.shift(this.listOfIndexes[0]);
+                        this.listOfIndexes.shift(this.listOfIndexes[1]);
 
-                        console.log(listOfIndexes);
+                        //console.log(this.listOfIndexesBack);
                         return this.arr;
 
                     }
