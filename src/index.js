@@ -35,13 +35,14 @@ const renderCollection = inputValue => {
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
-
+    sort.increaseSort();
     draw.drawArray();
+
 
     const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
 
     inputValue.forEach(value => {
-        console.log(value);
+        //console.log(value);
         if (value === '') {
             return draw.linesButtonsContainer.appendChild(errorMessage);
 
@@ -57,7 +58,7 @@ const renderCollection = inputValue => {
 
 
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
-    buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
+    buttonNext.addEventListener('click', () => draw.movement(sort.change()));
 
     const buttonsInner = createElement('div', "lines__button-inner");
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"

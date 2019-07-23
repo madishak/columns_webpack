@@ -21,7 +21,7 @@ class Sort {
 
         }
         //console.log(this.arr);
-        //console.log(this.listOfIndexes);
+        console.log(this.listOfIndexes);
         return this.arr;
     }
 
@@ -29,7 +29,7 @@ class Sort {
     increaseSort() {
 
 
-            for (let i = 0; i < this.arr.length; i++) {
+            for (let i = 0; i < this.arr.length-1; i++) {
                 for (let j = 0; j < this.arr.length-i-1; j++) {
                     if (this.arr[j] > this.arr[j+1]) {
                         [this.arr[j], this.arr[j+1]] = [this.arr[j+1], this.arr[j]];
@@ -51,7 +51,7 @@ class Sort {
 
     change() {
        // let listOfIndexes = this.listOfIndexes.slice(0);
-        //console.log(this.arr);
+        console.log(this.arr);
         //console.log(this.listOfIndexes);
 
         for (let j = 0; j < this.arr.length; j++) {
@@ -59,8 +59,9 @@ class Sort {
 
                     if (this.listOfIndexes.length !== 0) {
                         [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
-                        this.listOfIndexesBack.unshift(this.listOfIndexes[0]);
-                        this.listOfIndexesBack.unshift(this.listOfIndexes[1]);
+                        console.log(this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]);
+
+                        this.listOfIndexesBack = [this.listOfIndexes[0], this.listOfIndexes[1], ...this.listOfIndexesBack];
                         this.listOfIndexes.shift(this.listOfIndexes[0]);
                         this.listOfIndexes.shift(this.listOfIndexes[1]);
 
