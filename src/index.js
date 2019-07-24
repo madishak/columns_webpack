@@ -35,7 +35,7 @@ const renderCollection = inputValue => {
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
-    sort.increaseSort();
+    sort.bubbleSort();
     draw.drawArray();
 
 
@@ -58,7 +58,7 @@ const renderCollection = inputValue => {
 
 
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
-    buttonNext.addEventListener('click', () => draw.movement(sort.change()));
+    buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
     const buttonsInner = createElement('div', "lines__button-inner");
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
