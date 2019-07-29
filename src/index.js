@@ -10,6 +10,8 @@ renderHTML();
 
 const inputShow = document.getElementById('input');
 
+let currentStates = [];
+
 const strToArray = (str) => str.split("").map(element => Number(element));
 
 const renderCollection = inputValue => {
@@ -59,5 +61,7 @@ inputShow.addEventListener('input', (evt) => {
 let startRender = document.querySelector('#start');
 startRender.addEventListener('click', () => {
     const newArr = strToArray(inputShow.value);
+    currentStates = [...newArr];
+    console.log(currentStates);
     return renderCollection(newArr);
 });
