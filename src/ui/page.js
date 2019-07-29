@@ -15,8 +15,8 @@ const renderHTML = () => {
     const buttonsInner = createElement('div', "form__button-inner");
     form.appendChild(buttonsInner);
 
-    const deleteValue = button('form__button', 'очистить поле ввода', 'del');
-    buttonsInner.appendChild(deleteValue);
+    const startRender = button('form__button', 'Start render', 'start');
+    buttonsInner.appendChild(startRender);
 
     const linesWrapper = createElement('div', 'lines__wrapper');
     document.body.appendChild(linesWrapper);

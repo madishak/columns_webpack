@@ -26,10 +26,6 @@ const strToArray = (str) => {
     });
 };
 
-inputShow.addEventListener('change', () => {
-    const newArr = strToArray(inputShow.value);
-    return renderCollection(newArr);
-});
 
 const renderCollection = inputValue => {
 
@@ -71,6 +67,14 @@ const renderCollection = inputValue => {
 
 
 };
+//
+// inputShow.addEventListener('change', () => {
+//     const newArr = strToArray(inputShow.value);
+//     return renderCollection(newArr);
+// });
 
-let deleteVal = document.querySelector('#del');
-deleteVal.addEventListener('click', () => (inputShow.value = ''));
+let startRender = document.querySelector('#start');
+startRender.addEventListener('click', () => {
+    const newArr = strToArray(inputShow.value);
+    return renderCollection(newArr);
+});
