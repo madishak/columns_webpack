@@ -1,8 +1,10 @@
 import createElement from './createElement.js';
 import button from "./button"
 import inputText from "./input"
+import { linesWrapper } from "./linesWrapper";
 
 const renderHTML = () => {
+
     const wrapper = createElement('div', 'wrapper');
     document.body.appendChild(wrapper);
 
@@ -18,7 +20,6 @@ const renderHTML = () => {
     const startRender = button('form__button', 'Start render', 'start');
     buttonsInner.appendChild(startRender);
 
-    const linesWrapper = createElement('div', 'lines__wrapper');
     document.body.appendChild(linesWrapper);
 
 };
