@@ -21,7 +21,7 @@ const renderCollection = inputValue => {
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
-    sort.bubbleSort();
+    //sort.bubbleSort();
     draw.drawArray();
 
 
