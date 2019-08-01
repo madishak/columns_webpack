@@ -3,6 +3,40 @@ class Sort {
         this.arr = array.slice(0);
         this.listOfIndexes = [];
         this.listOfIndexesBack = [];
+        this.currentIndex = 0;
+    }
+
+
+    increaseSort() {
+
+        if (this.currentIndex >= this.arr.length) {
+
+            this.currentIndex = 0;
+        }
+        console.log(this.arr.length);
+        console.log(this.currentIndex);
+        //for(let i = this.currentIndex; i < this.arr.length-1; i++) {
+        let flag = true;
+        while (flag) {
+            flag = false;
+            for (let j = this.currentIndex; j <= this.arr.length; j++) {
+                if (this.arr[j] > this.arr[j + 1]) {
+                    this.currentIndex = this.currentIndex + 1;
+
+                    [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
+                    this.listOfIndexes = [...this.listOfIndexes, j, j + 1];
+                    flag = true;
+
+                    //console.log(j, j + 1);
+                    console.log(this.arr);
+                    return this.arr;
+
+
+                }
+            }
+       }
+        console.log(this.arr);
+        return  this.arr;
     }
 
     // bubbleSort() {
@@ -18,23 +52,6 @@ class Sort {
     //     }
     //     return  arrayCopy;
     // }
-
-    increaseSort() {
-        let a = 0;
-        let b = 0;
-
-            for (let j = 0; j < this.arr.length; j++) {
-                if (this.arr[j] > this.arr[j+1]) {
-                    [this.arr[j], this.arr[j+1]] = [this.arr[j+1], this.arr[j]];
-                    this.listOfIndexes = [...this.listOfIndexes, j, j+1];
-                    a = j;
-                    b = j+1;
-                    return  this.arr;
-                }
-            }
-        return  this.arr;
-    }
-
 
     // increaseSort() {
     //     for (let j = 0; j < this.arr.length; j++) {
