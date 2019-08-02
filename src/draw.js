@@ -32,7 +32,7 @@ class Draw {
     movement(newArr) {
         const bg = {
             first: 0,
-            second: 1,
+            second: 1
         };
 
         const COLUMN_MARGIN = 30;
