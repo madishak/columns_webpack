@@ -2,39 +2,41 @@ class Sort {
     constructor(array) {
         this.arr = array.slice(0);
         this.listOfIndexes = [];
-        this.listOfIndexesBack = [];
         this.currentIndex = 0;
+        this.a = 0;
+        this.b = 0;
+        this.currInd = {
+            first: 0
+        };
     }
 
 
     increaseSort() {
 
-        if (this.currentIndex >= this.arr.length) {
+        // if (this.currentIndex >= this.arr.length-1) {
+        //
+        //     this.currentIndex = 0;
+        // }
+      // let
 
-            this.currentIndex = 0;
-        }
-        console.log(this.arr.length);
-        console.log(this.currentIndex);
-        //for(let i = this.currentIndex; i < this.arr.length-1; i++) {
-        let flag = true;
-        while (flag) {
-            flag = false;
-            for (let j = this.currentIndex; j <= this.arr.length; j++) {
-                if (this.arr[j] > this.arr[j + 1]) {
-                    this.currentIndex = this.currentIndex + 1;
+      //for (let i = currInd.first; i < this.arr.length-1; i++) {
 
-                    [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
-                    this.listOfIndexes = [...this.listOfIndexes, j, j + 1];
-                    flag = true;
+            for (let j = this.currInd.first; j < this.arr.length; j++) {
+                if (this.arr[j] > this.arr[j+1]) {
 
-                    //console.log(j, j + 1);
+
+                    [this.arr[j], this.arr[j+1]] = [this.arr[j+1], this.arr[j]];
+                    this.currInd = this.currInd + 1;
+
+                    this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
+                    console.log(this.currInd);
                     console.log(this.arr);
                     return this.arr;
 
 
                 }
             }
-       }
+       //}
         console.log(this.arr);
         return  this.arr;
     }
@@ -70,11 +72,11 @@ class Sort {
 
     decreaseSort() {
         for (let i = 0; i < this.arr.length; i++) {
-            if (this.listOfIndexesBack.length !== 0) {
-                [this.arr[this.listOfIndexesBack[0]], this.arr[this.listOfIndexesBack[1]]] = [this.arr[this.listOfIndexesBack[1]], this.arr[this.listOfIndexesBack[0]]];
-                this.listOfIndexes = [this.listOfIndexesBack[0], this.listOfIndexesBack[1], ...this.listOfIndexes];
-                this.listOfIndexesBack.shift(this.listOfIndexesBack[0]);
-                this.listOfIndexesBack.shift(this.listOfIndexesBack[1]);
+            if (this.listOfIndexes.length !== 0) {
+                [this.arr[this.listOfIndexes[0]], this.arr[this.listOfIndexes[1]]] = [this.arr[this.listOfIndexes[1]], this.arr[this.listOfIndexes[0]]];
+                //this.listOfIndexes = [this.listOfIndexesBack[0], this.listOfIndexesBack[1], ...this.listOfIndexes];
+                this.listOfIndexes.shift(this.listOfIndexes[0]);
+                this.listOfIndexes.shift(this.listOfIndexes[1]);
                 return this.arr;
             }
 
