@@ -3,42 +3,43 @@ class Sort {
         this.arr = array.slice(0);
         this.listOfIndexes = [];
         this.currentIndex = 0;
-        this.a = 0;
-        this.b = 0;
-        this.currInd = {
-            first: 0
-        };
+
     }
 
 
     increaseSort() {
 
-        // if (this.currentIndex >= this.arr.length-1) {
-        //
-        //     this.currentIndex = 0;
-        // }
+        if (this.currentIndex > this.arr.length-1) {
+
+            this.currentIndex = 0;
+        }
       // let
+       // console.log(j);
 
-      //for (let i = currInd.first; i < this.arr.length-1; i++) {
+            let flag = true;
+        // if (this.listOfIndexes.length === this.currentIndex) {
+            while (flag) {
+                flag = false;
+                for (let i = 0; i < this.arr.length; i++) {
+                    if (this.arr[i] > this.arr[i + 1]) {
+                        //[this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                        Sort.swap(this.arr, i);
+                        this.listOfIndexes = [i, i+1, ...this.listOfIndexes];
+                        this.currentIndex += 1;
+                        flag = true;
 
-            for (let j = this.currInd.first; j < this.arr.length; j++) {
-                if (this.arr[j] > this.arr[j+1]) {
-
-
-                    [this.arr[j], this.arr[j+1]] = [this.arr[j+1], this.arr[j]];
-                    this.currInd = this.currInd + 1;
-
-                    this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
-                    console.log(this.currInd);
-                    console.log(this.arr);
-                    return this.arr;
-
-
+                        return this.arr;
+                    }
                 }
+
             }
-       //}
-        console.log(this.arr);
-        return  this.arr;
+            return this.arr;
+        // }
+        // return this.arr;
+    }
+
+    static swap(array, index) {
+        [array[index], array[index+1]] = [array[index+1], array[index]];
     }
 
     // bubbleSort() {
