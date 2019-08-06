@@ -13,20 +13,14 @@ class Sort {
 
             this.currentIndex = 0;
         }
-      // let
-       // console.log(j);
 
-            let flag = true;
-        // if (this.listOfIndexes.length === this.currentIndex) {
-            while (flag) {
-                flag = false;
-                for (let i = 0; i < this.arr.length; i++) {
-                    if (this.arr[i] > this.arr[i + 1]) {
-                        //[this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
-                        Sort.swap(this.arr, i);
-                        this.listOfIndexes = [i, i+1, ...this.listOfIndexes];
+                for (let i = 0; i < this.arr.length-1; i++) {
+                    for (let j = this.currentIndex; j < this.arr.length-i-1; j++) {
+                    if (this.arr[j] > this.arr[j + 1]) {
+                        [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
+
+                        this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
                         this.currentIndex += 1;
-                        flag = true;
 
                         return this.arr;
                     }
@@ -34,13 +28,10 @@ class Sort {
 
             }
             return this.arr;
-        // }
-        // return this.arr;
+
     }
 
-    static swap(array, index) {
-        [array[index], array[index+1]] = [array[index+1], array[index]];
-    }
+
 
     // bubbleSort() {
     //     const arrayCopy = this.arr.slice(0);
