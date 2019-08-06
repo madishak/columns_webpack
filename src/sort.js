@@ -9,10 +9,10 @@ class Sort {
 
     increaseSort() {
 
-        if (this.currentIndex > this.arr.length-1) {
-
-            this.currentIndex = 0;
-        }
+        // if (this.currentIndex > this.arr.length-1) {
+        //
+        //     this.currentIndex = 0;
+        // }
 
                 for (let i = 0; i < this.arr.length-1; i++) {
                     for (let j = this.currentIndex; j < this.arr.length-i-1; j++) {
