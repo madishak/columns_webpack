@@ -13,20 +13,25 @@ class Sort {
         //
         //     this.currentIndex = 0;
         // }
-
-                for (let i = 0; i < this.arr.length-1; i++) {
-                    for (let j = this.currentIndex; j < this.arr.length-i-1; j++) {
-                    if (this.arr[j] > this.arr[j + 1]) {
-                        [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
-
-                        this.listOfIndexes = [j, j+1, ...this.listOfIndexes];
-                        this.currentIndex += 1;
-
+        console.log(this.currentIndex);
+        let flag = true;
+        while (flag) {
+            flag = false;
+            for (let i = this.currentIndex; i < this.arr.length; i++) {
+                if (this.arr[i] > this.arr[i + 1]) {
+                    [this.arr[i], this.arr[i + 1]] = [this.arr[i + 1], this.arr[i]];
+                    this.listOfIndexes = [i, i + 1, ...this.listOfIndexes];
+                    flag = true;
+                    this.currentIndex = this.currentIndex + 1;
+                    console.log(i, i+1);
+                    console.log(this.arr);
                         return this.arr;
                     }
                 }
-
+                    this.currentIndex = 0;
             }
+
+
             return this.arr;
 
     }
