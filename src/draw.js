@@ -56,7 +56,7 @@ class Draw {
             columns[bg.second].style.backgroundColor = 'red';
         }
 
-        this.arr = [...newArr]; // плохо
+        this.arr = [...newArr];
     }
 }
 
