@@ -21,22 +21,8 @@ const renderCollection = inputValue => {
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
-    //sort.bubbleSort();
+
     draw.drawArray();
-
-
-    //const errorMessage = createElement('div', 'error__message', 'Введите цифры, вместо букв');
-
-    // inputValue.forEach(value => {
-    //     //console.log(value);
-    //     if (value === '') {
-    //         return draw.linesButtonsContainer.appendChild(errorMessage);
-    //
-    //     }
-    //
-    //
-    // });
-
 
     const buttonBack = button("lines__button", "назад", 'dec');
 
