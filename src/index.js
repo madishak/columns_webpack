@@ -1,14 +1,31 @@
-import renderHTML from './ui/page.js';
 import Sort from './sort';
 import Draw from './draw';
-import button from "./ui/button"
 import createElement from "./ui/createElement"
+import button from "./ui/button"
+import inputText from "./ui/input";
+import {linesWrapper} from "./ui/linesWrapper";
 
-import './style.css';
+import './styles/css__reset.css';
+import './styles/style.css';
 
-renderHTML();
 
-const inputShow = document.getElementById('input');
+const wrapper = createElement('div', 'wrapper');
+document.body.appendChild(wrapper);
+
+const form = createElement('form', 'form');
+wrapper.appendChild(form);
+
+const input = inputText('', 'form__input', 'input', 'Enter numbers');
+form.appendChild(input);
+
+const buttonsInner = createElement('div', "form__button-inner");
+form.appendChild(buttonsInner);
+
+const startRender = button('form__button', 'Start render', 'start');
+buttonsInner.appendChild(startRender);
+
+document.body.appendChild(linesWrapper);
+
 
 let currentStates = [];
 
@@ -40,14 +57,14 @@ const renderCollection = inputValue => {
 
 };
 
-inputShow.addEventListener('input', (evt) => {
-    inputShow.value = evt.target.value.match(/\d+/g);
+input.addEventListener('input', (evt) => {
+    input.value = evt.target.value.match(/\d+/g);
 });
 
-let startRender = document.querySelector('#start');
+
 startRender.addEventListener('click', () => {
-    const newArr = strToArray(inputShow.value);
+    const newArr = strToArray(input.value);
     currentStates = [...newArr];
     console.log(currentStates);
-    return renderCollection(newArr);
+    renderCollection(newArr);
 });

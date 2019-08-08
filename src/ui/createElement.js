@@ -6,7 +6,7 @@ const createElement = (tag, className, text) => {
     }
 
     if (text) {
-        element.textContent = text;
+        element.innerHTML = text;
     }
 
     return element;
