@@ -15,7 +15,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Madina Karachai - Columns',
-            link: 'rel="shortcut icon" href="../tree.ico" type="image/x-icon"'
+            link: {"rel":"shortcut icon", "href":"../tree.ico", "type":"image/x-icon"}
         })
     ],
     output: {
@@ -30,6 +30,16 @@ module.exports = {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
         ]
     }
