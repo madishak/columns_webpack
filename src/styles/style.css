@@ -1,3 +1,10 @@
+:root {
+    --dodgerblue-color: dodgerblue;
+    --main-font-color: white;
+    --line-height: 150px;
+    --line-width: 20px;
+}
+
 .wrapper {
     margin: 0 auto;
     padding: 30px 0 0 0;
@@ -47,11 +54,10 @@
     position: absolute;
     transition: left 0.6s;
     border: 1px solid yellow;
-    background-color: dodgerblue;
-    height: 150px;
-    width: 20px;
-    color: white;
-    font-size: 90%;
+    background-color: var(--dodgerblue-color);
+    height: var(--line-height);
+    width: var(--line-width);
+    color: var(--main-font-color);
     margin: 15px;
     text-align: center;
 }
@@ -68,8 +74,3 @@
     margin: 0 10px;
 }
 
-.error__message {
-    margin: 10px 0 0 10px;
-    padding: 5px 20px;
-    border: 2px solid red;
-}
