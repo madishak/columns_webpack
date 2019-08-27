@@ -3,7 +3,7 @@ import Draw from './draw';
 import createElement from "./ui/createElement"
 import button from "./ui/button"
 import inputText from "./ui/input";
-import {linesWrapper} from "./ui/linesWrapper";
+import {columnsWrapper} from "./ui/columnsWrapper";
 
 import './styles/css__reset.css';
 import './styles/style.css';
@@ -24,7 +24,7 @@ form.appendChild(buttonsInner);
 const startRender = button({'type':'button', 'class':'form__button', 'text':'Start render', 'id':'start'});
 buttonsInner.appendChild(startRender);
 
-document.body.appendChild(linesWrapper);
+document.body.appendChild(columnsWrapper);
 
 
 let currentStates = [];
@@ -41,19 +41,19 @@ const renderCollection = inputValue => {
 
     draw.drawArray();
 
-    const buttonBack = button({'class':"lines__button", 'text':"назад", 'id':'dec'});
+    const buttonBack = button({'class':"columns__button", 'text':"назад", 'id':'dec'});
 
-    const buttonNext = button({'class':"lines__button", "text":"вперед", 'id':'inc'});
+    const buttonNext = button({'class':"columns__button", "text":"вперед", 'id':'inc'});
 
 
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
     buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
-    const buttonsInner = createElement({'tag':'div', 'class':"lines__button-inner"});
+    const buttonsInner = createElement({'tag':'div', 'class':"columns__button-inner"});
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
 
-    draw.linesButtonsContainer.appendChild(buttonsInner);
+    draw.columnsButtonsContainer.appendChild(buttonsInner);
 
 };
 

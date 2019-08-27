@@ -1,5 +1,5 @@
 import createElement from './ui/createElement'
-import { linesWrapper } from "./ui/linesWrapper";
+import { columnsWrapper } from "./ui/columnsWrapper";
 
 class Draw {
     static FIXED_COLUMN_HEIGHT = 15;
@@ -7,8 +7,8 @@ class Draw {
     constructor(array) {
         this.arr = array.slice(0);
         this.columnIndexArr = [];
-        this.linesButtonsContainer = createElement({'tag':'div', 'class':'lines-buttons__container'});
-        this.linesInner = createElement({'tag':'div', 'class':'lines__inner'});
+        this.columnsButtonsContainer = createElement({'tag':'div', 'class':'columns-buttons__container'});
+        this.columnsInner = createElement({'tag':'div', 'class':'columns__inner'});
 
     }
 
@@ -18,14 +18,14 @@ class Draw {
 
 
         this.arr.map((element, index) => {
-            let newDiv = createElement({'tag':'div', 'class':'line', 'text':element});
+            let newDiv = createElement({'tag':'div', 'class':'column', 'text':element});
             this.columnIndexArr.push(index);
             newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
             newDiv.style.left = `${index * Draw.OFFSET}px`;
-            this.linesInner.appendChild(newDiv);
+            this.columnsInner.appendChild(newDiv);
         });
-        this.linesButtonsContainer.appendChild(this.linesInner);
-        linesWrapper.appendChild(this.linesButtonsContainer);
+        this.columnsButtonsContainer.appendChild(this.columnsInner);
+        columnsWrapper.appendChild(this.columnsButtonsContainer);
     }
 
     movement(newArr) {
@@ -35,7 +35,7 @@ class Draw {
         };
 
 
-        const [...columns] = this.linesInner.getElementsByClassName('line'); //columns => HTML objects
+        const [...columns] = this.columnsInner.getElementsByClassName('column'); //columns => HTML objects
 
         for (let i = 0; i < newArr.length; i++) {
             if (newArr[i] !== this.arr[i]) {
