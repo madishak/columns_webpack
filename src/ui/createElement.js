@@ -1,12 +1,26 @@
-const createElement = (tag, className, text) => {
-    const element = document.createElement(tag);
+// const createElement = (tag, className, text) => {
+//     const element = document.createElement(tag);
+//
+//     if (className) {
+//         element.classList.add(className);
+//     }
+//
+//     if (text) {
+//         element.innerHTML = text;
+//     }
+//
+//     return element;
+// };
 
-    if (className) {
-        element.classList.add(className);
+const createElement = (property) => {
+    const element = document.createElement(property.tag);
+
+    if (property.class) {
+        element.classList.add(property.class);
     }
 
-    if (text) {
-        element.innerHTML = text;
+    if (property.text) {
+        element.innerHTML = property.text;
     }
 
     return element;

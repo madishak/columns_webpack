@@ -7,8 +7,8 @@ class Draw {
     constructor(array) {
         this.arr = array.slice(0);
         this.columnIndexArr = [];
-        this.linesButtonsContainer = createElement('div', 'lines-buttons__container');
-        this.linesInner = createElement('div', 'lines__inner');
+        this.linesButtonsContainer = createElement({'tag':'div', 'class':'lines-buttons__container'});
+        this.linesInner = createElement({'tag':'div', 'class':'lines__inner'});
 
     }
 
@@ -18,7 +18,7 @@ class Draw {
 
 
         this.arr.map((element, index) => {
-            let newDiv = createElement('div', 'line', element);
+            let newDiv = createElement({'tag':'div', 'class':'line', 'text':element});
             this.columnIndexArr.push(index);
             newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
             newDiv.style.left = `${index * Draw.OFFSET}px`;

@@ -9,19 +9,19 @@ import './styles/css__reset.css';
 import './styles/style.css';
 
 
-const wrapper = createElement('div', 'wrapper');
+const wrapper = createElement({'tag':'div', 'class':'wrapper'});
 document.body.appendChild(wrapper);
 
-const form = createElement('form', 'form');
+const form = createElement({'tag':'form', 'class':'form'});
 wrapper.appendChild(form);
 
-const input = inputText('', 'form__input', 'input', 'Enter numbers');
+const input = inputText({'type': 'text', 'class':'form__input', 'id':'input', 'placeholder':'Enter numbers'});
 form.appendChild(input);
 
-const buttonsInner = createElement('div', "form__button-inner");
+const buttonsInner = createElement({'tag':'div', 'class':"form__button-inner"});
 form.appendChild(buttonsInner);
 
-const startRender = button('form__button', 'Start render', 'start');
+const startRender = button({'type':'button', 'class':'form__button', 'text':'Start render', 'id':'start'});
 buttonsInner.appendChild(startRender);
 
 document.body.appendChild(linesWrapper);
@@ -41,15 +41,15 @@ const renderCollection = inputValue => {
 
     draw.drawArray();
 
-    const buttonBack = button("lines__button", "назад", 'dec');
+    const buttonBack = button({'class':"lines__button", 'text':"назад", 'id':'dec'});
 
-    const buttonNext = button("lines__button", "вперед", 'inc');
+    const buttonNext = button({'class':"lines__button", "text":"вперед", 'id':'inc'});
 
 
     buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
     buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
 
-    const buttonsInner = createElement('div', "lines__button-inner");
+    const buttonsInner = createElement({'tag':'div', 'class':"lines__button-inner"});
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
 
