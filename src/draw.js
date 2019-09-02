@@ -16,8 +16,6 @@ class Draw {
 
 
    drawArray() {
-
-
         this.arr.map((element, index) => {
             let newDiv = createElement({'tag':'div', 'class':'column', 'text':element});
             this.columns = [...this.columns, newDiv];
@@ -38,37 +36,25 @@ class Draw {
 
         const currentElements = {};
 
-        let ind = {};
-
         for (let i = 0; i < newArr.length; i++) {
-
             if (newArr[i] !== this.arr[i]) {
-
-                console.log(newArr[i], this.arr[i]);
-                console.log(i);
-                console.log(this.arr);
-                console.log(newArr);
                 currentElements[i] = i;
-
             }
 
         }
 
-        console.log(currentElements);
         const currentElementsKeys = Object.keys(currentElements);
 
         for (let i = 0; i < newArr.length; i++) {
 
                 if (newArr[i] !== this.arr[i]) {
+                    [this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[1]]]] =
+                    [this.columnIndexArr[currentElements[currentElementsKeys[1]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]];
 
-                        [this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[1]]]] =
-                            [this.columnIndexArr[currentElements[currentElementsKeys[1]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]];
-                        console.log(this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]);
+                    bg.first = this.columnIndexArr[i];
+                    bg.second = this.columnIndexArr[i + 1];
 
-                        bg.first = this.columnIndexArr[i];
-                        bg.second = this.columnIndexArr[i + 1];
-
-                        break;
+                    break;
 
                 }
             }
