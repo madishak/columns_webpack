@@ -38,45 +38,48 @@ class Draw {
 
         const currentElements = {};
 
-        console.log(this.columnIndexArr);
-        //const [...columns] = this.columnsInner.getElementsByClassName('column'); //columns => HTML objects
-        //const offsets = columns.map((elem) => elem.offsetLeft);
+        let ind = {};
 
         for (let i = 0; i < newArr.length; i++) {
+
             if (newArr[i] !== this.arr[i]) {
-                //console.log(newArr[i], this.arr[i]);
-                //[newArr[i], this.arr[i]] = [this.arr[i], newArr[i]];
 
-                [this.columnIndexArr[i], this.columnIndexArr[i + 1]] = [this.columnIndexArr[i + 1], this.columnIndexArr[i]];
-                console.log(this.columnIndexArr[i], this.columnIndexArr[i+1]);
-                bg.first = this.columnIndexArr[i];
-                bg.second = this.columnIndexArr[i + 1];
+                console.log(newArr[i], this.arr[i]);
+                console.log(i);
+                console.log(this.arr);
+                console.log(newArr);
+                currentElements[i] = i;
 
-                break;
             }
-        }
-        for (let i = 0; i < this.columns.length; i++) {
-            this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
-            this.columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
-            this.columns[bg.first].style.backgroundColor = 'red';
-            this.columns[bg.second].style.backgroundColor = 'red';
+
         }
 
-        this.arr = [...newArr];
+        console.log(currentElements);
+        const currentElementsKeys = Object.keys(currentElements);
 
-        // this.arr.map((elem, i) => {
-            newArr.map((val, j) => {
+        for (let i = 0; i < newArr.length; i++) {
 
-                if (this.arr[j] !== val) {
-                    currentElements.first = this.arr[j];
-                    currentElements.second = val;
-                    currentElements.secondIndex = j;
+                if (newArr[i] !== this.arr[i]) {
+
+                        [this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[1]]]] =
+                            [this.columnIndexArr[currentElements[currentElementsKeys[1]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]];
+                        console.log(this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]);
+
+                        bg.first = this.columnIndexArr[i];
+                        bg.second = this.columnIndexArr[i + 1];
+
+                        break;
 
                 }
-            });
-        // });
+            }
+            for (let i = 0; i < this.columns.length; i++) {
+                this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
+                this.columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
+                this.columns[bg.first].style.backgroundColor = 'red';
+                this.columns[bg.second].style.backgroundColor = 'red';
+            }
 
-        //console.log(currentElements);
+            this.arr = [...newArr];
 
     }
 
