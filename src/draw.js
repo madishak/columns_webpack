@@ -6,6 +6,7 @@ class Draw {
     static OFFSET = 30;
     constructor(array) {
         this.arr = array.slice(0);
+        this.arrCopy = this.arr.slice(0);
         this.columnIndexArr = [];
         this.columnsButtonsContainer = createElement({tag:'div', class:'columns-buttons__container'});
         this.columnsInner = createElement({tag:'div', class:'columns__inner'});
@@ -16,7 +17,7 @@ class Draw {
 
 
    drawArray() {
-        this.arr.forEach((element, index) => {
+        this.arrCopy.forEach((element, index) => {
             let newDiv = createElement({tag:'div', class:'column', text:element});
             this.columns = [...this.columns, newDiv];
             this.columnIndexArr.push(index);
@@ -37,7 +38,7 @@ class Draw {
         const currentElements = {};
 
         for (let i = 0; i < newArr.length; i++) {
-            if (newArr[i] !== this.arr[i]) {
+            if (newArr[i] !== this.arrCopy[i]) {
                 currentElements[i] = i;
             }
 
@@ -48,7 +49,7 @@ class Draw {
 
         for (let i = 0; i < newArr.length; i++) {
 
-                if (newArr[i] !== this.arr[i]) {
+                if (newArr[i] !== this.arrCopy[i]) {
                     [this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[1]]]] =
                     [this.columnIndexArr[currentElements[currentElementsKeys[1]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]];
 
@@ -66,7 +67,7 @@ class Draw {
                 this.columns[bg.second].style.backgroundColor = 'red';
             }
 
-            this.arr = [...newArr];
+            this.arrCopy = [...newArr];
 
     }
 
