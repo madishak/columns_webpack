@@ -16,7 +16,7 @@ class Draw {
 
 
    drawArray() {
-        this.arr.map((element, index) => {
+        this.arr.forEach((element, index) => {
             let newDiv = createElement({tag:'div', class:'column', text:element});
             this.columns = [...this.columns, newDiv];
             this.columnIndexArr.push(index);
