@@ -15,7 +15,6 @@ class Draw {
     }
 
 
-
    drawArray() {
         this.arrCopy.forEach((element, index) => {
             let newDiv = createElement({tag:'div', class:'column', text:element});
@@ -29,45 +28,39 @@ class Draw {
         columnsWrapper.appendChild(this.columnsButtonsContainer);
     }
 
-    movement(newArr) {
-        const bg = {
-            first: 0,
-            second: 1
-        };
 
-        const currentElements = {};
+    movement(newArr) {
+        let currentElements = [];
 
         for (let i = 0; i < newArr.length; i++) {
             if (newArr[i] !== this.arrCopy[i]) {
-                currentElements[i] = i;
+                currentElements = [...currentElements, i];
             }
-
         }
 
-        const currentElementsKeys = Object.keys(currentElements);
-        console.log(currentElementsKeys);
 
         for (let i = 0; i < newArr.length; i++) {
-
                 if (newArr[i] !== this.arrCopy[i]) {
-                    [this.columnIndexArr[currentElements[currentElementsKeys[0]]], this.columnIndexArr[currentElements[currentElementsKeys[1]]]] =
-                    [this.columnIndexArr[currentElements[currentElementsKeys[1]]], this.columnIndexArr[currentElements[currentElementsKeys[0]]]];
-
-                    bg.first = this.columnIndexArr[i];
-                    bg.second = this.columnIndexArr[i + 1];
+                    [this.columnIndexArr[currentElements[0]], this.columnIndexArr[currentElements[1]]] =
+                    [this.columnIndexArr[currentElements[1]], this.columnIndexArr[currentElements[0]]];
 
                     break;
 
                 }
             }
-            for (let i = 0; i < this.columns.length; i++) {
+
+
+        for (let i = 0; i < this.columns.length; i++) {
+            if (currentElements.length === 0) {
+                break;
+            }
                 this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
                 this.columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
-                this.columns[bg.first].style.backgroundColor = 'red';
-                this.columns[bg.second].style.backgroundColor = 'red';
-            }
+                this.columns[this.columnIndexArr[currentElements[0]]].style.backgroundColor = 'red';
+                this.columns[this.columnIndexArr[currentElements[1]]].style.backgroundColor = 'red';
+        }
 
-            this.arrCopy = [...newArr];
+        this.arrCopy = [...newArr];
 
     }
 
