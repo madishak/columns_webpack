@@ -1,79 +1,75 @@
 :root {
-    --wrapper-width: 1120px;
-    --dodgerblue-color: dodgerblue;
-    --main-font-color: white;
-    --column-height: 150px;
-    --column-width: 20px;
-    --column-margin: 15px;
-    --form__input-width: 350px;
-    --columns__inner-height: 190px;
+  --dodgerblue-color: dodgerblue;
+  --main-font-color: white;
+  --column-height: 150px;
+  --column-width: 20px;
+  --column-margin: 15px;
+  --form__input-width: 350px;
+  --columns__inner-height: 190px;
 }
 
 .wrapper {
-    margin: 0 auto;
-    padding: 30px 0 0 0;
-    width: var(--wrapper-width);
-    height: auto;
+  margin: 0 auto;
+  padding: 30px 0 0 0;
+  width: auto;
+  height: auto;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
 }
 
 .form__input {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    width: var(--form__input-width);
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: var(--form__input-width);
 }
 
 .form__button-inner {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    width: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: auto;
 }
 
 .form__button {
-    margin: 20px 5px 0 5px;
+  margin: 20px 5px 0 5px;
 }
 
 .columns__wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-between;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 
 .columns__inner {
-    position: relative;
-    height: var(--columns__inner-height);
-
+  position: relative;
+  height: var(--columns__inner-height);
 }
 
 .column {
-    position: absolute;
-    transition: left 0.6s;
-    border: 1px solid yellow;
-    background-color: var(--dodgerblue-color);
-    height: var(--column-height);
-    width: var(--column-width);
-    color: var(--main-font-color);
-    margin: var(--column-margin);
-    text-align: center;
+  position: absolute;
+  transition: left 0.6s;
+  border: 1px solid yellow;
+  background-color: var(--dodgerblue-color);
+  height: var(--column-height);
+  width: var(--column-width);
+  color: var(--main-font-color);
+  margin: var(--column-margin);
+  text-align: center;
 }
 
-
-.columns__button-inner{
-    display: flex;
-    justify-content: space-around;
-    padding: 5px 0;
+.columns__button-inner {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
 }
 
 .columns__button {
-    margin: 0 10px;
+  margin: 0 10px;
 }
-
