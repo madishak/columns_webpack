@@ -6,88 +6,88 @@ import inputText from "./ui/input";
 import { columnsWrapper } from "./ui/columnsWrapper";
 
 const bubbleSortApp = () => {
+  const wrapper = createElement({ tag: "div", class: "wrapper" });
 
-    const wrapper = createElement({tag: "div", class: "wrapper"});
+  const form = createElement({ tag: "form", class: "form" });
+  wrapper.appendChild(form);
 
-    const form = createElement({tag: "form", class: "form"});
-    wrapper.appendChild(form);
+  const input = inputText({
+    type: "text",
+    class: "form__input",
+    id: "input",
+    placeholder: "Enter numbers"
+  });
+  form.appendChild(input);
 
-    const input = inputText({
-        type: "text",
-        class: "form__input",
-        id: "input",
-        placeholder: "Enter numbers"
-    });
-    form.appendChild(input);
+  const buttonsInner = createElement({
+    tag: "div",
+    class: "form__button-inner"
+  });
+  form.appendChild(buttonsInner);
 
-    const buttonsInner = createElement({tag: "div", class: "form__button-inner"});
-    form.appendChild(buttonsInner);
+  const startRender = button({
+    type: "button",
+    class: "form__button",
+    text: "Start render",
+    id: "start"
+  });
+  buttonsInner.appendChild(startRender);
 
-    const startRender = button({
-        type: "button",
-        class: "form__button",
-        text: "Start render",
-        id: "start"
-    });
-    buttonsInner.appendChild(startRender);
+  wrapper.appendChild(columnsWrapper);
 
-    wrapper.appendChild(columnsWrapper);
+  let currentStates = [];
 
-    let currentStates = [];
+  const strToArray = str => str.split("").map(element => Number(element));
 
-    const strToArray = str => str.split("").map(element => Number(element));
+  const renderCollection = inputValue => {
+    if (inputValue.length === 0) {
+      return;
+    }
 
-    const renderCollection = inputValue => {
-        if (inputValue.length === 0) {
-            return;
-        }
+    let sort = new Sort(inputValue);
+    let draw = new Draw(inputValue);
 
-        let sort = new Sort(inputValue);
-        let draw = new Draw(inputValue);
+    draw.drawArray();
 
-        draw.drawArray();
-
-        const buttonBack = button({
-            class: "columns__button",
-            text: "назад",
-            id: "dec"
-        });
-
-        const buttonNext = button({
-            class: "columns__button",
-            text: "вперед",
-            id: "inc"
-        });
-
-        buttonBack.addEventListener("click", () =>
-            draw.movement(sort.decreaseSort())
-        );
-        buttonNext.addEventListener("click", () =>
-            draw.movement(sort.increaseSort())
-        );
-
-        const buttonsInner = createElement({
-            tag: "div",
-            class: "columns__button-inner"
-        });
-        buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
-
-        draw.columnsButtonsContainer.appendChild(buttonsInner);
-    };
-
-    input.addEventListener("input", evt => {
-        input.value = evt.target.value.match(/\d+/g);
+    const buttonBack = button({
+      class: "columns__button",
+      text: "назад",
+      id: "dec"
     });
 
-    startRender.addEventListener("click", () => {
-        const newArr = strToArray(input.value);
-        currentStates = [...newArr];
-        console.log(currentStates);
-        renderCollection(newArr);
+    const buttonNext = button({
+      class: "columns__button",
+      text: "вперед",
+      id: "inc"
     });
 
-    return wrapper;
+    buttonBack.addEventListener("click", () =>
+      draw.movement(sort.decreaseSort())
+    );
+    buttonNext.addEventListener("click", () =>
+      draw.movement(sort.increaseSort())
+    );
 
+    const buttonsInner = createElement({
+      tag: "div",
+      class: "columns__button-inner"
+    });
+    buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
+
+    draw.columnsButtonsContainer.appendChild(buttonsInner);
+  };
+
+  input.addEventListener("input", evt => {
+    input.value = evt.target.value.match(/\d+/g);
+  });
+
+  startRender.addEventListener("click", () => {
+    const newArr = strToArray(input.value);
+    currentStates = [...currentStates, newArr];
+    renderCollection(newArr);
+  });
+
+  return wrapper;
 };
 
-export default bubbleSortApp
+export default bubbleSortApp;
