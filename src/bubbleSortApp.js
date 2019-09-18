@@ -44,8 +44,10 @@ const bubbleSortApp = () => {
       return;
     }
 
+    let currentStatesLength = currentStates.length - 1;
+
     let sort = new Sort(inputValue);
-    let draw = new Draw(inputValue);
+    let draw = new Draw(currentStates[currentStatesLength]);
 
     draw.drawArray();
 

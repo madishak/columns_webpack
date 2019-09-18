@@ -1,74 +1,83 @@
-import createElement from './ui/createElement'
+import createElement from "./ui/createElement";
 import { columnsWrapper } from "./ui/columnsWrapper";
 
 class Draw {
-    static FIXED_COLUMN_HEIGHT = 15;
-    static OFFSET = 30;
-    constructor(array) {
-        this.arr = array.slice(0);
-        this.arrCopy = this.arr.slice(0);
-        this.columnIndexArr = [];
-        this.columnsButtonsContainer = createElement({tag:'div', class:'columns-buttons__container'});
-        this.columnsInner = createElement({tag:'div', class:'columns__inner'});
-        this.columns = [];
+  static FIXED_COLUMN_HEIGHT = 15;
+  static OFFSET = 30;
+  constructor(array) {
+    this.arr = array.slice(0);
+    this.arrCopy = this.arr.slice(0);
+    this.columnIndexArr = [];
+    this.columnsButtonsContainer = createElement({
+      tag: "div",
+      class: "columns-buttons__container"
+    });
+    this.columnsInner = createElement({ tag: "div", class: "columns__inner" });
+    this.columns = [];
+  }
 
+  drawArray() {
+    this.arrCopy.forEach((element, index) => {
+      let newDiv = createElement({
+        tag: "div",
+        class: "column",
+        text: element
+      });
+      this.columns = [...this.columns, newDiv];
+      this.columnIndexArr.push(index);
+      newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
+      newDiv.style.left = Draw.moveColumnLeft(index);
+      this.columnsInner.appendChild(newDiv);
+    });
+    this.columnsButtonsContainer.appendChild(this.columnsInner);
+    columnsWrapper.appendChild(this.columnsButtonsContainer);
+  }
+
+  movement(newArr) {
+    let currentElements = [];
+
+    for (let i = 0; i < newArr.length; i++) {
+      if (newArr[i] !== this.arrCopy[i]) {
+        currentElements = [...currentElements, i];
+      }
     }
 
+    for (let i = 0; i < newArr.length; i++) {
+      if (newArr[i] !== this.arrCopy[i]) {
+        [
+          this.columnIndexArr[currentElements[0]],
+          this.columnIndexArr[currentElements[1]]
+        ] = [
+          this.columnIndexArr[currentElements[1]],
+          this.columnIndexArr[currentElements[0]]
+        ];
 
-   drawArray() {
-        this.arrCopy.forEach((element, index) => {
-            let newDiv = createElement({tag:'div', class:'column', text:element});
-            this.columns = [...this.columns, newDiv];
-            this.columnIndexArr.push(index);
-            newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
-            newDiv.style.left = Draw.moveColumnLeft(index);
-            this.columnsInner.appendChild(newDiv);
-        });
-        this.columnsButtonsContainer.appendChild(this.columnsInner);
-        columnsWrapper.appendChild(this.columnsButtonsContainer);
+        break;
+      }
     }
 
+    for (let i = 0; i < this.columns.length; i++) {
+      if (currentElements.length === 0) {
+        break;
+      }
 
-    movement(newArr) {
-        let currentElements = [];
+      this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
+      this.columns[this.columnIndexArr[i]].style.backgroundColor = "dodgerblue";
 
-        for (let i = 0; i < newArr.length; i++) {
-            if (newArr[i] !== this.arrCopy[i]) {
-                currentElements = [...currentElements, i];
-            }
-        }
-
-
-        for (let i = 0; i < newArr.length; i++) {
-                if (newArr[i] !== this.arrCopy[i]) {
-                    [this.columnIndexArr[currentElements[0]], this.columnIndexArr[currentElements[1]]] =
-                    [this.columnIndexArr[currentElements[1]], this.columnIndexArr[currentElements[0]]];
-
-                    break;
-
-                }
-            }
-
-
-        for (let i = 0; i < this.columns.length; i++) {
-            if (currentElements.length === 0) {
-                break;
-            }
-                this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
-                this.columns[this.columnIndexArr[i]].style.backgroundColor = 'dodgerblue';
-                this.columns[this.columnIndexArr[currentElements[0]]].style.backgroundColor = 'red';
-                this.columns[this.columnIndexArr[currentElements[1]]].style.backgroundColor = 'red';
-        }
-
-        this.arrCopy = [...newArr];
-
+      this.columns[
+        this.columnIndexArr[currentElements[0]]
+      ].style.backgroundColor = "red";
+      this.columns[
+        this.columnIndexArr[currentElements[1]]
+      ].style.backgroundColor = "red";
     }
 
-    static moveColumnLeft(index)  {
-        return `${index * Draw.OFFSET}px`;
-    }
+    this.arrCopy = [...newArr];
+  }
 
-
+  static moveColumnLeft(index) {
+    return `${index * Draw.OFFSET}px`;
+  }
 }
 
 export default Draw;
