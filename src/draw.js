@@ -42,19 +42,13 @@ class Draw {
       }
     }
 
-    for (let i = 0; i < newArr.length; i++) {
-      if (newArr[i] !== this.arrCopy[i]) {
-        [
-          this.columnIndexArr[currentElements[0]],
-          this.columnIndexArr[currentElements[1]]
-        ] = [
-          this.columnIndexArr[currentElements[1]],
-          this.columnIndexArr[currentElements[0]]
-        ];
-
-        break;
-      }
-    }
+    [
+      this.columns[this.columnIndexArr[currentElements[0]]],
+      this.columns[this.columnIndexArr[currentElements[1]]]
+    ] = [
+      this.columns[this.columnIndexArr[currentElements[1]]],
+      this.columns[this.columnIndexArr[currentElements[0]]]
+    ];
 
     for (let i = 0; i < this.columns.length; i++) {
       if (currentElements.length === 0) {
