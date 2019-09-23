@@ -51,6 +51,19 @@ const bubbleSortApp = () => {
 
     draw.drawArray();
 
+    const closeButton = button({
+      class: "columns__close",
+      text: "&times;",
+      id: "close"
+    });
+
+    // draw.columnsCloseInner.appendChild(closeButton);
+    draw.columnsButtonsContainer.prepend(closeButton);
+
+    closeButton.addEventListener("click", () => {
+      currentStates.pop();
+    });
+
     const buttonBack = button({
       class: "columns__button",
       text: "назад",
@@ -86,6 +99,7 @@ const bubbleSortApp = () => {
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
     currentStates = [...currentStates, newArr];
+    console.log(currentStates);
     renderCollection(newArr);
   });
 

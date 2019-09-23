@@ -12,11 +12,12 @@ class Draw {
       tag: "div",
       class: "columns-buttons__container"
     });
-    this.columnsInner = createElement({ tag: "div", class: "columns__inner" });
+    //this.columnsCloseInner = createElement({ tag: "div", class: "columns-close__inner" });
     this.columns = [];
   }
 
   drawArray() {
+    const columnsInner = createElement({ tag: "div", class: "columns__inner" });
     this.arrCopy.forEach((element, index) => {
       let newDiv = createElement({
         tag: "div",
@@ -27,9 +28,10 @@ class Draw {
       this.columnIndexArr.push(index);
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);
-      this.columnsInner.appendChild(newDiv);
+      columnsInner.appendChild(newDiv);
     });
-    this.columnsButtonsContainer.appendChild(this.columnsInner);
+    //this.columnsCloseInner.appendChild();
+    this.columnsButtonsContainer.appendChild(columnsInner);
     columnsWrapper.appendChild(this.columnsButtonsContainer);
   }
 
