@@ -1,4 +1,4 @@
-import bubbleSortApp from "./bubbleSortApp"
+import bubbleSortApp from "./ui/bubbleSortApp";
 import "./styles/css__reset.css";
 import "./styles/style.css";
 

@@ -1,9 +1,9 @@
 import Sort from "./sort";
 import Draw from "./draw";
-import createElement from "./ui/createElement";
-import button from "./ui/button";
-import inputText from "./ui/input";
-import { columnsWrapper } from "./ui/columnsWrapper";
+import createElement from "./createElement";
+import button from "./button";
+import inputText from "./input";
+import { columnsWrapper } from "./columnsWrapper";
 
 const bubbleSortApp = () => {
   const wrapper = createElement({ tag: "div", class: "wrapper" });

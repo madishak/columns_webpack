@@ -1,5 +1,5 @@
-import createElement from "./ui/createElement";
-import { columnsWrapper } from "./ui/columnsWrapper";
+import createElement from "./createElement";
+import { columnsWrapper } from "./columnsWrapper";
 
 class Draw {
   static FIXED_COLUMN_HEIGHT = 15;
