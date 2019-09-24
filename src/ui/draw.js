@@ -7,7 +7,6 @@ class Draw {
   constructor(array) {
     this.arr = array.slice(0);
     this.arrCopy = this.arr.slice(0);
-    this.columnIndexArr = [];
     this.columnsButtonsContainer = createElement({
       tag: "div",
       class: "columns-buttons__container"
@@ -25,7 +24,6 @@ class Draw {
         text: element
       });
       this.columns = [...this.columns, newDiv];
-      this.columnIndexArr.push(index);
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);
       columnsInner.appendChild(newDiv);
@@ -44,12 +42,9 @@ class Draw {
       }
     }
 
-    [
-      this.columns[this.columnIndexArr[currentElements[0]]],
-      this.columns[this.columnIndexArr[currentElements[1]]]
-    ] = [
-      this.columns[this.columnIndexArr[currentElements[1]]],
-      this.columns[this.columnIndexArr[currentElements[0]]]
+    [this.columns[currentElements[0]], this.columns[currentElements[1]]] = [
+      this.columns[currentElements[1]],
+      this.columns[currentElements[0]]
     ];
 
     for (let i = 0; i < this.columns.length; i++) {
@@ -57,15 +52,11 @@ class Draw {
         break;
       }
 
-      this.columns[this.columnIndexArr[i]].style.left = Draw.moveColumnLeft(i);
-      this.columns[this.columnIndexArr[i]].style.backgroundColor = "dodgerblue";
+      this.columns[i].style.left = Draw.moveColumnLeft(i);
+      this.columns[i].style.backgroundColor = "dodgerblue";
 
-      this.columns[
-        this.columnIndexArr[currentElements[0]]
-      ].style.backgroundColor = "red";
-      this.columns[
-        this.columnIndexArr[currentElements[1]]
-      ].style.backgroundColor = "red";
+      this.columns[currentElements[0]].style.backgroundColor = "red";
+      this.columns[currentElements[1]].style.backgroundColor = "red";
     }
 
     this.arrCopy = [...newArr];
