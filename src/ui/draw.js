@@ -53,10 +53,13 @@ class Draw {
       }
 
       this.columns[i].style.left = Draw.moveColumnLeft(i);
-      this.columns[i].style.backgroundColor = "dodgerblue";
 
       this.columns[currentElements[0]].style.backgroundColor = "red";
       this.columns[currentElements[1]].style.backgroundColor = "red";
+
+      setTimeout(() => {
+        this.columns[i].style.backgroundColor = "dodgerblue";
+      }, 500);
     }
 
     this.arrCopy = [...newArr];
