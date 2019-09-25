@@ -10,10 +10,7 @@ class Sort {
     for (let i = 0; i < this.arrCopy.length - 1; i++) {
       for (let j = this.currentIndex; j < this.arrCopy.length - i - 1; j++) {
         if (this.arrCopy[j] > this.arrCopy[j + 1]) {
-          [this.arrCopy[j], this.arrCopy[j + 1]] = [
-            this.arrCopy[j + 1],
-            this.arrCopy[j]
-          ];
+          Sort.swapElements(this.arrCopy, j);
           this.listOfIndexes = [...this.listOfIndexes, j];
           this.currentIndex = j;
           return this.arrCopy;
@@ -27,19 +24,27 @@ class Sort {
   decreaseSort() {
     for (let i = 0; i < this.arrCopy.length; i++) {
       if (this.listOfIndexes.length !== 0) {
-        [
-          this.arrCopy[this.listOfIndexes[this.listOfIndexes.length - 1]],
-          this.arrCopy[this.listOfIndexes[this.listOfIndexes.length - 1] + 1]
-        ] = [
-          this.arrCopy[this.listOfIndexes[this.listOfIndexes.length - 1] + 1],
-          this.arrCopy[this.listOfIndexes[this.listOfIndexes.length - 1]]
-        ];
+        Sort.swapElements(
+          this.arrCopy,
+          this.listOfIndexes[this.listOfIndexes.length - 1]
+        );
         this.listOfIndexes.pop();
         this.currentIndex = this.listOfIndexes[this.listOfIndexes.length - 1];
         return this.arrCopy;
       }
     }
     return this.arrCopy;
+  }
+
+  static swapElements(array, index) {
+    return ([array[index], array[index + 1]] = [
+      array[index + 1],
+      array[index]
+    ]);
+  }
+
+  static saveSortStep(index) {
+    this.listOfIndexes = [...this.listOfIndexes, index];
   }
 }
 
