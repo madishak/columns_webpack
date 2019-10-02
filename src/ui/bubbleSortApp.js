@@ -37,8 +37,21 @@ const bubbleSortApp = () => {
 
   let currentStates = [];
 
-  const strToArray = str => str.split("").map(element => Number(element));
+  const addArray = () =>
+    currentStates.forEach(value => {
+      console.log(value);
+      renderCollection(value);
+    });
 
+  // const addArray = (value) => renderCollection(value);
+
+  const removeArray = index =>
+    currentStates.filter((element, ind) => index !== ind);
+
+  // console.log(currentStates);
+
+  const strToArray = str => str.split("").map(element => Number(element));
+  let ind = 0;
   const renderCollection = inputValue => {
     if (inputValue.length === 0) {
       return;
@@ -51,17 +64,23 @@ const bubbleSortApp = () => {
 
     draw.drawArray();
 
+    // let number = 0;
+
+    const setId = () => {};
     const closeButton = button({
       class: "columns__close",
       text: "&times;",
-      id: "close"
+      id: ind++
     });
-
+    // number++;
     // draw.columnsCloseInner.appendChild(closeButton);
     draw.columnsButtonsContainer.prepend(closeButton);
 
     closeButton.addEventListener("click", () => {
-      currentStates.pop();
+      console.log(closeButton.id);
+      removeArray(closeButton.id);
+      // console.log(removeArray());
+      // currentStates.pop();
     });
 
     const buttonBack = button({
@@ -100,7 +119,8 @@ const bubbleSortApp = () => {
     const newArr = strToArray(input.value);
     currentStates = [...currentStates, newArr];
     console.log(currentStates);
-    renderCollection(newArr);
+    addArray();
+    // renderCollection(newArr);
   });
 
   return wrapper;

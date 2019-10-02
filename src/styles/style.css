@@ -6,6 +6,7 @@
   --column-margin: 15px;
   --form__input-width: 350px;
   --columns__inner-height: 190px;
+  --columns__inner-weight: auto;
 }
 
 .wrapper {
@@ -48,13 +49,14 @@
 }
 
 .columns__inner {
-  position: relative;
+  /*position: relative;*/
   height: var(--columns__inner-height);
-  /*width: 100%;*/
+  width: var(--columns__inner-weight);
 }
 
 .column {
   position: absolute;
+  display: inline-block;
   transition: left 0.6s;
   border: 1px solid yellow;
   background-color: var(--dodgerblue-color);
@@ -66,19 +68,20 @@
 }
 
 .columns-buttons__container {
+  /*position: relative;*/
   /*display: inline-flex;*/
-  min-width: 300px;
-  width: 50%;
+  /*min-width: 300px;*/
+  /*width: 50%;*/
 }
 
 .columns-close__inner {
-  display: flex;
+  /*display: flex;*/
   /*flex-direction: row-reverse;*/
   /*align-items: flex-start;*/
 }
 
 .columns__button-inner {
-  width: auto;
+  /*width: auto;*/
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
@@ -89,8 +92,11 @@
 }
 
 .columns__close {
-  display: flex;
-  width: auto;
+  /*position: absolute;*/
+  left: 0;
+  /*width: calc(100% - var(--columns__inner-weight) - 20px);*/
+  /*display: flex;*/
+  /*width: 300px;*/
   /*position: absolute;*/
   /*align-self: flex-end;*/
   font-weight: normal;

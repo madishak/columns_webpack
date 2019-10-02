@@ -1,5 +1,6 @@
 import createElement from "./createElement";
 import { columnsWrapper } from "./columnsWrapper";
+import button from "./button";
 
 class Draw {
   static FIXED_COLUMN_HEIGHT = 15;
@@ -28,8 +29,9 @@ class Draw {
       newDiv.style.left = Draw.moveColumnLeft(index);
       columnsInner.appendChild(newDiv);
     });
-    //this.columnsCloseInner.appendChild();
-    this.columnsButtonsContainer.appendChild(columnsInner);
+
+    this.columnsButtonsContainer.append(columnsInner);
+    // this.columnsButtonsContainer.appendChild();
     columnsWrapper.appendChild(this.columnsButtonsContainer);
   }
 
