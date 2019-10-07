@@ -37,79 +37,87 @@ const bubbleSortApp = () => {
 
   let currentStates = [];
 
-  const addArray = () =>
-    currentStates.forEach(value => {
-      console.log(value);
-      renderCollection(value);
-    });
+  // const addArray = () =>
+  //   currentStates.map(value => {
+  //     console.log(value);
+  //     //renderCollection(value);
+  //   });
 
-  // const addArray = (value) => renderCollection(value);
-
-  const removeArray = index =>
-    currentStates.filter((element, ind) => index !== ind);
-
-  // console.log(currentStates);
+  const removeArray = index => {
+    return currentStates.filter((element, ind) => index !== ind);
+  };
 
   const strToArray = str => str.split("").map(element => Number(element));
   let ind = 0;
-  const renderCollection = inputValue => {
-    if (inputValue.length === 0) {
-      return;
-    }
 
-    let currentStatesLength = currentStates.length - 1;
+  // let newState = removeArray(closeButton.id);
 
-    let sort = new Sort(inputValue);
-    let draw = new Draw(currentStates[currentStatesLength]);
+  const newState = removeArray(1);
+  // const render = (values) => {
 
-    draw.drawArray();
+  const renderCollection = inputValues => {
+    inputValues.map(elem => {
+      if (elem.length === 0) {
+        return;
+      }
 
-    // let number = 0;
+      //let currentStatesLength = currentStates.length - 1;
 
-    const setId = () => {};
-    const closeButton = button({
-      class: "columns__close",
-      text: "&times;",
-      id: ind++
+      let sort = new Sort(elem);
+      let draw = new Draw(elem);
+      // let draw = new Draw(currentStates[currentStatesLength]);
+
+      draw.drawArray();
+
+      const setId = () => {};
+      const closeButton = button({
+        class: "columns__close",
+        text: "&times;",
+        id: ind++
+      });
+
+      closeButton.addEventListener("click", () => {
+        //console.log(closeButton.id);
+        renderCollection(newState);
+      });
+
+      draw.columnsButtonsContainer.prepend(closeButton);
+
+      const buttonBack = button({
+        class: "columns__button",
+        text: "назад",
+        id: "dec"
+      });
+
+      const buttonNext = button({
+        class: "columns__button",
+        text: "вперед",
+        id: "inc"
+      });
+
+      buttonBack.addEventListener("click", () =>
+        draw.movement(sort.decreaseSort())
+      );
+      buttonNext.addEventListener("click", () =>
+        draw.movement(sort.increaseSort())
+      );
+
+      const buttonsInner = createElement({
+        tag: "div",
+        class: "columns__button-inner"
+      });
+      buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
+
+      draw.columnsButtonsContainer.appendChild(buttonsInner);
     });
-    // number++;
-    // draw.columnsCloseInner.appendChild(closeButton);
-    draw.columnsButtonsContainer.prepend(closeButton);
-
-    closeButton.addEventListener("click", () => {
-      console.log(closeButton.id);
-      removeArray(closeButton.id);
-      // console.log(removeArray());
-      // currentStates.pop();
-    });
-
-    const buttonBack = button({
-      class: "columns__button",
-      text: "назад",
-      id: "dec"
-    });
-
-    const buttonNext = button({
-      class: "columns__button",
-      text: "вперед",
-      id: "inc"
-    });
-
-    buttonBack.addEventListener("click", () =>
-      draw.movement(sort.decreaseSort())
-    );
-    buttonNext.addEventListener("click", () =>
-      draw.movement(sort.increaseSort())
-    );
-
-    const buttonsInner = createElement({
-      tag: "div",
-      class: "columns__button-inner"
-    });
-    buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
-
-    draw.columnsButtonsContainer.appendChild(buttonsInner);
+    return inputValues;
   };
+
+  //   return values.map(arr => {
+  //     renderCollection(arr);
+  //   });
+  //
+  // };
 
   input.addEventListener("input", evt => {
     input.value = evt.target.value.match(/\d+/g);
@@ -119,8 +127,8 @@ const bubbleSortApp = () => {
     const newArr = strToArray(input.value);
     currentStates = [...currentStates, newArr];
     console.log(currentStates);
-    addArray();
-    // renderCollection(newArr);
+    // addArray();
+    renderCollection(currentStates);
   });
 
   return wrapper;
