@@ -49,66 +49,64 @@ const bubbleSortApp = () => {
       // console.log(newState);
       return newState;
     }
-
-    renderCollection() {
-      console.log(this.currentStates);
-      this.currentStates.map(elem => {
-        if (elem.length === 0) {
-          return;
-        }
-
-        let sort = new Sort(elem);
-        let draw = new Draw(elem);
-
-        draw.drawArray();
-
-        const closeButton = button({
-          class: "columns__close",
-          text: "&times;",
-          id: ind++
-        });
-
-        closeButton.addEventListener("click", () => {
-          //console.log(closeButton.id);
-          this.removeArray(closeButton.id);
-        });
-
-        draw.columnsButtonsContainer.prepend(closeButton);
-
-        const buttonBack = button({
-          class: "columns__button",
-          text: "назад",
-          id: "dec"
-        });
-
-        const buttonNext = button({
-          class: "columns__button",
-          text: "вперед",
-          id: "inc"
-        });
-
-        buttonBack.addEventListener("click", () =>
-          draw.movement(sort.decreaseSort())
-        );
-        buttonNext.addEventListener("click", () =>
-          draw.movement(sort.increaseSort())
-        );
-
-        const buttonsInner = createElement({
-          tag: "div",
-          class: "columns__button-inner"
-        });
-        buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
-
-        draw.columnsButtonsContainer.appendChild(buttonsInner);
-      });
-      wrapper.appendChild(columnsWrapper);
-      this.currentStates = [];
-      return this.currentStates;
-    }
   }
+  const renderCollection = values => {
+    //console.log(this.currentStates);
+    // values.map(elem => {
+    if (values.length === 0) {
+      return;
+    }
 
-  const render = new Render();
+    let sort = new Sort(values);
+    let draw = new Draw(values);
+
+    draw.drawArray();
+
+    const closeButton = button({
+      class: "columns__close",
+      text: "&times;",
+      id: ind++
+    });
+
+    closeButton.addEventListener("click", () => {
+      //console.log(closeButton.id);
+      this.removeArray(closeButton.id);
+    });
+
+    draw.columnsButtonsContainer.prepend(closeButton);
+
+    const buttonBack = button({
+      class: "columns__button",
+      text: "назад",
+      id: "dec"
+    });
+
+    const buttonNext = button({
+      class: "columns__button",
+      text: "вперед",
+      id: "inc"
+    });
+
+    buttonBack.addEventListener("click", () =>
+      draw.movement(sort.decreaseSort())
+    );
+    buttonNext.addEventListener("click", () =>
+      draw.movement(sort.increaseSort())
+    );
+
+    const buttonsInner = createElement({
+      tag: "div",
+      class: "columns__button-inner"
+    });
+    buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
+
+    draw.columnsButtonsContainer.appendChild(buttonsInner);
+    // });
+    wrapper.appendChild(columnsWrapper);
+    // //this.currentStates = [];
+    // return values;
+  };
+  // const render = new Render();
 
   input.addEventListener("input", evt => {
     input.value = evt.target.value.match(/\d+/g);
@@ -117,9 +115,9 @@ const bubbleSortApp = () => {
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
 
-    render.currentStates = [...render.currentStates, newArr];
+    currentStates = [...currentStates, newArr];
 
-    render.renderCollection();
+    renderCollection(newArr);
   });
 
   return wrapper;
