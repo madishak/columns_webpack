@@ -38,18 +38,30 @@ const bubbleSortApp = () => {
   const strToArray = str => str.split("").map(element => Number(element));
   let ind = 0;
 
-  class Render {
-    constructor() {
-      this.currentStates = [];
-    }
+  // class Render {
+  //   constructor() {
+  //     this.elem = createElement({ tag: "div", class: "wrapperColumns" });
+  //   }
+  //
+  //
+  // }
 
-    removeArray(index) {
-      const newState = this.currentStates.filter((elem, ind) => index !== ind);
-      // console.log(index);
-      // console.log(newState);
-      return newState;
-    }
-  }
+  const renderAllCollection = values => {
+    return currentStates.map(elem => renderCollection(elem));
+  };
+
+  const removeArray = (index, array) => {
+    let newArr = [];
+
+    return array.filter((elem, ind) => {
+      if (index !== ind) {
+        newArr = [...newArr, elem];
+      }
+      array = newArr;
+      return array;
+    });
+  };
+
   const renderCollection = values => {
     //console.log(this.currentStates);
     // values.map(elem => {
@@ -69,8 +81,16 @@ const bubbleSortApp = () => {
     });
 
     closeButton.addEventListener("click", () => {
-      //console.log(closeButton.id);
-      this.removeArray(closeButton.id);
+      console.log(closeButton.id);
+
+      //this.removeArray(closeButton.id);
+      removeArray(closeButton.id, currentStates);
+      // const render = new Render();
+
+      //renderCollection(newArr);
+      renderAllCollection(currentStates);
+      // console.log(newCurrentStates);
+      console.log(currentStates);
     });
 
     draw.columnsButtonsContainer.prepend(closeButton);
@@ -101,8 +121,9 @@ const bubbleSortApp = () => {
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
     draw.columnsButtonsContainer.appendChild(buttonsInner);
+
     // });
-    wrapper.appendChild(columnsWrapper);
+
     // //this.currentStates = [];
     // return values;
   };
@@ -117,7 +138,14 @@ const bubbleSortApp = () => {
 
     currentStates = [...currentStates, newArr];
 
-    renderCollection(newArr);
+    //const render = new Render();
+
+    //renderCollection(newArr);
+    console.log(currentStates);
+
+    renderAllCollection(currentStates);
+    columnsWrapper.remove();
+    wrapper.appendChild(columnsWrapper);
   });
 
   return wrapper;
