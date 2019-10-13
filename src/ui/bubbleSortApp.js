@@ -40,15 +40,10 @@ const bubbleSortApp = () => {
 
   class Render {
     constructor() {
-      this.currentStates = [];
+      this.elem;
     }
 
-    removeArray(index) {
-      const newState = this.currentStates.filter((elem, ind) => index !== ind);
-      // console.log(index);
-      // console.log(newState);
-      return newState;
-    }
+
   }
   const renderCollection = values => {
     //console.log(this.currentStates);
