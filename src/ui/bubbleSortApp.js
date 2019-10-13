@@ -40,32 +40,68 @@ const bubbleSortApp = () => {
 
   class Render {
     constructor() {
-      this.elem;
+      this.elem = createElement({ tag: "div", class: "wrapperColumns" });
     }
 
 
   }
+
+  const renderAllCollection = values => {
+    return currentStates.map(elem => renderCollection(elem));
+  };
+
+    const removeArray = (index, array) => {
+        // let acc = [];
+
+        return array.reduce(( acc, elem, ind) => {
+            //console.log(ind, index);
+            if (ind !== index) {
+                acc = [...acc, elem];
+            }
+            //console.log(acc);
+            return acc;
+        }, []);
+
+        //return t;
+
+    };
+
+  const rend = new Render();
+
   const renderCollection = values => {
     //console.log(this.currentStates);
-    // values.map(elem => {
-    if (values.length === 0) {
+    values.map(elem => {
+    if (elem.length === 0) {
       return;
     }
 
-    let sort = new Sort(values);
-    let draw = new Draw(values);
+    let sort = new Sort(elem);
+    let draw = new Draw(elem);
 
-    draw.drawArray();
+      draw.drawArray();
+        // columnsWrapper.innerHTML = 'sfasdfg';
+      columnsWrapper.append(draw.columnsButtonsContainer);
 
-    const closeButton = button({
-      class: "columns__close",
-      text: "&times;",
-      id: ind++
-    });
+
+
+
+     // columnsWrapper.append(rend.elem);
+        const closeButton = button({
+            class: "columns__close",
+            text: "&times;",
+            id: ind++
+        });
+
+
 
     closeButton.addEventListener("click", () => {
-      //console.log(closeButton.id);
-      this.removeArray(closeButton.id);
+      console.log(closeButton.id);
+
+         const newArr = removeArray(Number(closeButton.id), currentStates);
+
+      renderCollection(newArr);
+
+        console.log(removeArray(Number(closeButton.id), currentStates));
     });
 
     draw.columnsButtonsContainer.prepend(closeButton);
@@ -96,10 +132,11 @@ const bubbleSortApp = () => {
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
     draw.columnsButtonsContainer.appendChild(buttonsInner);
-    // });
-    wrapper.appendChild(columnsWrapper);
+
+    });
+
     // //this.currentStates = [];
-    // return values;
+    return values;
   };
   // const render = new Render();
 
@@ -112,7 +149,14 @@ const bubbleSortApp = () => {
 
     currentStates = [...currentStates, newArr];
 
-    renderCollection(newArr);
+    console.log(currentStates);
+
+    renderCollection(currentStates);
+
+
+      rend.elem.innerHTML = 'tryeytr';
+      rend.elem.append(columnsWrapper);
+      wrapper.appendChild( rend.elem);
   });
 
   return wrapper;

@@ -32,7 +32,7 @@ class Draw {
 
     this.columnsButtonsContainer.append(columnsInner);
     // this.columnsButtonsContainer.appendChild();
-    columnsWrapper.appendChild(this.columnsButtonsContainer);
+    //columnsWrapper.appendChild(this.columnsButtonsContainer);
   }
 
   movement(newArr) {
