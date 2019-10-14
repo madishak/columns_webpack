@@ -105,7 +105,7 @@ const bubbleSortApp = () => {
       //rend.elem.append(draw.columnsButtonsContainer);
     });
 
-    draw.columnsButtonsContainer.prepend(closeButton);
+    draw.columnsCloseInner.prepend(closeButton);
 
     const buttonBack = button({
       class: "columns__button",

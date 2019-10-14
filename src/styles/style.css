@@ -7,6 +7,11 @@
   --form__input-width: 350px;
   --columns__inner-height: 190px;
   --columns__inner-weight: auto;
+  --columns__close-top: 5px;
+  --columns__close-font-size: 30px;
+  --columns__close-color: gray;
+  --columns__close-hover-bg: red;
+  --columns__close-active: dimgrey;
 }
 
 .wrapper {
@@ -49,7 +54,6 @@
 }
 
 .columns__inner {
-  /*position: relative;*/
   height: var(--columns__inner-height);
   width: var(--columns__inner-weight);
 }
@@ -67,21 +71,14 @@
   text-align: center;
 }
 
-.columns-buttons__container {
-  /*position: relative;*/
-  /*display: inline-flex;*/
-  /*min-width: 300px;*/
-  /*width: 50%;*/
-}
 
 .columns-close__inner {
-  /*display: flex;*/
-  /*flex-direction: row-reverse;*/
-  /*align-items: flex-start;*/
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
 .columns__button-inner {
-  /*width: auto;*/
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
@@ -92,27 +89,22 @@
 }
 
 .columns__close {
-  /*position: absolute;*/
-  left: 0;
-  /*width: calc(100% - var(--columns__inner-weight) - 20px);*/
-  /*display: flex;*/
-  /*width: 300px;*/
-  /*position: absolute;*/
-  /*align-self: flex-end;*/
+  position: relative;
+  top: var(--columns__close-top);
   font-weight: normal;
   font-family: "Courier New", monospace;
-  font-size: 30px;
+  font-size: var(--columns__close-font-size);
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: gray;
+  color: var(--columns__close-color);
 }
 
 .columns__close:hover {
-  background: red;
-  color: white;
+  background: var(--columns__close-hover-bg);
+  color: var(--main-font-color);
 }
 
 .columns__close:active {
-  color: dimgrey;
+  color: var(--columns__close-active);
 }

@@ -1,10 +1,10 @@
 import createElement from "./createElement";
-import { columnsWrapper } from "./columnsWrapper";
-import button from "./button";
+// import { columnsWrapper } from "./columnsWrapper";
 
 class Draw {
   static FIXED_COLUMN_HEIGHT = 15;
   static OFFSET = 30;
+  static OFFSET_MARGIN = 3;
   constructor(array) {
     this.arr = array.slice(0);
     this.arrCopy = this.arr.slice(0);
@@ -12,7 +12,7 @@ class Draw {
       tag: "div",
       class: "columns-buttons__container"
     });
-    //this.columnsCloseInner = createElement({ tag: "div", class: "columns-close__inner" });
+    this.columnsCloseInner = createElement({ tag: "div", class: "columns-close__inner" });
     this.columns = [];
   }
 
@@ -28,11 +28,10 @@ class Draw {
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);
       columnsInner.appendChild(newDiv);
+      this.columnsButtonsContainer.style.width = `${index * Draw.OFFSET + Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
     });
-
-    this.columnsButtonsContainer.append(columnsInner);
-    // this.columnsButtonsContainer.appendChild();
-    //columnsWrapper.appendChild(this.columnsButtonsContainer);
+      this.columnsCloseInner.append(columnsInner);
+      this.columnsButtonsContainer.append(this.columnsCloseInner);
   }
 
   movement(newArr) {
