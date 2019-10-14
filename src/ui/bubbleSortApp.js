@@ -40,68 +40,69 @@ const bubbleSortApp = () => {
 
   class Render {
     constructor() {
+      this.state = [];
+      this.currentStates = [];
       this.elem = createElement({ tag: "div", class: "wrapperColumns" });
     }
 
+    // getArray() {
+    //     return this.state;
+    // }
+    //
+    // currentStates() {
+    //     this.currentStates = [...this.currentStates, this.state];
+    //     return this.currentStates;
+    // }
 
+    render() {
+      this.elem.innerHTML = "";
+      // currentStates.map(elem => {
+      //     renderCollection(elem);
+      // }).forEach(value => this.elem.append(value));
+      return this.elem;
+    }
   }
 
-  const renderAllCollection = values => {
+  const renderAllCollection = value => {
     return currentStates.map(elem => renderCollection(elem));
   };
 
-    const removeArray = (index, array) => {
-        // let acc = [];
-
-        return array.reduce(( acc, elem, ind) => {
-            //console.log(ind, index);
-            if (ind !== index) {
-                acc = [...acc, elem];
-            }
-            //console.log(acc);
-            return acc;
-        }, []);
-
-        //return t;
-
-    };
+  const removeArray = (index, array) =>
+    array.reduce((acc, elem, ind) => {
+      if (ind !== index) {
+        acc = [...acc, elem];
+      }
+      return acc;
+    }, []);
 
   const rend = new Render();
 
-  const renderCollection = values => {
+  const renderCollection = inputValue => {
     //console.log(this.currentStates);
-    values.map(elem => {
-    if (elem.length === 0) {
+    // values.map(elem => {
+    if (inputValue.length === 0) {
       return;
     }
 
-    let sort = new Sort(elem);
-    let draw = new Draw(elem);
+    let sort = new Sort(inputValue);
+    let draw = new Draw(inputValue);
 
-      draw.drawArray();
-        // columnsWrapper.innerHTML = 'sfasdfg';
-      columnsWrapper.append(draw.columnsButtonsContainer);
+    draw.drawArray();
+    columnsWrapper.append(draw.columnsButtonsContainer);
 
-
-
-
-     // columnsWrapper.append(rend.elem);
-        const closeButton = button({
-            class: "columns__close",
-            text: "&times;",
-            id: ind++
-        });
-
-
+    const closeButton = button({
+      class: "columns__close",
+      text: "&times;",
+      id: ind++
+    });
 
     closeButton.addEventListener("click", () => {
       console.log(closeButton.id);
+      const newArr = removeArray(Number(closeButton.id), currentStates);
 
-         const newArr = removeArray(Number(closeButton.id), currentStates);
+      console.log(removeArray(Number(closeButton.id), currentStates));
 
-      renderCollection(newArr);
-
-        console.log(removeArray(Number(closeButton.id), currentStates));
+      rend.elem.append(draw.columnsButtonsContainer);
     });
 
     draw.columnsButtonsContainer.prepend(closeButton);
@@ -132,13 +133,7 @@ const bubbleSortApp = () => {
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
     draw.columnsButtonsContainer.appendChild(buttonsInner);
-
-    });
-
-    // //this.currentStates = [];
-    return values;
   };
-  // const render = new Render();
 
   input.addEventListener("input", evt => {
     input.value = evt.target.value.match(/\d+/g);
@@ -149,14 +144,14 @@ const bubbleSortApp = () => {
 
     currentStates = [...currentStates, newArr];
 
-    console.log(currentStates);
+    rend.state = [newArr];
 
-    renderCollection(currentStates);
+    renderCollection(newArr);
 
+    rend.elem.innerHTML = "";
+    rend.elem.append(columnsWrapper);
 
-      rend.elem.innerHTML = 'tryeytr';
-      rend.elem.append(columnsWrapper);
-      wrapper.appendChild( rend.elem);
+    wrapper.appendChild(rend.elem);
   });
 
   return wrapper;
