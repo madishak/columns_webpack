@@ -101,8 +101,8 @@ const bubbleSortApp = () => {
       const newArr = removeArray(Number(closeButton.id), currentStates);
 
       console.log(removeArray(Number(closeButton.id), currentStates));
-
-      rend.elem.append(draw.columnsButtonsContainer);
+      return newArr.map(elem => renderCollection(elem));
+      //rend.elem.append(draw.columnsButtonsContainer);
     });
 
     draw.columnsButtonsContainer.prepend(closeButton);
