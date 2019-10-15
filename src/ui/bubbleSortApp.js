@@ -82,8 +82,10 @@ const bubbleSortApp = () => {
     const closeButton = button({
       class: "columns__close",
       text: "&times;",
-      id: ind++
+      id: 0
     });
+
+    rend.state.forEach((elem, ind) => (closeButton.id = ind));
 
     closeButton.addEventListener("click", () => {
       console.log(Number(closeButton.id));
