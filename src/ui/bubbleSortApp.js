@@ -39,6 +39,7 @@ const bubbleSortApp = () => {
     constructor() {
       this.state = [];
       this.container = createElement({ tag: "div", class: "wrapperColumns" });
+      this.key = this.state.id;
     }
 
     getState(value) {
@@ -48,7 +49,7 @@ const bubbleSortApp = () => {
     removeSorter(index) {
       let acc = [];
       return this.state.filter((elem, ind) => {
-        if (ind !== index) {
+        if (elem.id !== index) {
           acc = [...acc, elem];
         }
         this.state = acc;
@@ -58,17 +59,15 @@ const bubbleSortApp = () => {
 
     render() {
       this.container.innerHTML = "";
-      this.state.map(elem => renderCollection(elem.arr));
+      this.state.map(elem => renderCollection(elem.id, elem.arr));
       wrapper.appendChild(this.container);
       return this.container;
     }
   }
 
-  const rend = new Render();
+  const render = new Render();
 
-
-
-  const renderCollection = inputValue => {
+  const renderCollection = (closeButtonId, inputValue) => {
     if (inputValue.length === 0) {
       return;
     }
@@ -77,21 +76,17 @@ const bubbleSortApp = () => {
     let draw = new Draw(inputValue);
 
     draw.drawArray();
-    rend.container.append(draw.columnsButtonsContainer);
+    render.container.append(draw.columnsButtonsContainer);
 
     const closeButton = button({
       class: "columns__close",
       text: "&times;",
-      id: rend.state.id
+      id: closeButtonId
     });
 
-   //rend.state.forEach((elem, ind) => (closeButton.id = ind));
-
     closeButton.addEventListener("click", () => {
-      console.log(Number(closeButton.id));
-      rend.removeSorter(Number(closeButton.id));
-      console.log(rend.state);
-      rend.render();
+      render.removeSorter(Number(closeButton.id));
+      render.render();
     });
 
     draw.columnsCloseInner.prepend(closeButton);
@@ -132,9 +127,9 @@ const bubbleSortApp = () => {
 
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
-    rend.getState({"id": currentArrayId++, "arr": newArr});
-    console.log(rend.state);
-    rend.render();
+    render.getState({ id: currentArrayId++, arr: newArr });
+    console.log(render.state);
+    render.render();
   });
 
   return wrapper;
