@@ -58,7 +58,7 @@ const bubbleSortApp = () => {
 
     render() {
       this.container.innerHTML = "";
-      this.state.map(elem => renderCollection(elem));
+      this.state.map(elem => renderCollection(elem.arr));
       wrapper.appendChild(this.container);
       return this.container;
     }
@@ -66,7 +66,7 @@ const bubbleSortApp = () => {
 
   const rend = new Render();
 
-  let ind = 0;
+
 
   const renderCollection = inputValue => {
     if (inputValue.length === 0) {
@@ -82,10 +82,10 @@ const bubbleSortApp = () => {
     const closeButton = button({
       class: "columns__close",
       text: "&times;",
-      id: 0
+      id: rend.state.id
     });
 
-    rend.state.forEach((elem, ind) => (closeButton.id = ind));
+   //rend.state.forEach((elem, ind) => (closeButton.id = ind));
 
     closeButton.addEventListener("click", () => {
       console.log(Number(closeButton.id));
@@ -124,13 +124,15 @@ const bubbleSortApp = () => {
     draw.columnsButtonsContainer.appendChild(buttonsInner);
   };
 
+  let currentArrayId = 0;
+
   input.addEventListener("input", evt => {
     input.value = evt.target.value.match(/\d+/g);
   });
 
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
-    rend.getState(newArr);
+    rend.getState({"id": currentArrayId++, "arr": newArr});
     console.log(rend.state);
     rend.render();
   });
