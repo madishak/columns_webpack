@@ -67,6 +67,8 @@ const bubbleSortApp = () => {
 
   const render = new Render();
 
+  let currentArrayId = 0;
+
   const renderCollection = (closeButtonId, inputValue) => {
     if (inputValue.length === 0) {
       return;
@@ -74,6 +76,12 @@ const bubbleSortApp = () => {
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
+
+    render.state.map(elem => {
+      if (closeButtonId === elem.id) {
+        elem.arr = sort.arrCopy;
+      }
+    });
 
     draw.drawArray();
     render.container.append(draw.columnsButtonsContainer);
@@ -119,8 +127,6 @@ const bubbleSortApp = () => {
     draw.columnsButtonsContainer.appendChild(buttonsInner);
   };
 
-  let currentArrayId = 0;
-
   input.addEventListener("input", evt => {
     input.value = evt.target.value.match(/\d+/g);
   });
@@ -128,7 +134,7 @@ const bubbleSortApp = () => {
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
     render.getState({ id: currentArrayId++, arr: newArr });
-    console.log(render.state);
+    //console.log(render.state);
     render.render();
   });
 
