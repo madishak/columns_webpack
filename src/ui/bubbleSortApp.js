@@ -3,7 +3,6 @@ import Draw from "./draw";
 import createElement from "./createElement";
 import button from "./button";
 import inputText from "./input";
-import { columnsWrapper } from "./columnsWrapper";
 
 const bubbleSortApp = () => {
   const wrapper = createElement({ tag: "div", class: "wrapper" });
@@ -35,20 +34,20 @@ const bubbleSortApp = () => {
 
   const strToArray = str => str.split("").map(element => Number(element));
 
-  class Render {
+  class StateTransfer {
     constructor() {
       this.state = [];
       this.container = createElement({ tag: "div", class: "wrapperColumns" });
       this.key = this.state.id;
     }
 
-    getState(value) {
+    setState(value) {
       this.state = [...this.state, value];
     }
 
     removeSorter(index) {
       let acc = [];
-      return this.state.filter((elem, ind) => {
+      return this.state.filter(elem => {
         if (elem.id !== index) {
           acc = [...acc, elem];
         }
@@ -65,7 +64,7 @@ const bubbleSortApp = () => {
     }
   }
 
-  const render = new Render();
+  const render = new StateTransfer();
 
   let currentArrayId = 0;
 
@@ -133,7 +132,7 @@ const bubbleSortApp = () => {
 
   startRender.addEventListener("click", () => {
     const newArr = strToArray(input.value);
-    render.getState({ id: currentArrayId++, arr: newArr });
+    render.setState({ id: currentArrayId++, arr: newArr });
     //console.log(render.state);
     render.render();
   });
