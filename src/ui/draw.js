@@ -34,7 +34,6 @@ class Draw {
         Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
     });
 
-    console.log(this.arrCopy);
     this.columnsCloseInner.append(columnsInner);
     this.columnsButtonsContainer.append(this.columnsCloseInner);
   }

@@ -1,11 +1,14 @@
 import Sort from "./sort";
 import Draw from "./draw";
+import renderCollection from "./renderCollection";
+import StateTransfer from "./stateTransfer";
 import createElement from "./createElement";
+import { wrapper } from "./columnsWrapper";
 import button from "./button";
 import inputText from "./input";
 
 const bubbleSortApp = () => {
-  const wrapper = createElement({ tag: "div", class: "wrapper" });
+  // const wrapper = createElement({ tag: "div", class: "wrapper" });
 
   const form = createElement({ tag: "form", class: "form" });
   wrapper.appendChild(form);
@@ -45,6 +48,12 @@ const bubbleSortApp = () => {
       this.state = [...this.state, value];
     }
 
+    //   removeSorter(index)  {
+    //     this.state = this.state.filter((elem, ind) => ind !== index);
+    //     console.log(this.state);
+    //   return  this.state;
+    // }
+
     removeSorter(index) {
       let acc = [];
       return this.state.filter(elem => {
@@ -59,6 +68,7 @@ const bubbleSortApp = () => {
     render() {
       this.container.innerHTML = "";
       this.state.map(elem => renderCollection(elem.id, elem.arr));
+      console.log(this.container);
       wrapper.appendChild(this.container);
       return this.container;
     }
@@ -67,11 +77,14 @@ const bubbleSortApp = () => {
   const render = new StateTransfer();
 
   let currentArrayId = 0;
+  // const render = new StateTransfer();
 
   const renderCollection = (closeButtonId, inputValue) => {
     if (inputValue.length === 0) {
       return;
     }
+
+    console.log(inputValue);
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
@@ -83,20 +96,19 @@ const bubbleSortApp = () => {
     });
 
     draw.drawArray();
-    render.container.append(draw.columnsButtonsContainer);
 
     const closeButton = button({
       class: "columns__close",
-      text: "&times;",
-      id: closeButtonId
+      text: "&times;"
     });
 
     closeButton.addEventListener("click", () => {
-      render.removeSorter(Number(closeButton.id));
+      render.removeSorter(closeButtonId);
       render.render();
     });
 
     draw.columnsCloseInner.prepend(closeButton);
+    render.container.append(draw.columnsButtonsContainer);
 
     const buttonBack = button({
       class: "columns__button",
@@ -124,6 +136,9 @@ const bubbleSortApp = () => {
     buttonsInner.append(buttonBack, buttonNext); //experimental technology "Node.append()"
 
     draw.columnsButtonsContainer.appendChild(buttonsInner);
+
+    console.log(render.container);
+    //wrapper.append(render.container);
   };
 
   input.addEventListener("input", evt => {
@@ -136,6 +151,8 @@ const bubbleSortApp = () => {
     //console.log(render.state);
     render.render();
   });
+
+  wrapper.appendChild(render.container);
 
   return wrapper;
 };
