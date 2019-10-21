@@ -48,27 +48,15 @@ const bubbleSortApp = () => {
       this.state = [...this.state, value];
     }
 
-    //   removeSorter(index)  {
-    //     this.state = this.state.filter((elem, ind) => ind !== index);
-    //     console.log(this.state);
-    //   return  this.state;
-    // }
+      removeSorter(index) {
+          return this.state = this.state.reduce((acc, elem) => elem.id !== index ? acc = [...acc, elem] : acc, []);
+      }
 
-    removeSorter(index) {
-      let acc = [];
-      return this.state.filter(elem => {
-        if (elem.id !== index) {
-          acc = [...acc, elem];
-        }
-        this.state = acc;
-        return this.state;
-      });
-    }
 
     render() {
       this.container.innerHTML = "";
       this.state.map(elem => renderCollection(elem.id, elem.arr));
-      console.log(this.container);
+      // console.log(this.container);
       wrapper.appendChild(this.container);
       return this.container;
     }
@@ -84,7 +72,7 @@ const bubbleSortApp = () => {
       return;
     }
 
-    console.log(inputValue);
+    // console.log(inputValue);
 
     let sort = new Sort(inputValue);
     let draw = new Draw(inputValue);
@@ -103,6 +91,8 @@ const bubbleSortApp = () => {
     });
 
     closeButton.addEventListener("click", () => {
+      console.log(closeButtonId);
+        console.log(render.state);
       render.removeSorter(closeButtonId);
       render.render();
     });
@@ -137,7 +127,7 @@ const bubbleSortApp = () => {
 
     draw.columnsButtonsContainer.appendChild(buttonsInner);
 
-    console.log(render.container);
+
     //wrapper.append(render.container);
   };
 
