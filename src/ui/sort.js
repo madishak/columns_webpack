@@ -23,10 +23,7 @@ class Sort {
   decreaseSort() {
     for (let i = 0; i < this.arrCopy.length; i++) {
       if (this.listOfIndexes.length !== 0) {
-        Sort.swapElements(
-          this.arrCopy,
-          this.listOfIndexes[this.listOfIndexes.length - 1]
-        );
+        Sort.swapElements(this.arrCopy, this.listOfIndexes[this.listOfIndexes.length - 1]);
         this.listOfIndexes.pop();
         this.currentIndex = this.listOfIndexes[this.listOfIndexes.length - 1];
         return this.arrCopy;
@@ -36,10 +33,7 @@ class Sort {
   }
 
   static swapElements(array, index) {
-    return ([array[index], array[index + 1]] = [
-      array[index + 1],
-      array[index]
-    ]);
+    return ([array[index], array[index + 1]] = [array[index + 1], array[index]]);
   }
 
   static saveSortStep(index) {

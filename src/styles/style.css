@@ -63,7 +63,7 @@
   display: inline-block;
   transition: left 0.6s;
   border: 1px solid yellow;
-  /*background-color: var(--dodgerblue-color);*/
+  background-color: var(--dodgerblue-color);
   height: var(--column-height);
   width: var(--column-width);
   color: var(--main-font-color);
@@ -91,7 +91,7 @@
   position: relative;
   top: var(--columns__close-top);
   font-weight: normal;
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: var(--columns__close-font-size);
   border: none;
   background-color: transparent;
