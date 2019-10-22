@@ -49,10 +49,10 @@ const bubbleSortApp = () => {
     }
 
     removeSorter(index) {
-      return (this.state = this.state.reduce(
+      this.state = this.state.reduce(
         (acc, elem) => (elem.id !== index ? (acc = [...acc, elem]) : acc),
         []
-      ));
+      );
     }
 
     render() {
@@ -67,24 +67,14 @@ const bubbleSortApp = () => {
   const render = new StateTransfer();
 
   let currentArrayId = 0;
-  // const render = new StateTransfer();
-
   const renderCollection = (closeButtonId, inputValue) => {
     if (inputValue.length === 0) {
       return;
     }
-
-    // console.log(inputValue);
-
     const sort = new Sort(inputValue);
     const draw = new Draw(inputValue);
 
-    render.state.map(elem => {
-      if (closeButtonId === elem.id) {
-        elem.arr = sort.arrCopy;
-      }
-    });
-
+    render.state.map(elem => (closeButtonId === elem.id ? (elem.arr = sort.arrCopy) : elem.arr));
     draw.drawArray();
 
     const closeButton = button({
@@ -93,8 +83,6 @@ const bubbleSortApp = () => {
     });
 
     closeButton.addEventListener('click', () => {
-      console.log(closeButtonId);
-      console.log(render.state);
       render.removeSorter(closeButtonId);
       render.render();
     });

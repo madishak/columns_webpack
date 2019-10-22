@@ -34,6 +34,7 @@ class Draw {
       columnsInner.appendChild(newDiv);
       this.columnsButtonsContainer.style.width = `${index * Draw.OFFSET +
         Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
+      return newDiv;
     });
 
     this.columnsCloseInner.append(columnsInner);

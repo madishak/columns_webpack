@@ -33,7 +33,7 @@ class Sort {
   }
 
   static swapElements(array, index) {
-    return ([array[index], array[index + 1]] = [array[index + 1], array[index]]);
+    [array[index], array[index + 1]] = [array[index + 1], array[index]];
   }
 
   static saveSortStep(index) {
