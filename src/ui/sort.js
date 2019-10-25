@@ -1,6 +1,7 @@
 class Sort {
   constructor(array) {
-    this.arrCopy = array;
+    this.arr = array;
+    this.arrCopy = [...this.arr];
     this.listOfIndexes = [];
     this.currentIndex = 0;
   }
@@ -17,6 +18,7 @@ class Sort {
       }
       this.currentIndex = 0;
     }
+
     return this.arrCopy;
   }
 
