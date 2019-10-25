@@ -8,7 +8,8 @@ class Draw {
   static COLUMN_BACKLIGHT = 'red';
 
   constructor(array) {
-    this.arrCopy = array.slice(0);
+    this.arr = array;
+    this.arrCopy = [...this.arr];
     this.columnsButtonsContainer = createElement({
       tag: 'div',
       class: 'columns-buttons__container'
