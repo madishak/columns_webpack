@@ -23,13 +23,12 @@ class Draw {
 
   drawArray() {
     const columnsInner = createElement({ tag: 'div', class: 'columns__inner' });
-    this.arrCopy.map((element, index) => {
+    this.columns = this.arrCopy.map((element, index) => {
       const newDiv = createElement({
         tag: 'div',
         class: 'column',
         text: element
       });
-      this.columns = [...this.columns, newDiv];
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);
       columnsInner.appendChild(newDiv);
@@ -37,7 +36,6 @@ class Draw {
         Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
       return newDiv;
     });
-
     this.columnsCloseInner.append(columnsInner);
     this.columnsButtonsContainer.append(this.columnsCloseInner);
   }
