@@ -7,7 +7,7 @@ class Sort {
   }
 
   increaseSort() {
-   // console.log(this.listOfIndexes);
+    // console.log(this.listOfIndexes);
     for (let i = 0; i < this.arrCopy.length - 1; i++) {
       for (let j = this.currentIndex; j < this.arrCopy.length - i - 1; j++) {
         if (this.arrCopy[j] > this.arrCopy[j + 1]) {
@@ -24,20 +24,18 @@ class Sort {
   }
 
   decreaseSort() {
-
+    for (let i = this.currentIndex; i <= this.listOfIndexes.length; i++) {
       for (let j = 0; j < this.arrCopy.length; j++) {
-          for (let i = 0; i < this.listOfIndexes.length; i++) {
-        console.log(this.listOfIndexes[i], j);
+        console.log(this.listOfIndexes[i], j, this.currentIndex);
         if (this.listOfIndexes[i] === j) {
-
-          Sort.swapElements(this.arrCopy, j);
+          Sort.swapElements(this.arrCopy, this.listOfIndexes[i]);
           console.log(this.arrCopy);
-          return this.arrCopy;
+          break;
         }
+        this.currentIndex = this.currentIndex + 1;
       }
-        this.currentIndex = this.listOfIndexes[i];
     }
-      return this.arrCopy;
+    return this.arrCopy;
     //   return this.listOfIndexes.reduceRight((acc, elem) => {
     //   return this.arrCopy.map((el, i) => {
     //     if (i === elem) {
@@ -59,7 +57,6 @@ class Sort {
     //   }
     // }
     // return this.arrCopy;
-
   }
 
   static swapElements(array, index) {
