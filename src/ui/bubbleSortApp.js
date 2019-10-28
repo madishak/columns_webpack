@@ -31,7 +31,7 @@ class StateTransfer {
   }
 }
 
-const render = new StateTransfer();
+const stateTransfer = new StateTransfer();
 
 const renderCollection = (closeButtonId, inputValue) => {
   if (inputValue.length === 0) {
@@ -40,7 +40,9 @@ const renderCollection = (closeButtonId, inputValue) => {
   const sort = new Sort(inputValue);
   const draw = new Draw(inputValue);
 
-  render.state.map(elem => (closeButtonId === elem.id ? (elem.arr = sort.arrCopy) : elem.arr));
+  stateTransfer.state.map(elem =>
+    closeButtonId === elem.id ? (elem.arr = sort.arrCopy) : elem.arr
+  );
   draw.drawArray();
 
   const closeButton = button({
@@ -49,12 +51,12 @@ const renderCollection = (closeButtonId, inputValue) => {
   });
 
   closeButton.addEventListener('click', () => {
-    render.removeSorter(closeButtonId);
-    render.render();
+    stateTransfer.removeSorter(closeButtonId);
+    stateTransfer.render();
   });
 
   draw.columnsCloseInner.prepend(closeButton);
-  render.container.append(draw.columnsButtonsContainer);
+  stateTransfer.container.append(draw.columnsButtonsContainer);
 
   const buttonBack = button({
     class: 'columns__button',
@@ -119,12 +121,12 @@ const bubbleSortApp = () => {
 
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
-    render.setState({ id: currentArrayId++, arr: newArr });
+    stateTransfer.setState({ id: currentArrayId++, arr: newArr });
     //console.log(render.state);
-    render.render();
+    stateTransfer.render();
   });
 
-  wrapper.appendChild(render.container);
+  wrapper.appendChild(stateTransfer.container);
 
   return wrapper;
 };
