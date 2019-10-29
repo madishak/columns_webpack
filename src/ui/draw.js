@@ -43,7 +43,7 @@ class Draw {
   movement(newArr) {
     let currentElements = [];
 
-    for (let i = 0; i < newArr.length; i++) {
+    for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {
         currentElements = [...currentElements, i];
       }
@@ -54,7 +54,7 @@ class Draw {
       this.columns[currentElements[0]]
     ];
 
-    for (let i = 0; i < this.columns.length; i++) {
+    for (let i = 0; i < this.columns.length; i += 1) {
       if (currentElements.length === 0) {
         break;
       }
