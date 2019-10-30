@@ -1,4 +1,10 @@
-const createElement = property => {
+type createElemAttributes = {
+  tag: string;
+  class: string;
+  text: string;
+};
+
+const createElement = (property: createElemAttributes) => {
   const element = document.createElement(property.tag);
 
   if (property.class) {

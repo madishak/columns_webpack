@@ -33,7 +33,7 @@ class StateTransfer {
 
 const stateTransfer = new StateTransfer();
 
-const renderCollection = (closeButtonId, inputValue) => {
+const renderCollection = (closeButtonId: number, inputValue: number[]) => {
   if (inputValue.length === 0) {
     return;
   }
