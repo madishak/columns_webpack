@@ -1,7 +1,5 @@
 import Sort from './sort';
 import Draw from './draw';
-// import renderCollection from "./renderCollection";
-// import StateTransfer from "./stateTransfer";
 import createElement from './createElement';
 import { wrapper } from './columnsWrapper';
 import button from './button';

@@ -1,13 +1,13 @@
 import createElement from './createElement';
 
 class Draw {
-  static FIXED_COLUMN_HEIGHT = 15;
-  static OFFSET = 30;
-  static OFFSET_MARGIN = 3;
-  static COLUMN_BACKGROUND = 'dodgerblue';
-  static COLUMN_BACKLIGHT = 'red';
+  static FIXED_COLUMN_HEIGHT: number = 15;
+  static OFFSET: number = 30;
+  static OFFSET_MARGIN: number = 3;
+  static COLUMN_BACKGROUND: string = 'dodgerblue';
+  static COLUMN_BACKLIGHT: string = 'red';
 
-  constructor(array) {
+  public constructor(array: number[]) {
     this.arr = array;
     this.arrCopy = [...this.arr];
     this.columnsButtonsContainer = createElement({
@@ -40,8 +40,9 @@ class Draw {
     this.columnsButtonsContainer.append(this.columnsCloseInner);
   }
 
-  movement(newArr) {
-    let currentElements = [];
+  movement(newArr: number[]) {
+    let currentElements: number[] = [];
+    // console.log(currentElements);
 
     for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {
@@ -72,7 +73,7 @@ class Draw {
     this.arrCopy = [...newArr];
   }
 
-  static moveColumnLeft(index) {
+  static moveColumnLeft(index: number) {
     return `${index * Draw.OFFSET}px`;
   }
 }

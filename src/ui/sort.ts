@@ -1,12 +1,12 @@
 class Sort {
-  constructor(array) {
+  public constructor(array: number[]) {
     this.arr = array;
     this.arrCopy = [...this.arr];
     this.listOfIndexes = [];
     this.currentIndex = 0;
   }
 
-  increaseSort() {
+  public increaseSort(): number[] {
     for (let i = 0; i < this.arrCopy.length - 1; i += 1) {
       for (let j = this.currentIndex; j < this.arrCopy.length - i - 1; j += 1) {
         if (this.arrCopy[j] > this.arrCopy[j + 1]) {
@@ -21,7 +21,7 @@ class Sort {
     return this.arrCopy;
   }
 
-  decreaseSort() {
+  public decreaseSort(): number[] {
     // if (this.currentIndex > this.listOfIndexes.length) {
     //   this.currentIndex = 0;
     //   return this.currentIndex;
@@ -50,7 +50,7 @@ class Sort {
     return this.arrCopy;
   }
 
-  static swapElements(array, index) {
+  static swapElements(array: number[], index: number) {
     [array[index], array[index + 1]] = [array[index + 1], array[index]];
   }
 
