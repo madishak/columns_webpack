@@ -1,11 +1,17 @@
 import createElement from './createElement';
 
 class Draw {
-  static FIXED_COLUMN_HEIGHT: number = 15;
-  static OFFSET: number = 30;
-  static OFFSET_MARGIN: number = 3;
-  static COLUMN_BACKGROUND: string = 'dodgerblue';
-  static COLUMN_BACKLIGHT: string = 'red';
+  static FIXED_COLUMN_HEIGHT = 15;
+  static OFFSET = 30;
+  static OFFSET_MARGIN = 3;
+  static COLUMN_BACKGROUND = 'dodgerblue';
+  static COLUMN_BACKLIGHT = 'red';
+
+  arr: number[];
+  arrCopy: number[];
+  columnsButtonsContainer: HTMLDivElement;
+  columnsCloseInner: HTMLDivElement;
+  columns: HTMLElement[];
 
   public constructor(array: number[]) {
     this.arr = array;
@@ -21,9 +27,9 @@ class Draw {
     this.columns = [];
   }
 
-  drawArray() {
+  public drawArray() {
     const columnsInner = createElement({ tag: 'div', class: 'columns__inner' });
-    this.columns = this.arrCopy.map((element, index) => {
+    this.columns = this.arrCopy.map((element: number, index: number) => {
       const newDiv = createElement({
         tag: 'div',
         class: 'column',
@@ -73,7 +79,7 @@ class Draw {
     this.arrCopy = [...newArr];
   }
 
-  static moveColumnLeft(index: number) {
+  static moveColumnLeft(index: number): string {
     return `${index * Draw.OFFSET}px`;
   }
 }

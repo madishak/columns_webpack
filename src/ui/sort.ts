@@ -1,4 +1,8 @@
 class Sort {
+  arr: number[];
+  arrCopy: number[];
+  listOfIndexes: number[];
+  currentIndex: number;
   public constructor(array: number[]) {
     this.arr = array;
     this.arrCopy = [...this.arr];

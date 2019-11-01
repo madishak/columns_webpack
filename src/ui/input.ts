@@ -1,6 +1,7 @@
 import createElement from './createElement';
 
 type inputAttributes = {
+  class: string;
   type: string;
   id: string;
   placeholder: string;

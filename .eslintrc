@@ -1,14 +1,17 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
     "es6": true
   },
-  "extends": ["airbnb", "prettier"],
-  "parser": "babel-eslint",
-  "plugins": ["prettier"],
+  "extends": ["plugin:@typescript-eslint/recommended", "airbnb", "prettier"],
+//  "parser": "babel-eslint",
   "rules": {
     "linebreak-style": 0,
     "prettier/prettier": "error",
-    "func-names": ["error", "never"]
+    "func-names": ["error", "never"],
+    "@typescript-eslint/rule-name": "error"
+
   }
 }

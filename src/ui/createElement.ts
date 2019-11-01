@@ -1,10 +1,10 @@
 type createElemAttributes = {
   tag: string;
   class: string;
-  text: string;
+  text?: string;
 };
 
-const createElement = (property: createElemAttributes) => {
+const createElement = (property: createElemAttributes): HTMLElement => {
   const element = document.createElement(property.tag);
 
   if (property.class) {

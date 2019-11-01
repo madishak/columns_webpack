@@ -6,18 +6,25 @@ import button from './button';
 import inputText from './input';
 
 class StateTransfer {
-  constructor() {
+  state: number[];
+  container: HTMLElement;
+  key: number;
+
+  public constructor() {
     this.state = [];
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
     this.key = this.state.id;
   }
 
-  setState(value) {
+  public setState(value: object) {
     this.state = [...this.state, value];
   }
 
-  removeSorter(index) {
-    this.state = this.state.reduce((acc, elem) => (elem.id !== index ? [...acc, elem] : acc), []);
+  removeSorter(index: number) {
+    this.state = this.state.reduce(
+      (acc: number[], elem: number) => (elem.id !== index ? [...acc, elem] : acc),
+      []
+    );
   }
 
   render() {
@@ -31,7 +38,7 @@ class StateTransfer {
 
 const stateTransfer = new StateTransfer();
 
-const renderCollection = (closeButtonId: number, inputValue: number[]) => {
+const renderCollection = (closeButtonId: number, inputValue: number[]): void => {
   if (inputValue.length === 0) {
     return;
   }
@@ -45,7 +52,8 @@ const renderCollection = (closeButtonId: number, inputValue: number[]) => {
 
   const closeButton = button({
     class: 'columns__close',
-    text: '&times;'
+    text: '&times;',
+    type: 'button'
   });
 
   closeButton.addEventListener('click', () => {
@@ -59,13 +67,15 @@ const renderCollection = (closeButtonId: number, inputValue: number[]) => {
   const buttonBack = button({
     class: 'columns__button',
     text: 'назад',
-    id: 'dec'
+    id: 'dec',
+    type: 'button'
   });
 
   const buttonNext = button({
     class: 'columns__button',
     text: 'вперед',
-    id: 'inc'
+    id: 'inc',
+    type: 'button'
   });
 
   buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
@@ -110,7 +120,8 @@ const bubbleSortApp = () => {
   });
   buttonsInner.appendChild(startRender);
 
-  const strToArray = str => str.split('').map(element => Number(element));
+  const strToArray = (str: string): number[] =>
+    str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
 
   input.addEventListener('input', evt => {
@@ -119,8 +130,7 @@ const bubbleSortApp = () => {
 
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
-    stateTransfer.setState({ id: currentArrayId++, arr: newArr });
-    //console.log(render.state);
+    stateTransfer.setState({ id: currentArrayId += 1, arr: newArr });
     stateTransfer.render();
   });
 
