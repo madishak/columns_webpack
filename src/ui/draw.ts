@@ -9,8 +9,8 @@ class Draw {
 
   arr: number[];
   arrCopy: number[];
-  columnsButtonsContainer: HTMLDivElement;
-  columnsCloseInner: HTMLDivElement;
+  columnsButtonsContainer: HTMLElement;
+  columnsCloseInner: HTMLElement;
   columns: HTMLElement[];
 
   public constructor(array: number[]) {
