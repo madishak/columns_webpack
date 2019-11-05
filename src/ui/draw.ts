@@ -27,7 +27,7 @@ class Draw {
     this.columns = [];
   }
 
-  public drawArray() {
+  public drawArray(): HTMLElement {
     const columnsInner = createElement({ tag: 'div', class: 'columns__inner' });
     this.columns = this.arrCopy.map((element: number, index: number) => {
       const newDiv = createElement({
@@ -44,9 +44,10 @@ class Draw {
     });
     this.columnsCloseInner.append(columnsInner);
     this.columnsButtonsContainer.append(this.columnsCloseInner);
+    return this.columnsButtonsContainer;
   }
 
-  movement(newArr: number[]) {
+  movement(newArr: number[]): number[] {
     let currentElements: number[] = [];
     // console.log(currentElements);
 
@@ -77,6 +78,7 @@ class Draw {
     }
 
     this.arrCopy = [...newArr];
+    return this.arrCopy;
   }
 
   static moveColumnLeft(index: number): string {
