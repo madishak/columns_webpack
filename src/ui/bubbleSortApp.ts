@@ -5,8 +5,13 @@ import { wrapper } from './columnsWrapper';
 import button from './button';
 import inputText from './input';
 
+interface StateTypes {
+  id: number;
+  arr: number[];
+}
+
 class StateTransfer {
-  state: number[];
+  state: object[];
   container: HTMLElement;
   key: number;
 
@@ -16,8 +21,9 @@ class StateTransfer {
     this.key = this.state.id;
   }
 
-  public setState(value: object) {
+  public setState(value: object): object[] {
     this.state = [...this.state, value];
+    return this.state;
   }
 
   removeSorter(index: number) {
@@ -45,7 +51,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   const sort = new Sort(inputValue);
   const draw = new Draw(inputValue);
 
-  stateTransfer.state.map(elem =>
+  stateTransfer.state.map((elem: StateTypes) =>
     closeButtonId === elem.id ? (elem.arr = sort.arrCopy) : elem.arr
   );
   draw.drawArray();
