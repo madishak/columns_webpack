@@ -1,7 +1,7 @@
 type createElemAttributes = {
   tag: string;
   class: string;
-  text?: string | number;
+  text?: string;
 };
 
 const createElement = (property: createElemAttributes): HTMLElement => {

@@ -33,7 +33,7 @@ class Draw {
       const newDiv = createElement({
         tag: 'div',
         class: 'column',
-        text: element
+        text: String(element)
       });
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);

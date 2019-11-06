@@ -14,7 +14,9 @@ const button = (attribute: buttonAttributes): HTMLButtonElement => {
     text: attribute.text
   });
   buttonElement.type = attribute.type;
-  buttonElement.id = attribute.id;
+  if (attribute.id) {
+    buttonElement.id = attribute.id;
+  }
   return buttonElement;
 };
 

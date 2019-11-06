@@ -11,7 +11,7 @@ interface StateTypes {
 }
 
 class StateTransfer {
-  state: object[];
+  state: StateTypes[];
   container: HTMLElement;
   key: number;
 
@@ -21,19 +21,20 @@ class StateTransfer {
     this.key = this.state.id;
   }
 
-  public setState(value: object): object[] {
+  public setState(value: StateTypes): StateTypes[] {
     this.state = [...this.state, value];
     return this.state;
   }
 
-  removeSorter(index: number) {
+  removeSorter(index: number): StateTypes[] {
     this.state = this.state.reduce(
       (acc: number[], elem: number) => (elem.id !== index ? [...acc, elem] : acc),
       []
     );
+    return this.state;
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = '';
     this.state.map(elem => renderCollection(elem.id, elem.arr));
     // console.log(this.container);
@@ -98,7 +99,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   // wrapper.append(render.container);
 };
 
-const bubbleSortApp = () => {
+const bubbleSortApp = (): HTMLElement => {
   // const wrapper = createElement({ tag: "div", class: "wrapper" });
 
   const form = createElement({ tag: 'form', class: 'form' });
