@@ -49,7 +49,6 @@ class Draw {
 
   movement(newArr: number[]): number[] {
     let currentElements: number[] = [];
-    // console.log(currentElements);
 
     for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {

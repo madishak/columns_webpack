@@ -13,12 +13,10 @@ interface StateTypes {
 class StateTransfer {
   state: StateTypes[];
   container: HTMLElement;
-  key: number;
 
   public constructor() {
     this.state = [];
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
-    this.key = this.state.id;
   }
 
   public setState(value: StateTypes): StateTypes[] {
@@ -28,7 +26,7 @@ class StateTransfer {
 
   removeSorter(index: number): StateTypes[] {
     this.state = this.state.reduce(
-      (acc: number[], elem: number) => (elem.id !== index ? [...acc, elem] : acc),
+      (acc: StateTypes[], elem: StateTypes) => (elem.id !== index ? [...acc, elem] : acc),
       []
     );
     return this.state;
@@ -37,7 +35,6 @@ class StateTransfer {
   render(): HTMLElement {
     this.container.innerHTML = '';
     this.state.map(elem => renderCollection(elem.id, elem.arr));
-    // console.log(this.container);
     wrapper.appendChild(this.container);
     return this.container;
   }
@@ -95,13 +92,9 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   buttonsInner.append(buttonBack, buttonNext); // experimental technology "Node.append()"
 
   draw.columnsButtonsContainer.appendChild(buttonsInner);
-
-  // wrapper.append(render.container);
 };
 
 const bubbleSortApp = (): HTMLElement => {
-  // const wrapper = createElement({ tag: "div", class: "wrapper" });
-
   const form = createElement({ tag: 'form', class: 'form' });
   wrapper.appendChild(form);
 
@@ -120,10 +113,10 @@ const bubbleSortApp = (): HTMLElement => {
   form.appendChild(buttonsInner);
 
   const startRender = button({
-    type: 'button',
     class: 'form__button',
     text: 'Start render',
-    id: 'start'
+    id: 'start',
+    type: 'button'
   });
   buttonsInner.appendChild(startRender);
 
@@ -131,7 +124,7 @@ const bubbleSortApp = (): HTMLElement => {
     str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
 
-  input.addEventListener('input', evt => {
+  input.addEventListener('input', (evt) => {
     input.value = evt.target.value.match(/\d+/g);
   });
 
