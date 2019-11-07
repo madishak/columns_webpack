@@ -92,6 +92,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   buttonsInner.append(buttonBack, buttonNext); // experimental technology "Node.append()"
 
   draw.columnsButtonsContainer.appendChild(buttonsInner);
+
 };
 
 const bubbleSortApp = (): HTMLElement => {

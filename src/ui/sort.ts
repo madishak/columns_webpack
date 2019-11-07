@@ -47,8 +47,9 @@ class Sort {
     return this.arrCopy;
   }
 
-  static swapElements(array: number[], index: number): void {
+  static swapElements(array: number[], index: number):number[] {
     [array[index], array[index + 1]] = [array[index + 1], array[index]];
+    return array;
   }
 }
 
