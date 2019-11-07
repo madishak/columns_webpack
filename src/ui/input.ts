@@ -8,7 +8,10 @@ type inputAttributes = {
 };
 
 const inputText = (attribute: inputAttributes): HTMLInputElement => {
-  const input: HTMLInputElement = createElement({ tag: 'input', class: attribute.class });
+  const input: HTMLInputElement = createElement({
+    tag: 'input',
+    class: attribute.class
+  }) as HTMLInputElement;
   input.type = attribute.type;
   input.id = attribute.id;
   input.placeholder = attribute.placeholder;

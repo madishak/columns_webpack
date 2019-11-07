@@ -12,7 +12,7 @@ const button = (attribute: buttonAttributes): HTMLButtonElement => {
     tag: 'button',
     class: attribute.class,
     text: attribute.text
-  });
+  }) as HTMLButtonElement;
   buttonElement.type = attribute.type;
   if (attribute.id) {
     buttonElement.id = attribute.id;
