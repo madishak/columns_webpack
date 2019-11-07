@@ -92,8 +92,6 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   buttonsInner.append(buttonBack, buttonNext); // experimental technology "Node.append()"
 
   draw.columnsButtonsContainer.appendChild(buttonsInner);
-
-
 };
 
 const bubbleSortApp = (): HTMLElement => {
@@ -127,7 +125,7 @@ const bubbleSortApp = (): HTMLElement => {
   let currentArrayId = 0;
 
   input.addEventListener('input', (evt: Event) => {
-    input.value = evt.target.value.match(/\d+/g);
+    input.value = (evt.target as HTMLInputElement).value.match(/\d+/g);
   });
 
   startRender.addEventListener('click', () => {

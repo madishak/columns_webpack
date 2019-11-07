@@ -8,7 +8,7 @@ type buttonAttributes = {
 };
 
 const button = (attribute: buttonAttributes): HTMLButtonElement => {
-  const buttonElement = createElement({
+  const buttonElement: HTMLButtonElement = createElement({
     tag: 'button',
     class: attribute.class,
     text: attribute.text
