@@ -93,6 +93,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
 
   draw.columnsButtonsContainer.appendChild(buttonsInner);
 
+
 };
 
 const bubbleSortApp = (): HTMLElement => {
@@ -125,7 +126,7 @@ const bubbleSortApp = (): HTMLElement => {
     str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
 
-  input.addEventListener('input', (evt) => {
+  input.addEventListener('input', (evt: Event) => {
     input.value = evt.target.value.match(/\d+/g);
   });
 
