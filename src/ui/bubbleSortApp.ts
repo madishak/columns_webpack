@@ -49,9 +49,13 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   const sort = new Sort(inputValue);
   const draw = new Draw(inputValue);
 
-  stateTransfer.state.map((elem: StateTypes) =>
-    closeButtonId === elem.id ? (elem.arr = sort.arrCopy) : elem.arr
-  );
+  stateTransfer.state.map((elem: StateTypes): number[] => {
+    if (closeButtonId === elem.id) {
+      elem.arr = sort.arrCopy;
+      return elem.arr;
+    }
+    return elem.arr;
+  });
   draw.drawArray();
 
   const closeButton = button({
