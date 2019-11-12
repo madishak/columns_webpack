@@ -1,7 +1,7 @@
 import Sort from './sort';
 import Draw from './draw';
 import createElement from './createElement';
-import { wrapper } from './columnsWrapper';
+import wrapper from './columnsWrapper';
 import button from './button';
 import inputText from './input';
 
