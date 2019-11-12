@@ -1,12 +1,5 @@
 .idea
 node_modules
 dist
-index.js
-sort.js
-draw.js
-bubbleSortApp.js
-button.js
-input.js
-createElement.js
-columnsWrapper.js
+src/**/*.js
 
