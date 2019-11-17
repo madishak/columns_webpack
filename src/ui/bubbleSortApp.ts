@@ -125,7 +125,7 @@ const bubbleSortApp = (): HTMLElement => {
   let currentArrayId = 0;
 
   input.addEventListener('input', (evt: Event) => {
-    input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g));
+    input.value = String(((evt.target as HTMLInputElement).value.match(/\d+/g)));
   });
 
   startRender.addEventListener('click', () => {
