@@ -85,10 +85,15 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
     id: 'inc',
     type: 'button'
   });
+  buttonNext.addEventListener('click', () => {
+    inputValue = sort.increaseSort();
+    draw.movement(inputValue);
+  });
 
-  buttonBack.addEventListener('click', () => draw.movement(sort.decreaseSort()));
-  buttonNext.addEventListener('click', () => draw.movement(sort.increaseSort()));
-
+  buttonBack.addEventListener('click', () => {
+    inputValue = sort.decreaseSort();
+    draw.movement(inputValue);
+  });
   const buttonsInner = createElement({
     tag: 'div',
     class: 'columns__button-inner'
@@ -135,6 +140,7 @@ const bubbleSortApp = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     stateTransfer.setState({ id: currentArrayId += 1, arr: newArr });
+    //console.log(stateTransfer.state);
     stateTransfer.render();
   });
 
