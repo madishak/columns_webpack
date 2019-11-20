@@ -11,7 +11,8 @@
     "linebreak-style": 0,
     "no-param-reassign": 0,
     "prettier/prettier": "error",
-    "func-names": ["error", "never"]
+    "func-names": ["error", "never"],
+    "lines-between-class-members": "off"
 //    "exceptAfterSingleLine": true
   }
 }
