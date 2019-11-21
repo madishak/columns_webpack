@@ -5,10 +5,8 @@ import wrapper from './columnsWrapper';
 import button from './button';
 import inputText from './input';
 
-
 interface StateTypes {
   list: ListTypes[];
-
 }
 
 interface ListTypes {
@@ -22,7 +20,7 @@ class StateTransfer {
 
   public constructor() {
     this.state = {
-      list: [],
+      list: []
     };
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
   }
@@ -140,7 +138,7 @@ const bubbleSortApp = (): HTMLElement => {
   const strToArray = (str: string): number[] =>
     str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
-  let arr: number[] = [];
+  // let arr: number[] = [];
 
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
@@ -149,7 +147,7 @@ const bubbleSortApp = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     if (newArr.length) {
-      stateTransfer.setState({id: currentArrayId += 1, arr: newArr });
+      stateTransfer.setState({ id: currentArrayId += 1, arr: newArr });
     }
     console.log(stateTransfer.state);
     stateTransfer.render();
