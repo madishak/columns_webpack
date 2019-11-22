@@ -92,7 +92,13 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
     type: 'button'
   });
   buttonNext.addEventListener('click', () => {
-    inputValue = sort.increaseSort();
+    const newValue = stateTransfer.state.list.map((elem: ListTypes): number => {
+      return sort.increaseSort(elem.arr);
+    });
+    console.log(newValue);
+    // stateTransfer.state.list.map((elem: ListTypes) => {
+    //  draw.movement(elem.arr);
+    // });
     draw.movement(inputValue);
   });
 
@@ -138,7 +144,6 @@ const bubbleSortApp = (): HTMLElement => {
   const strToArray = (str: string): number[] =>
     str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
-  // let arr: number[] = [];
 
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
@@ -149,7 +154,7 @@ const bubbleSortApp = (): HTMLElement => {
     if (newArr.length) {
       stateTransfer.setState({ id: currentArrayId += 1, arr: newArr });
     }
-    console.log(stateTransfer.state);
+    //console.log(stateTransfer.state);
     stateTransfer.render();
   });
 
