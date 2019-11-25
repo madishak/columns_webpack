@@ -47,7 +47,7 @@ class Draw {
     return this.columnsButtonsContainer;
   }
 
-  movement(newArr: number[]): number[] {
+  public movement(newArr: number[]): number[] {
     let currentElements: number[] = [];
 
     for (let i = 0; i < newArr.length; i += 1) {
