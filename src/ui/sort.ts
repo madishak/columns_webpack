@@ -13,16 +13,16 @@ class Sort {
     this.currentPosition = 0;
   }
 
-  public increaseSort(arrCopy: number[]): number[] {
+  public increaseSort(): number[] {
     if (this.currentIndex === this.listOfIndexes.length) {
-      for (let i = 0; i < arrCopy.length - 1; i += 1) {
-        for (let j = this.currentPosition; j < arrCopy.length - i - 1; j += 1) {
-          if (arrCopy[j] > arrCopy[j + 1]) {
-            Sort.swapElements(arrCopy, j);
+      for (let i = 0; i < this.arrCopy.length - 1; i += 1) {
+        for (let j = this.currentPosition; j < this.arrCopy.length - i - 1; j += 1) {
+          if (this.arrCopy[j] > this.arrCopy[j + 1]) {
+            Sort.swapElements(this.arrCopy, j);
             this.listOfIndexes = [...this.listOfIndexes, j];
             this.currentPosition = j;
             this.currentIndex += 1;
-            return arrCopy;
+            return this.arrCopy;
           }
           this.currentPosition = 0;
         }
@@ -30,9 +30,9 @@ class Sort {
     } else {
       Sort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex]);
       this.currentIndex += 1;
-      return arrCopy;
+      return this.arrCopy;
     }
-    return arrCopy;
+    return this.arrCopy;
   }
 
   public decreaseSort(): number[] {
