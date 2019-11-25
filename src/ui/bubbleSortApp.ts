@@ -30,14 +30,14 @@ class StateTransfer {
     return this.state;
   }
 
-  removeSorter(index: number): StateTypes {
+  public removeSorter(index: number): StateTypes {
     this.state.list = this.state.list.reduce(
       (acc: ListTypes[], elem: ListTypes) => (elem.id !== index ? [...acc, elem] : acc),
       []
     );
     return this.state;
   }
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = '';
     this.state.list.map(elem => renderCollection(elem.id, elem.arr));
     wrapper.appendChild(this.container);
@@ -47,7 +47,7 @@ class StateTransfer {
 
 const stateTransfer = new StateTransfer();
 
-const logger = (): void => {
+const stateLogger = (): void => {
   stateTransfer.state.list.map((elem): void => console.log(`Current state is ${elem.arr}`));
 };
 
@@ -94,39 +94,24 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
     id: 'inc',
     type: 'button'
   });
-  // const updateSorter = (funct) => {
-  //   stateTransfer.state.list.filter((elem: ListTypes): number[] => {
-  //     if (closeButtonId === elem.id) {
-  //       elem.arr = funct();
-  //       draw.movement(elem.arr);
-  //       return elem.arr;
-  //     }
-  //     return elem.arr;
-  //   });
-  // };
-  buttonNext.addEventListener('click', () => {
+  const updateState = (newState: number[]) => {
     stateTransfer.state.list.filter((elem: ListTypes): number[] => {
       if (closeButtonId === elem.id) {
-        elem.arr = sort.increaseSort();
+        elem.arr = newState;
         draw.movement(elem.arr);
         return elem.arr;
       }
       return elem.arr;
     });
-    console.log(stateTransfer.state.list);
-    logger();
+  };
+  buttonNext.addEventListener('click', () => {
+    updateState(sort.increaseSort());
+    stateLogger();
   });
 
   buttonBack.addEventListener('click', () => {
-    stateTransfer.state.list.filter((elem: ListTypes): number[] => {
-      if (closeButtonId === elem.id) {
-        elem.arr = sort.decreaseSort();
-        draw.movement(elem.arr);
-        return elem.arr;
-      }
-      return elem.arr;
-    });
-    logger();
+    updateState(sort.decreaseSort());
+    stateLogger();
   });
   const buttonsInner = createElement({
     tag: 'div',
@@ -177,7 +162,7 @@ const bubbleSortApp = (): HTMLElement => {
       stateTransfer.addState({ id: currentArrayId += 1, arr: newArr });
     }
     stateTransfer.render();
-    logger();
+    stateLogger();
   });
 
   wrapper.appendChild(stateTransfer.container);
