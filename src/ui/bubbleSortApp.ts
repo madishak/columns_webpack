@@ -37,6 +37,17 @@ class StateTransfer {
     );
     return this.state;
   }
+
+  public updateState(index: number, newState: number[]) {
+    stateTransfer.state.list.filter((elem: ListTypes): number[] => {
+      if (index === elem.id) {
+        elem.arr = newState;
+        return elem.arr;
+      }
+      return elem.arr;
+    });
+  }
+
   public render(): HTMLElement {
     this.container.innerHTML = '';
     this.state.list.map(elem => renderCollection(elem.id, elem.arr));
@@ -51,7 +62,7 @@ const stateLogger = (): void => {
   stateTransfer.state.list.map((elem): void => console.log(`Current state is ${elem.arr}`));
 };
 
-const renderCollection = (closeButtonId: number, inputValue: number[]): void => {
+const renderCollection = (sorterId: number, inputValue: number[]): void => {
   if (inputValue.length === 0) {
     return;
   }
@@ -59,7 +70,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   const draw = new Draw(inputValue);
 
   stateTransfer.state.list.map((elem: ListTypes): number[] => {
-    if (closeButtonId === elem.id) {
+    if (sorterId === elem.id) {
       elem.arr = sort.arrCopy;
       return elem.arr;
     }
@@ -74,7 +85,7 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
   });
 
   closeButton.addEventListener('click', () => {
-    stateTransfer.removeSorter(closeButtonId);
+    stateTransfer.removeSorter(sorterId);
     stateTransfer.render();
   });
 
@@ -94,10 +105,9 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
     id: 'inc',
     type: 'button'
   });
-  const updateState = (newState: number[]) => {
+  const updateSorterAnimation = () => {
     stateTransfer.state.list.filter((elem: ListTypes): number[] => {
-      if (closeButtonId === elem.id) {
-        elem.arr = newState;
+      if (sorterId === elem.id) {
         draw.movement(elem.arr);
         return elem.arr;
       }
@@ -105,12 +115,14 @@ const renderCollection = (closeButtonId: number, inputValue: number[]): void => 
     });
   };
   buttonNext.addEventListener('click', () => {
-    updateState(sort.increaseSort());
+    stateTransfer.updateState(sorterId, sort.increaseSort());
+    updateSorterAnimation();
     stateLogger();
   });
 
   buttonBack.addEventListener('click', () => {
-    updateState(sort.decreaseSort());
+    stateTransfer.updateState(sorterId, sort.decreaseSort());
+    updateSorterAnimation();
     stateLogger();
   });
   const buttonsInner = createElement({
