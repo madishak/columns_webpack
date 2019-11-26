@@ -59,7 +59,7 @@ class StateTransfer {
 const stateTransfer = new StateTransfer();
 
 const stateLogger = (): void => {
-  stateTransfer.state.list.map((elem): void => console.log(`Current state is ${elem.arr}`));
+  stateTransfer.state.list.map((elem): void => console.log(`Current state is ${elem.id} - ${elem.arr}`));
 };
 
 const renderCollection = (sorterId: number, inputValue: number[]): void => {
