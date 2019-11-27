@@ -39,7 +39,7 @@ class StateTransfer {
   }
 
   public updateState(index: number, newState: number[]) {
-    stateTransfer.state.list.filter((elem: ListTypes): number[] => {
+    this.state.list.filter((elem: ListTypes): number[] => {
       if (index === elem.id) {
         elem.arr = newState;
         return elem.arr;
@@ -59,7 +59,9 @@ class StateTransfer {
 const stateTransfer = new StateTransfer();
 
 const stateLogger = (): void => {
-  stateTransfer.state.list.map((elem): void => console.log(`Current state is ${elem.id} - ${elem.arr}`));
+  stateTransfer.state.list.map((elem): void =>
+    console.log(`Current state is ${elem.id} - ${elem.arr}`)
+  );
 };
 
 const renderCollection = (sorterId: number, inputValue: number[]): void => {
