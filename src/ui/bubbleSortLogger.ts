@@ -1,9 +1,9 @@
 import { ListTypes } from './interfaces';
 
-const buubleSortStateLogger = (state: ListTypes[]): void => {
+const bubbleSortStateLogger = (state: ListTypes[]): void => {
   state.forEach((elem: ListTypes): void =>
     console.log(`Current state is ${elem.id} - ${elem.arr}`)
   );
 };
 
-export default buubleSortStateLogger;
+export default bubbleSortStateLogger;
