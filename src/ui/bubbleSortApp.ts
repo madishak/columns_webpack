@@ -1,5 +1,4 @@
 import { StateTypes, ListTypes } from './interfaces';
-import States from './state';
 import Sort from './sort';
 import Draw from './draw';
 import createElement from './createElement';
@@ -9,9 +8,36 @@ import inputText from './input';
 import bubbleSortStateLogger from './bubbleSortLogger';
 
 class StateTransfer {
+  state: StateTypes;
   container: HTMLElement;
   public constructor() {
+    this.state = {
+      list: []
+    };
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
+  }
+
+  public addState(value: ListTypes): StateTypes {
+    this.state.list = [...this.state.list, value];
+    return this.state;
+  }
+
+  public removeSorter(index: number): StateTypes {
+    this.state.list = this.state.list.reduce(
+      (acc: ListTypes[], elem: ListTypes) => (elem.id !== index ? [...acc, elem] : acc),
+      []
+    );
+    return this.state;
+  }
+
+  public updateState(index: number, newState: number[]) {
+    this.state.list.filter((elem: ListTypes): number[] => {
+      if (index === elem.id) {
+        elem.arr = newState;
+        return elem.arr;
+      }
+      return elem.arr;
+    });
   }
 
   renderCollection = (sorterId: number, inputValue: number[]): void => {
@@ -19,17 +45,9 @@ class StateTransfer {
     if (inputValue.length === 0) {
       return;
     }
-    const state = new States();
     const sort = new Sort(inputValue);
     const draw = new Draw(inputValue);
 
-    // this.state.list.map((elem: ListTypes): number[] => {
-    //   if (sorterId === elem.id) {
-    //     elem.arr = sort.arrCopy;
-    //     return elem.arr;
-    //   }
-    //   return elem.arr;
-    // });
     draw.drawArray();
 
     const closeButton = button({
@@ -39,8 +57,8 @@ class StateTransfer {
     });
 
     closeButton.addEventListener('click', () => {
-      state.removeSorter(sorterId);
-      this.render(state.state.list);
+      this.removeSorter(sorterId);
+      this.render(this.state.list);
     });
 
     draw.columnsCloseInner.prepend(closeButton);
@@ -70,15 +88,15 @@ class StateTransfer {
       });
     };
     buttonNext.addEventListener('click', () => {
-      state.updateState(sorterId, sort.increaseSort());
-      updateSorterAnimation(state.state.list);
-      bubbleSortStateLogger(state.state.list);
+      this.updateState(sorterId, sort.increaseSort());
+      updateSorterAnimation(this.state.list);
+      bubbleSortStateLogger(this.state.list);
     });
 
     buttonBack.addEventListener('click', () => {
-      state.updateState(sorterId, sort.decreaseSort());
-      updateSorterAnimation(state.state.list);
-      bubbleSortStateLogger(state.state.list);
+      this.updateState(sorterId, sort.decreaseSort());
+      updateSorterAnimation(this.state.list);
+      bubbleSortStateLogger(this.state.list);
     });
     const buttonsInner = createElement({
       tag: 'div',
@@ -127,7 +145,6 @@ const bubbleSortApp = (): HTMLElement => {
   const strToArray = (str: string): number[] =>
     str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
-  const state = new States();
   const stateTransfer = new StateTransfer();
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
@@ -136,11 +153,11 @@ const bubbleSortApp = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     if (newArr.length) {
-      state.addState({ id: currentArrayId += 1, arr: newArr });
+      stateTransfer.addState({ id: currentArrayId += 1, arr: newArr });
     }
     // console.log(state.state);
-    stateTransfer.render(state.state.list);
-    bubbleSortStateLogger(state.state.list);
+    stateTransfer.render(stateTransfer.state.list);
+    bubbleSortStateLogger(stateTransfer.state.list);
   });
 
   wrapper.appendChild(stateTransfer.container);
