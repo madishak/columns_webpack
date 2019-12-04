@@ -1,8 +1,8 @@
 export interface StateTypes {
-  list: ListTypes[];
+  sorters: SorterType[];
 }
 
-export interface ListTypes {
-  id: number;
-  arr: number[];
+export interface SorterType {
+  sorterId: number;
+  sorterArr: number[];
 }

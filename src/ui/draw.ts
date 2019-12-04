@@ -1,4 +1,4 @@
-import createElement from './createElement';
+import createElement from './commonComponents/createElement';
 
 class Draw {
   static FIXED_COLUMN_HEIGHT = 15;

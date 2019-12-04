@@ -1,8 +1,8 @@
-import { ListTypes } from './interfaces';
+import { SorterType } from './interfaces';
 
-const bubbleSortStateLogger = (state: ListTypes[]): void => {
-  state.forEach((elem: ListTypes): void =>
-    console.log(`Current state is ${elem.id} - ${elem.arr}`)
+const bubbleSortStateLogger = (state: SorterType[]): void => {
+  state.forEach((elem: SorterType): void =>
+    console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`)
   );
 };
 
