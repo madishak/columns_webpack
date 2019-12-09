@@ -1,4 +1,4 @@
-class Sort {
+class BubbleSort {
   arr: number[];
   arrCopy: number[];
   listOfIndexes: number[];
@@ -18,7 +18,7 @@ class Sort {
       for (let i = 0; i < this.arrCopy.length - 1; i += 1) {
         for (let j = this.currentPosition; j < this.arrCopy.length - i - 1; j += 1) {
           if (this.arrCopy[j] > this.arrCopy[j + 1]) {
-            Sort.swapElements(this.arrCopy, j);
+            BubbleSort.swapElements(this.arrCopy, j);
             this.listOfIndexes = [...this.listOfIndexes, j];
             this.currentPosition = j;
             this.currentIndex += 1;
@@ -28,7 +28,7 @@ class Sort {
         }
       }
     } else {
-      Sort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex]);
+      BubbleSort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex]);
       this.currentIndex += 1;
       return this.arrCopy;
     }
@@ -38,7 +38,7 @@ class Sort {
   public decreaseSort(): number[] {
     for (let i = 0; i < this.arrCopy.length; i += 1) {
       if (this.currentIndex > 0) {
-        Sort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex - 1]);
+        BubbleSort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex - 1]);
         this.currentIndex -= 1;
         this.currentPosition = this.listOfIndexes[this.currentIndex];
         return this.arrCopy;
@@ -53,4 +53,4 @@ class Sort {
   }
 }
 
-export default Sort;
+export default BubbleSort;

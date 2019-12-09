@@ -1,6 +1,6 @@
 import createElement from './commonComponents/createElement';
 
-class Draw {
+class DrawSorter {
   static FIXED_COLUMN_HEIGHT = 15;
   static OFFSET = 30;
   static OFFSET_MARGIN = 3;
@@ -35,11 +35,11 @@ class Draw {
         class: 'column',
         text: String(element)
       });
-      newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
-      newDiv.style.left = Draw.moveColumnLeft(index);
+      newDiv.style.height = `${DrawSorter.FIXED_COLUMN_HEIGHT * element}px`;
+      newDiv.style.left = DrawSorter.moveColumnLeft(index);
       columnsInner.appendChild(newDiv);
-      this.columnsButtonsContainer.style.width = `${index * Draw.OFFSET +
-        Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
+      this.columnsButtonsContainer.style.width = `${index * DrawSorter.OFFSET +
+        DrawSorter.OFFSET * DrawSorter.OFFSET_MARGIN}px`;
       return newDiv;
     });
     this.columnsCloseInner.append(columnsInner);
@@ -66,13 +66,13 @@ class Draw {
         break;
       }
 
-      this.columns[i].style.left = Draw.moveColumnLeft(i);
+      this.columns[i].style.left = DrawSorter.moveColumnLeft(i);
 
-      this.columns[currentElements[0]].style.backgroundColor = Draw.COLUMN_BACKLIGHT;
-      this.columns[currentElements[1]].style.backgroundColor = Draw.COLUMN_BACKLIGHT;
+      this.columns[currentElements[0]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
+      this.columns[currentElements[1]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
 
       setTimeout(() => {
-        this.columns[i].style.backgroundColor = Draw.COLUMN_BACKGROUND;
+        this.columns[i].style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
       }, 500);
     }
 
@@ -81,8 +81,8 @@ class Draw {
   }
 
   static moveColumnLeft(index: number): string {
-    return `${index * Draw.OFFSET}px`;
+    return `${index * DrawSorter.OFFSET}px`;
   }
 }
 
-export default Draw;
+export default DrawSorter;
