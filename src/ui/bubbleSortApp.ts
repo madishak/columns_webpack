@@ -1,4 +1,4 @@
-import { SorterType, StateTypes } from './interfaces';
+import { SorterType, StateTypes } from './types';
 import BubbleSort from './bubbleSort';
 import DrawSorter from './drawSorter';
 import bubbleSortStateLogger from './bubbleSortLogger';

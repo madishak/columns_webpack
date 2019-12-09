@@ -1,4 +1,4 @@
-import { SorterType } from './interfaces';
+import { SorterType } from './types';
 
 const bubbleSortStateLogger = (state: SorterType[]): void => {
   state.forEach((elem: SorterType): void =>

@@ -1,8 +1,8 @@
-export interface StateTypes {
+export type StateTypes = {
   sorters: SorterType[];
-}
+};
 
-export interface SorterType {
+export type SorterType = {
   sorterId: number;
   sorterArr: number[];
-}
+};
