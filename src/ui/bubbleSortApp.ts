@@ -22,10 +22,7 @@ class BubbleSortApp {
   }
 
   private removeSorter(index: number): StateTypes {
-    this.state.sorters = this.state.sorters.reduce(
-      (acc: SorterType[], elem: SorterType) => (elem.sorterId !== index ? [...acc, elem] : acc),
-      []
-    );
+    this.state.sorters = this.state.sorters.filter((elem: SorterType) => elem.sorterId !== index);
     return this.state;
   }
 
