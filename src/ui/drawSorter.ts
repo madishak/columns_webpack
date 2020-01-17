@@ -12,6 +12,7 @@ class DrawSorter {
   columnsButtonsContainer: HTMLElement;
   columnsCloseInner: HTMLElement;
   columns: HTMLElement[];
+  previousElement: number;
 
   public constructor(array: number[]) {
     this.arr = array;
@@ -25,6 +26,7 @@ class DrawSorter {
       class: 'columns-close__inner'
     });
     this.columns = [];
+    this.previousElement = 0;
   }
 
   public drawArray(): HTMLElement {
@@ -49,18 +51,17 @@ class DrawSorter {
 
   public movement(newArr: number[]): number[] {
     let currentElements: number[] = [];
-
+    console.log(this.previousElement);
     for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {
         currentElements = [...currentElements, i];
       }
     }
-
     [this.columns[currentElements[0]], this.columns[currentElements[1]]] = [
       this.columns[currentElements[1]],
       this.columns[currentElements[0]]
     ];
-
+    this.previousElement = currentElements[1];
     for (let i = 0; i < this.columns.length; i += 1) {
       if (currentElements.length === 0) {
         break;
@@ -71,9 +72,16 @@ class DrawSorter {
       this.columns[currentElements[0]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
       this.columns[currentElements[1]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
 
-      setTimeout(() => {
+      const id = setTimeout(() => {
         this.columns[i].style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
       }, 500);
+
+      if (this.previousElement === currentElements[0]) {
+        clearTimeout(id);
+        setTimeout(() => {
+          this.columns[i].style.backgroundColor = 'yellow';
+        }, 400);
+      }
     }
 
     this.arrCopy = [...newArr];
