@@ -1,5 +1,4 @@
 import createElement from './commonComponents/createElement';
-import wrapper from './commonComponents/columnsWrapper';
 import inputText from './commonComponents/input';
 import button from './commonComponents/button';
 import bubbleSortStateLogger from './bubbleSortLogger';
@@ -7,7 +6,7 @@ import BubbleSortApp from './bubbleSortApp';
 
 const sorterInput = (): HTMLElement => {
   const form = createElement({ tag: 'form', class: 'form' });
-  wrapper.appendChild(form);
+  document.body.appendChild(form);
 
   const input = inputText({
     type: 'text',
@@ -44,13 +43,11 @@ const sorterInput = (): HTMLElement => {
     if (newArr.length) {
       bubbleSortApp.addState({ sorterId: currentArrayId += 1, sorterArr: newArr });
     }
-    bubbleSortApp.render(bubbleSortApp.state.sorters);
+    bubbleSortApp.render();
     bubbleSortStateLogger(bubbleSortApp.state.sorters);
   });
 
-  wrapper.appendChild(bubbleSortApp.container);
-
-  return wrapper;
+  return bubbleSortApp.container;
 };
 
 export default sorterInput;

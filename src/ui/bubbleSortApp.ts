@@ -2,7 +2,6 @@ import { SorterType, StateTypes } from './types';
 import BubbleSort from './bubbleSort';
 import DrawSorter from './drawSorter';
 import bubbleSortStateLogger from './bubbleSortLogger';
-import wrapper from './commonComponents/columnsWrapper';
 import createElement from './commonComponents/createElement';
 import button from './commonComponents/button';
 
@@ -36,7 +35,7 @@ class BubbleSortApp {
     });
   }
 
-  renderCollection = (sorterId: number, inputValue: number[]): void => {
+  renderSorter = (sorterId: number, inputValue: number[]): void => {
     if (inputValue.length === 0) {
       return;
     }
@@ -53,7 +52,7 @@ class BubbleSortApp {
 
     closeButton.addEventListener('click', () => {
       this.removeSorter(sorterId);
-      this.render(this.state.sorters);
+      this.render();
     });
 
     drawSorter.columnsCloseInner.prepend(closeButton);
@@ -96,14 +95,15 @@ class BubbleSortApp {
       tag: 'div',
       class: 'columns__button-inner'
     });
-    buttonsInner.append(buttonBack, buttonNext); // experimental technology "Node.append()"
-
+    buttonsInner.append(buttonBack, buttonNext);
     drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
   };
-  public render(state: SorterType[]): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = '';
-    state.forEach((elem: SorterType) => this.renderCollection(elem.sorterId, elem.sorterArr));
-    wrapper.appendChild(this.container);
+    const { sorters } = this.state;
+    sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
+    console.log(sorters);
+    document.body.appendChild(this.container);
     return this.container;
   }
 }
