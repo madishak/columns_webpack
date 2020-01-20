@@ -15,7 +15,7 @@ class BubbleSortApp {
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
   }
 
-  public addState(value: SorterType): StateTypes {
+  public addSorter(value: SorterType): StateTypes {
     this.state.sorters = [...this.state.sorters, value];
     return this.state;
   }
@@ -25,7 +25,7 @@ class BubbleSortApp {
     return this.state;
   }
 
-  private updateState(index: number, newState: number[]): SorterType[] {
+  private updateSorter(index: number, newState: number[]): SorterType[] {
     return this.state.sorters.filter((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
@@ -81,13 +81,13 @@ class BubbleSortApp {
       });
     };
     buttonNext.addEventListener('click', () => {
-      this.updateState(sorterId, bubbleSort.increaseSort());
+      this.updateSorter(sorterId, bubbleSort.increaseSort());
       updateSorterAnimation(this.state.sorters);
       bubbleSortStateLogger(this.state.sorters);
     });
 
     buttonBack.addEventListener('click', () => {
-      this.updateState(sorterId, bubbleSort.decreaseSort());
+      this.updateSorter(sorterId, bubbleSort.decreaseSort());
       updateSorterAnimation(this.state.sorters);
       bubbleSortStateLogger(this.state.sorters);
     });

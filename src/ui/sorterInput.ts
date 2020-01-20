@@ -41,7 +41,7 @@ const sorterInput = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     if (newArr.length) {
-      bubbleSortApp.addState({ sorterId: currentArrayId += 1, sorterArr: newArr });
+      bubbleSortApp.addSorter({ sorterId: currentArrayId += 1, sorterArr: newArr });
     }
     bubbleSortApp.render();
     bubbleSortStateLogger(bubbleSortApp.state.sorters);
