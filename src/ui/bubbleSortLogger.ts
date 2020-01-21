@@ -1,9 +1,15 @@
-import { SorterType } from './types';
+import WatchJS from 'melanke-watchjs';
 
-const bubbleSortStateLogger = (state: SorterType[]): void => {
-  state.forEach((elem: SorterType): void =>
-    console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`)
-  );
+import { SorterType, StateTypes } from './types';
+
+const { watch } = WatchJS;
+const bubbleSortStateLogger = (state: StateTypes): void => {
+  console.log(state);
+  watch(state, 'sorters', () => console.log('Hello, Madina'));
+
+  // state.forEach((elem: SorterType): void =>
+  //   console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`)
+  // );
 };
 
 export default bubbleSortStateLogger;

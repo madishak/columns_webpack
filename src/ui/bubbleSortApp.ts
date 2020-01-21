@@ -83,13 +83,13 @@ class BubbleSortApp {
     buttonNext.addEventListener('click', () => {
       this.updateSorter(sorterId, bubbleSort.increaseSort());
       updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state.sorters);
+      bubbleSortStateLogger(this.state);
     });
 
     buttonBack.addEventListener('click', () => {
       this.updateSorter(sorterId, bubbleSort.decreaseSort());
       updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state.sorters);
+      bubbleSortStateLogger(this.state);
     });
     const buttonsInner = createElement({
       tag: 'div',

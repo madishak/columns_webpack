@@ -15,7 +15,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Madina Karachai - Columns',
-      favicon: 'columns.ico'
+      favicon: 'columns.ico',
+      template: path.resolve(__dirname, 'src/index.html')
     })
   ],
   output: {
