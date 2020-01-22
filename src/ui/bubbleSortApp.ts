@@ -83,13 +83,13 @@ class BubbleSortApp {
     buttonNext.addEventListener('click', () => {
       this.updateSorter(sorterId, bubbleSort.increaseSort());
       updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state);
+      bubbleSortStateLogger(this.state.sorters);
     });
 
     buttonBack.addEventListener('click', () => {
       this.updateSorter(sorterId, bubbleSort.decreaseSort());
       updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state);
+      bubbleSortStateLogger(this.state.sorters);
     });
     const buttonsInner = createElement({
       tag: 'div',
@@ -102,10 +102,18 @@ class BubbleSortApp {
     this.container.innerHTML = '';
     const { sorters } = this.state;
     sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
-    console.log(sorters);
-    document.body.appendChild(this.container);
     return this.container;
   }
+  public startRenderHandler = (newArr: number[]) => {
+    const app = document.getElementById('app') as HTMLElement;
+    let currentArrayId = 0;
+    if (newArr.length) {
+      this.addSorter({ sorterId: currentArrayId += 1, sorterArr: newArr });
+    }
+    console.log(newArr);
+    app.append(this.render());
+    return this.container;
+  };
 }
 
 export default BubbleSortApp;

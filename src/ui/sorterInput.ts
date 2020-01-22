@@ -4,9 +4,11 @@ import button from './commonComponents/button';
 import bubbleSortStateLogger from './bubbleSortLogger';
 import BubbleSortApp from './bubbleSortApp';
 
+const strToArray = (str: string): number[] =>
+  str.split('').map((element: string) => Number(element));
+
 const sorterInput = (): HTMLElement => {
   const form = createElement({ tag: 'form', class: 'form' });
-  document.body.appendChild(form);
 
   const input = inputText({
     type: 'text',
@@ -30,8 +32,6 @@ const sorterInput = (): HTMLElement => {
   });
   buttonsInner.appendChild(startRender);
 
-  const strToArray = (str: string): number[] =>
-    str.split('').map((element: string) => Number(element));
   let currentArrayId = 0;
   const bubbleSortApp = new BubbleSortApp();
   input.addEventListener('input', (evt: Event) => {
@@ -40,14 +40,17 @@ const sorterInput = (): HTMLElement => {
 
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
-    if (newArr.length) {
-      bubbleSortApp.addSorter({ sorterId: currentArrayId += 1, sorterArr: newArr });
-    }
-    bubbleSortApp.render();
-    bubbleSortStateLogger(bubbleSortApp.state);
+    // if (newArr.length) {
+    //   bubbleSortApp.addSorter({ sorterId: currentArrayId += 1, sorterArr: newArr });
+    // }
+    // bubbleSortApp.render();
+    // app.append(bubbleSortApp.render());
+    console.log(newArr);
+    bubbleSortApp.startRenderHandler(newArr);
+    bubbleSortStateLogger(bubbleSortApp.state.sorters);
   });
-
-  return bubbleSortApp.container;
+  // return bubbleSortApp.container;
+  return form;
 };
 
 export default sorterInput;

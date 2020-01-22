@@ -87,8 +87,8 @@ class DrawSorter {
 
       if (this.previousElement === second.innerText) {
         setTimeout(() => {
-          //  second.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
-          second.style.backgroundColor = 'yellow';
+          second.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
+          //second.style.backgroundColor = 'yellow';
         }, 700);
       }
     }
