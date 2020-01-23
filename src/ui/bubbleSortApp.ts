@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { SorterType, StateTypes } from './types';
 import BubbleSort from './bubbleSort';
 import DrawSorter from './drawSorter';
@@ -106,9 +107,8 @@ class BubbleSortApp {
   }
   public startRenderHandler = (newArr: number[]) => {
     const app = document.getElementById('app') as HTMLElement;
-    let currentArrayId = 0;
     if (newArr.length) {
-      this.addSorter({ sorterId: currentArrayId += 1, sorterArr: newArr });
+      this.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
     }
     console.log(newArr);
     app.append(this.render());
