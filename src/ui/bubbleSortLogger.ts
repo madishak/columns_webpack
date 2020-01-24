@@ -10,6 +10,7 @@ const bubbleSortStateLogger = (state: SorterType[]): void => {
   // }));
   console.log(state);
   state.forEach((elem: SorterType): void => {
+    console.log(elem);
     watch(elem, elem.sorterId, () => console.log(`Current  ${elem.sorterId} - ${elem.sorterArr}`));
     console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`);
   });
