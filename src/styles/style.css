@@ -5,6 +5,7 @@
   --column-width: 20px;
   --column-margin: 15px;
   --form__input-width: 350px;
+  --form__button-width: 200px;
   --columns__inner-height: 190px;
   --columns__inner-weight: auto;
   --columns__close-top: 5px;
@@ -12,13 +13,6 @@
   --columns__close-color: gray;
   --columns__close-hover-bg: red;
   --columns__close-active: dimgrey;
-}
-
-.wrapper {
-  margin: 0 auto;
-  padding: 30px 0 0 0;
-  width: auto;
-  height: auto;
 }
 
 .form {
@@ -36,22 +30,9 @@
   width: var(--form__input-width);
 }
 
-.form__button-inner {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  width: auto;
-}
-
 .form__button {
-  margin: 20px 5px 0 5px;
-}
-
-.columns__wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: space-between;
+  margin: 20px auto 5px auto;
+  width: var(--form__button-width);
 }
 
 .columns__inner {
