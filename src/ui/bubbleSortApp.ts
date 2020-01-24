@@ -36,7 +36,7 @@ class BubbleSortApp {
     });
   }
 
-  renderSorter = (sorterId: number, inputValue: number[]): void => {
+  private renderSorter(sorterId: number, inputValue: number[]): void {
     if (inputValue.length === 0) {
       return;
     }
@@ -98,22 +98,22 @@ class BubbleSortApp {
     });
     buttonsInner.append(buttonBack, buttonNext);
     drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
-  };
+  }
   public render(): HTMLElement {
     this.container.innerHTML = '';
     const { sorters } = this.state;
     sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
     return this.container;
   }
-  public startRenderHandler = (newArr: number[]) => {
+  public startRenderHandler(newArr: number[]): HTMLElement {
     const app = document.getElementById('app') as HTMLElement;
     if (newArr.length) {
       this.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
     }
-    console.log(newArr);
+    bubbleSortStateLogger(this.state.sorters);
     app.append(this.render());
     return this.container;
-  };
+  }
 }
 
 export default BubbleSortApp;
