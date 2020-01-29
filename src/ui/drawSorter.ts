@@ -51,54 +51,68 @@ class DrawSorter {
 
   public movement(newArr: number[]): number[] {
     let currentElements: number[] = [];
-    //console.log('newArr', newArr);
     for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {
         currentElements = [...currentElements, i];
       }
     }
 
-    //console.log('first', this.columns[currentElements[0]], this.columns[currentElements[1]]);
-
-    const first: HTMLElement = this.columns[currentElements[0]];
+    // const first: HTMLElement = this.columns[currentElements[0]];
 
     [this.columns[currentElements[0]], this.columns[currentElements[1]]] = [
       this.columns[currentElements[1]],
       this.columns[currentElements[0]]
     ];
+    const t = DrawSorter.compareColumns(
+      this.columns[currentElements[0]],
+      this.columns[currentElements[1]]
+    );
+    console.log('sec=', t.second, 'prev=', t.prev);
+    console.log(
+      this.columns[currentElements[0]].innerText,
+      this.columns[currentElements[1]].innerText
+    );
     for (let i = 0; i < this.columns.length; i += 1) {
       if (currentElements.length === 0) {
         break;
       }
 
       this.columns[i].style.left = DrawSorter.moveColumnLeft(i);
-      ///console.log('second', this.columns[currentElements[0]], this.columns[currentElements[1]]);
       const second: HTMLElement = this.columns[currentElements[1]];
-
-      // console.log(this.previousElement, second.innerText);
-      // console.log("compare", this.columns[currentElements[0]].innerText, this.columns[currentElements[1]].innerText);
+      console.log('second = ', second);
 
       this.columns[currentElements[0]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
       this.columns[currentElements[1]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
+      DrawSorter.delayAnimationNext(this.previousElement, second);
 
       setTimeout(() => {
         this.columns[i].style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
       }, 500);
-
-      if (this.previousElement === second.innerText) {
-        setTimeout(() => {
-          second.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
-          //second.style.backgroundColor = 'yellow';
-        }, 700);
-      }
     }
     this.previousElement = this.columns[currentElements[1]].innerText;
+    console.log('prev = ', this.previousElement);
     this.arrCopy = [...newArr];
     return this.arrCopy;
   }
 
   static moveColumnLeft(index: number): string {
     return `${index * DrawSorter.OFFSET}px`;
+  }
+
+  static delayAnimationNext(elem1: string, elem2: HTMLElement) {
+    if (elem1 === elem2.innerText) {
+      setTimeout(() => {
+        //elem2.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
+        elem2.style.backgroundColor = 'yellow';
+      }, 900);
+    }
+  }
+
+  static compareColumns(elem1: HTMLElement, elem2: HTMLElement) {
+    if (elem1.innerText < elem2.innerText) {
+      return { second: elem2, prev: elem2.innerText };
+    }
+    return { second: 5, prev: 10 };
   }
 }
 
