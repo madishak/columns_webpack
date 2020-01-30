@@ -1,8 +1,4 @@
-type createElemAttributes = {
-  tag: string;
-  class: string;
-  text?: string;
-};
+import { createElemAttributes } from '../types';
 
 const createElement = (property: createElemAttributes): HTMLElement => {
   const element = document.createElement(property.tag);

@@ -1,11 +1,5 @@
 import createElement from './createElement';
-
-type buttonAttributes = {
-  class: string;
-  text: string;
-  type: string;
-  id?: string;
-};
+import { buttonAttributes } from '../types';
 
 const button = (attribute: buttonAttributes): HTMLButtonElement => {
   const buttonElement: HTMLButtonElement = createElement({

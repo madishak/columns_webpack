@@ -1,11 +1,5 @@
 import createElement from './createElement';
-
-type inputAttributes = {
-  class: string;
-  type: string;
-  id: string;
-  placeholder: string;
-};
+import { inputAttributes } from '../types';
 
 const inputText = (attribute: inputAttributes): HTMLInputElement => {
   const input: HTMLInputElement = createElement({
