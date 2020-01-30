@@ -1,4 +1,5 @@
 import createElement from './commonComponents/createElement';
+import { AnimationValues } from './types';
 
 class DrawSorter {
   static FIXED_COLUMN_HEIGHT = 15;
@@ -12,7 +13,7 @@ class DrawSorter {
   columnsButtonsContainer: HTMLElement;
   columnsCloseInner: HTMLElement;
   columns: HTMLElement[];
-  previousElement: string;
+  previousAnimElement: string;
 
   public constructor(array: number[]) {
     this.arr = array;
@@ -26,7 +27,7 @@ class DrawSorter {
       class: 'columns-close__inner'
     });
     this.columns = [];
-    this.previousElement = '';
+    this.previousAnimElement = '';
   }
 
   public drawArray(): HTMLElement {
@@ -56,41 +57,32 @@ class DrawSorter {
         currentElements = [...currentElements, i];
       }
     }
-
-    // const first: HTMLElement = this.columns[currentElements[0]];
-
+    if (currentElements.length === 0) {
+      return [];
+    }
     [this.columns[currentElements[0]], this.columns[currentElements[1]]] = [
       this.columns[currentElements[1]],
       this.columns[currentElements[0]]
     ];
-    const t = DrawSorter.compareColumns(
+    const animationValues: AnimationValues = DrawSorter.compareColumns(
       this.columns[currentElements[0]],
       this.columns[currentElements[1]]
     );
-    console.log('sec=', t.second, 'prev=', t.prev);
-    console.log(
-      this.columns[currentElements[0]].innerText,
-      this.columns[currentElements[1]].innerText
-    );
+    const { currentElem, previousElem } = animationValues;
     for (let i = 0; i < this.columns.length; i += 1) {
       if (currentElements.length === 0) {
         break;
       }
 
       this.columns[i].style.left = DrawSorter.moveColumnLeft(i);
-      const second: HTMLElement = this.columns[currentElements[1]];
-      console.log('second = ', second);
+      const currentAnimElem: HTMLElement = currentElem;
 
       this.columns[currentElements[0]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
       this.columns[currentElements[1]].style.backgroundColor = DrawSorter.COLUMN_BACKLIGHT;
-      DrawSorter.delayAnimationNext(this.previousElement, second);
-
-      setTimeout(() => {
-        this.columns[i].style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
-      }, 500);
+      DrawSorter.animateSelectedColumns(this.columns[i], 500);
+      DrawSorter.delayAnimation(this.previousAnimElement, currentAnimElem);
     }
-    this.previousElement = this.columns[currentElements[1]].innerText;
-    console.log('prev = ', this.previousElement);
+    this.previousAnimElement = previousElem;
     this.arrCopy = [...newArr];
     return this.arrCopy;
   }
@@ -99,20 +91,22 @@ class DrawSorter {
     return `${index * DrawSorter.OFFSET}px`;
   }
 
-  static delayAnimationNext(elem1: string, elem2: HTMLElement) {
-    if (elem1 === elem2.innerText) {
-      setTimeout(() => {
-        //elem2.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
-        elem2.style.backgroundColor = 'yellow';
-      }, 900);
+  static compareColumns(activeElem1: HTMLElement, activeElem2: HTMLElement): AnimationValues {
+    if (activeElem1.innerText < activeElem2.innerText) {
+      return { previousElem: activeElem2.innerText, currentElem: activeElem2 };
     }
+    return { previousElem: activeElem1.innerText, currentElem: activeElem1 };
   }
 
-  static compareColumns(elem1: HTMLElement, elem2: HTMLElement) {
-    if (elem1.innerText < elem2.innerText) {
-      return { second: elem2, prev: elem2.innerText };
+  static delayAnimation(previousElem: string, currentElem: HTMLElement): void {
+    if (previousElem === currentElem.innerText) {
+      DrawSorter.animateSelectedColumns(currentElem, 900);
     }
-    return { second: 5, prev: 10 };
+  }
+  static animateSelectedColumns(currentElem: HTMLElement, period: number): void {
+    setTimeout(() => {
+      currentElem.style.backgroundColor = DrawSorter.COLUMN_BACKGROUND;
+    }, period);
   }
 }
 
