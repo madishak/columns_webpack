@@ -11,23 +11,20 @@ class BubbleSortApp {
   container: HTMLElement;
   public constructor() {
     this.state = {
-      sorters: [],
-      isChanged: false
+      sorters: []
     };
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
   }
-  public getState(): StateTypes {
+  public getSorter(): StateTypes {
     return this.state;
   }
   public addSorter(value: SorterType): StateTypes {
     this.state.sorters = [...this.state.sorters, value];
-    this.state.isChanged = true;
     return this.state;
   }
 
   private removeSorter(index: number): StateTypes {
     this.state.sorters = this.state.sorters.filter((elem: SorterType) => elem.sorterId !== index);
-    this.state.isChanged = true;
     return this.state;
   }
 
@@ -35,7 +32,6 @@ class BubbleSortApp {
     return this.state.sorters.filter((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
-        this.state.isChanged = true;
         return elem.sorterArr;
       }
       return elem.sorterArr;
@@ -111,10 +107,6 @@ class BubbleSortApp {
     sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
     return this.container;
   }
-  // public presentState() {
-  //   this.render();
-  //   bubbleSortStateLogger(this.state.sorters);
-  // }
   public startRenderHandler(newArr: number[]): HTMLElement {
     const app = document.getElementById('app') as HTMLElement;
     if (newArr.length) {
