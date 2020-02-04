@@ -25,6 +25,7 @@ const bubbleSortStateLogger = (): void => {
   const bubbleSortApp = new BubbleSortApp();
   const state = bubbleSortApp.getState();
   const { sorters, isChanged } = state;
+  console.log(isChanged);
   if (isChanged) {
     sorters.forEach((elem: SorterType): void => {
       console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`);
