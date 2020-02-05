@@ -1,10 +1,11 @@
 import createElement from './commonComponents/createElement';
 import inputText from './commonComponents/input';
 import button from './commonComponents/button';
-import BubbleSortApp from './bubbleSortApp';
+// import BubbleSortApp from './bubbleSortApp';
 import State from './state';
 import bubbleSortStateLogger from './bubbleSortLogger';
 import _ from 'lodash';
+import { render } from './bubbleSortApp'
 
 const state = new State();
 const startRenderHandler = (newArr: number[]): void => {
@@ -38,7 +39,7 @@ const sorterInput = (): HTMLElement => {
   });
   form.appendChild(startRender);
 
-  const bubbleSortApp = new BubbleSortApp();
+  // const bubbleSortApp = new BubbleSortApp();
 
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
@@ -47,7 +48,7 @@ const sorterInput = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     startRenderHandler(newArr);
-    state.addRef(bubbleSortApp.render);
+    state.addRef(render);
     state.addRef(bubbleSortStateLogger);
     state.notification();
   });
