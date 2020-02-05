@@ -7,36 +7,36 @@ import createElement from './commonComponents/createElement';
 import button from './commonComponents/button';
 
 class BubbleSortApp {
-  state: StateTypes;
+  //state: StateTypes;
   container: HTMLElement;
   public constructor() {
-    this.state = {
-      sorters: []
-    };
+    // this.state = {
+    //   sorters: []
+    // };
     this.container = createElement({ tag: 'div', class: 'wrapperColumns' });
   }
-  public getSorter(): StateTypes {
-    return this.state;
-  }
-  public addSorter(value: SorterType): StateTypes {
-    this.state.sorters = [...this.state.sorters, value];
-    return this.state;
-  }
-
-  private removeSorter(index: number): StateTypes {
-    this.state.sorters = this.state.sorters.filter((elem: SorterType) => elem.sorterId !== index);
-    return this.state;
-  }
-
-  private updateSorter(index: number, newState: number[]): SorterType[] {
-    return this.state.sorters.filter((elem: SorterType): number[] => {
-      if (index === elem.sorterId) {
-        elem.sorterArr = newState;
-        return elem.sorterArr;
-      }
-      return elem.sorterArr;
-    });
-  }
+  // public getSorter(): StateTypes {
+  //   return this.state;
+  // }
+  // public addSorter(value: SorterType): StateTypes {
+  //   this.state.sorters = [...this.state.sorters, value];
+  //   return this.state;
+  // }
+  //
+  // private removeSorter(index: number): StateTypes {
+  //   this.state.sorters = this.state.sorters.filter((elem: SorterType) => elem.sorterId !== index);
+  //   return this.state;
+  // }
+  //
+  // private updateSorter(index: number, newState: number[]): SorterType[] {
+  //   return this.state.sorters.filter((elem: SorterType): number[] => {
+  //     if (index === elem.sorterId) {
+  //       elem.sorterArr = newState;
+  //       return elem.sorterArr;
+  //     }
+  //     return elem.sorterArr;
+  //   });
+  // }
 
   private renderSorter(sorterId: number, inputValue: number[]): void {
     if (inputValue.length === 0) {
@@ -54,8 +54,8 @@ class BubbleSortApp {
     });
 
     closeButton.addEventListener('click', () => {
-      this.removeSorter(sorterId);
-      this.render();
+      // this.removeSorter(sorterId);
+      // this.render();
     });
 
     drawSorter.columnsCloseInner.prepend(closeButton);
@@ -84,15 +84,15 @@ class BubbleSortApp {
       });
     };
     buttonNext.addEventListener('click', () => {
-      this.updateSorter(sorterId, bubbleSort.increaseSort());
-      updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state.sorters);
+      // this.updateSorter(sorterId, bubbleSort.increaseSort());
+      // updateSorterAnimation(this.state.sorters);
+      // bubbleSortStateLogger(this.state.sorters);
     });
 
     buttonBack.addEventListener('click', () => {
-      this.updateSorter(sorterId, bubbleSort.decreaseSort());
-      updateSorterAnimation(this.state.sorters);
-      bubbleSortStateLogger(this.state.sorters);
+      // this.updateSorter(sorterId, bubbleSort.decreaseSort());
+      // updateSorterAnimation(this.state.sorters);
+      // bubbleSortStateLogger(this.state.sorters);
     });
     const buttonsInner = createElement({
       tag: 'div',
@@ -101,19 +101,13 @@ class BubbleSortApp {
     buttonsInner.append(buttonBack, buttonNext);
     drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
   }
-  public render(): HTMLElement {
-    this.container.innerHTML = '';
-    const { sorters } = this.state;
-    sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
-    return this.container;
-  }
-  public startRenderHandler(newArr: number[]): HTMLElement {
+  public render(sorters: SorterType[]): HTMLElement {
+    console.log('render!!!');
     const app = document.getElementById('app') as HTMLElement;
-    if (newArr.length) {
-      this.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
-    }
-    bubbleSortStateLogger(this.state.sorters);
-    app.append(this.render());
+    this.container.innerHTML = '';
+    //const { sorters } = this.state;
+    sorters.forEach((elem: SorterType) => this.renderSorter(elem.sorterId, elem.sorterArr));
+    app.append(this.container);
     return this.container;
   }
 }
