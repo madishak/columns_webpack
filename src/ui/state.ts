@@ -1,53 +1,46 @@
-import _ from 'lodash';
 import { SorterType, StateTypes } from './types';
-import BubbleSort from './bubbleSort';
-import DrawSorter from './drawSorter';
-import bubbleSortStateLogger from './bubbleSortLogger';
-import createElement from './commonComponents/createElement';
-import button from './commonComponents/button';
 
 class State {
-  listRefs: object[];
+  listRefsForView: object[];
   state: StateTypes;
   public constructor() {
     this.state = {
       sorters: [],
-      isChanged: ''
+      isSortersUpdated: false
     };
-    this.listRefs = [];
+    this.listRefsForView = [];
   }
-  public getSorter(): StateTypes {
+  public getState(): StateTypes {
     return this.state;
   }
   public addSorter(value: SorterType): StateTypes {
     this.state.sorters = [...this.state.sorters, value];
-    console.log(this.state.sorters);
     return this.state;
   }
 
-  private removeSorter(index: number): StateTypes {
+  public removeSorter(index: number): StateTypes {
     this.state.sorters = this.state.sorters.filter((elem: SorterType) => elem.sorterId !== index);
     return this.state;
   }
 
-  private updateSorter(index: number, newState: number[]): SorterType[] {
+  public updateSorter(index: number, newState: number[]): SorterType[] {
     return this.state.sorters.filter((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
+        this.state.isSortersUpdated = true;
         return elem.sorterArr;
       }
       return elem.sorterArr;
     });
   }
 
-  public addRef(reference: object): object[] {
-    this.listRefs = [...this.listRefs, reference];
-    return this.listRefs;
+  public addRefForView(reference: object): object[] {
+    this.listRefsForView = [...this.listRefsForView, reference];
+    return this.listRefsForView;
   }
-  public notification() {
+  public viewState() {
     const { sorters } = this.state;
-    console.log(this.listRefs);
-    this.listRefs.map(elem => elem(sorters));
+    this.listRefsForView.map(elem => elem(sorters));
   }
 }
 

@@ -1,21 +1,7 @@
 import createElement from './commonComponents/createElement';
 import inputText from './commonComponents/input';
 import button from './commonComponents/button';
-// import BubbleSortApp from './bubbleSortApp';
-import State from './state';
-import bubbleSortStateLogger from './bubbleSortLogger';
-import _ from 'lodash';
-import { render } from './bubbleSortApp'
-
-const state = new State();
-const startRenderHandler = (newArr: number[]): void => {
-  if (newArr.length) {
-    state.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
-  }
-  // bubbleSortStateLogger(this.state.sorters);
-
-  // return this.container;
-};
+import { startRenderHandler } from './stateCommunication';
 
 const strToArray = (str: string): number[] =>
   str.split('').map((element: string) => Number(element));
@@ -38,9 +24,6 @@ const sorterInput = (): HTMLElement => {
     type: 'button'
   });
   form.appendChild(startRender);
-
-  // const bubbleSortApp = new BubbleSortApp();
-
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
   });
@@ -48,9 +31,6 @@ const sorterInput = (): HTMLElement => {
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
     startRenderHandler(newArr);
-    state.addRef(render);
-    state.addRef(bubbleSortStateLogger);
-    state.notification();
   });
   return form;
 };
