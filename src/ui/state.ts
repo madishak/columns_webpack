@@ -1,7 +1,7 @@
 import { SorterType, StateTypes } from './types';
 
 class State {
-  listRefsForView: object[];
+  listRefsForView: any[];
   state: StateTypes;
   public constructor() {
     this.state = {
@@ -34,13 +34,13 @@ class State {
     });
   }
 
-  public addRefForView(reference: object): object[] {
+  public addRefForView(reference: any): any[] {
     this.listRefsForView = [...this.listRefsForView, reference];
     return this.listRefsForView;
   }
-  public viewState() {
+  public viewState(): any {
     const { sorters } = this.state;
-    this.listRefsForView.map(elem => elem(sorters));
+    return this.listRefsForView.map((elem: any) => elem(sorters));
   }
 }
 
