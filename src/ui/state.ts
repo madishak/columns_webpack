@@ -5,8 +5,7 @@ class State {
   state: StateTypes;
   public constructor() {
     this.state = {
-      sorters: [],
-      isSortersUpdated: false
+      sorters: []
     };
     this.listRefsForView = [];
   }
@@ -27,7 +26,6 @@ class State {
     return this.state.sorters.filter((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
-        this.state.isSortersUpdated = true;
         return elem.sorterArr;
       }
       return elem.sorterArr;

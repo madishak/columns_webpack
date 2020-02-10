@@ -23,9 +23,7 @@ export const removeSortersHandler = (id: number): void => {
 };
 
 export const updateSortersHandler = (id: number, newState: number[]): void => {
-  const { sorters, isSortersUpdated } = state.getState();
+  const { sorters } = state.getState();
   state.updateSorter(id, newState);
-  if (isSortersUpdated) {
-    bubbleSortStateLogger(sorters);
-  }
+  bubbleSortStateLogger(sorters);
 };
