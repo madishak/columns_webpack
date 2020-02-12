@@ -8,22 +8,21 @@ const state = new State();
 
 export const getAllSorters = (): SorterType[] => state.getState().sorters;
 
-export const startRenderHandler = (newArr: number[]): void => {
+export const addSorters = (newArr: number[]): void => {
   if (newArr.length) {
     state.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
   }
-  state.addRefForView(render);
-  state.addRefForView(bubbleSortStateLogger);
-  state.viewState();
+  render(getAllSorters());
+  bubbleSortStateLogger(getAllSorters());
 };
 
-export const removeSortersHandler = (id: number): void => {
+export const removeSorters = (id: number): void => {
   state.removeSorter(id);
-  state.viewState();
+  render(getAllSorters());
+  bubbleSortStateLogger(getAllSorters());
 };
 
-export const updateSortersHandler = (id: number, newState: number[]): void => {
-  const { sorters } = state.getState();
+export const updateSorters = (id: number, newState: number[]): void => {
   state.updateSorter(id, newState);
-  bubbleSortStateLogger(sorters);
+  bubbleSortStateLogger(getAllSorters());
 };

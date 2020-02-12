@@ -3,7 +3,7 @@ import BubbleSort from './bubbleSort';
 import DrawSorter from './drawSorter';
 import createElement from './commonComponents/createElement';
 import button from './commonComponents/button';
-import { getAllSorters, removeSortersHandler, updateSortersHandler } from './stateCommunication';
+import { getAllSorters, removeSorters, updateSorters } from './stateCommunication';
 
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
@@ -23,7 +23,7 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
   });
 
   closeButton.addEventListener('click', () => {
-    removeSortersHandler(sorterId);
+    removeSorters(sorterId);
   });
 
   drawSorter.columnsCloseInner.prepend(closeButton);
@@ -42,8 +42,8 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
     id: 'inc',
     type: 'button'
   });
-  const updateSorterAnimation = (states: SorterType[]): SorterType[] => {
-    return states.filter((elem: SorterType): number[] => {
+  const updateSorterAnimation = (states: SorterType[]): void => {
+    return states.forEach((elem: SorterType): number[] => {
       if (sorterId === elem.sorterId) {
         drawSorter.movement(elem.sorterArr);
         return elem.sorterArr;
@@ -52,12 +52,12 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
     });
   };
   buttonNext.addEventListener('click', () => {
-    updateSortersHandler(sorterId, bubbleSort.increaseSort());
+    updateSorters(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
-    updateSortersHandler(sorterId, bubbleSort.decreaseSort());
+    updateSorters(sorterId, bubbleSort.decreaseSort());
     updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({

@@ -1,7 +1,7 @@
 import createElement from './commonComponents/createElement';
 import inputText from './commonComponents/input';
 import button from './commonComponents/button';
-import { startRenderHandler } from './stateCommunication';
+import { addSorters } from './stateCommunication';
 
 const strToArray = (str: string): number[] =>
   str.split('').map((element: string) => Number(element));
@@ -30,7 +30,7 @@ const sorterInput = (): HTMLElement => {
 
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
-    startRenderHandler(newArr);
+    addSorters(newArr);
   });
   return form;
 };

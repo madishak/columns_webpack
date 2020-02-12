@@ -1,13 +1,11 @@
 import { SorterType, StateTypes } from './types';
 
 class State {
-  listRefsForView: any[];
   state: StateTypes;
   public constructor() {
     this.state = {
       sorters: []
     };
-    this.listRefsForView = [];
   }
   public getState(): StateTypes {
     return this.state;
@@ -22,8 +20,8 @@ class State {
     return this.state;
   }
 
-  public updateSorter(index: number, newState: number[]): SorterType[] {
-    return this.state.sorters.filter((elem: SorterType): number[] => {
+  public updateSorter(index: number, newState: number[]): void {
+    return this.state.sorters.forEach((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
         return elem.sorterArr;
@@ -32,14 +30,14 @@ class State {
     });
   }
 
-  public addRefForView(reference: any): any[] {
-    this.listRefsForView = [...this.listRefsForView, reference];
-    return this.listRefsForView;
-  }
-  public viewState(): any {
-    const { sorters } = this.state;
-    return this.listRefsForView.map((elem: any) => elem(sorters));
-  }
+  // public addRefForView(reference: any): any[] {
+  //   this.listRefsForView = [...this.listRefsForView, reference];
+  //   return this.listRefsForView;
+  // }
+  // public viewState(): any {
+  //   const { sorters } = this.state;
+  //   return this.listRefsForView.forEach((elem: any) => elem(sorters));
+  // }
 }
 
 export default State;
