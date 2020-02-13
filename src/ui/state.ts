@@ -29,15 +29,6 @@ class State {
       return elem.sorterArr;
     });
   }
-
-  // public addRefForView(reference: any): any[] {
-  //   this.listRefsForView = [...this.listRefsForView, reference];
-  //   return this.listRefsForView;
-  // }
-  // public viewState(): any {
-  //   const { sorters } = this.state;
-  //   return this.listRefsForView.forEach((elem: any) => elem(sorters));
-  // }
 }
 
 export default State;
