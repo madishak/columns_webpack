@@ -1,5 +1,6 @@
-import createElement from './commonComponents/createElement';
-import { AnimationValues } from './types';
+import createElement from '../commonComponents/createElement';
+import { AnimationValues } from '../types';
+import './style.css';
 
 class DrawSorter {
   static FIXED_COLUMN_HEIGHT = 15;

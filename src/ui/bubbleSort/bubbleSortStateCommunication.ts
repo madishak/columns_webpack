@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { SorterType } from './types';
-import State from './state';
+import { SorterType } from '../types';
+import State from '../state';
 import render from './bubbleSortApp';
 import bubbleSortStateLogger from './bubbleSortLogger';
 

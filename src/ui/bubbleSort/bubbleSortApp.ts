@@ -1,9 +1,10 @@
-import { SorterType } from './types';
+import { SorterType } from '../types';
 import BubbleSort from './bubbleSort';
-import DrawSorter from './drawSorter';
-import createElement from './commonComponents/createElement';
-import button from './commonComponents/button';
-import { getAllSorters, removeSorters, updateSorters } from './stateCommunication';
+import DrawSorter from '../sorter/drawSorter';
+import createElement from '../commonComponents/createElement';
+import button from '../commonComponents/button';
+import { getAllSorters, removeSorters, updateSorters } from './bubbleSortStateCommunication';
+import './style.css';
 
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
@@ -51,6 +52,7 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
       return elem.sorterArr;
     });
   };
+
   buttonNext.addEventListener('click', () => {
     updateSorters(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());

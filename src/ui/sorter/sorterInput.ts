@@ -1,7 +1,8 @@
-import createElement from './commonComponents/createElement';
-import inputText from './commonComponents/input';
-import button from './commonComponents/button';
-import { addSorters } from './stateCommunication';
+import createElement from '../commonComponents/createElement';
+import inputText from '../commonComponents/input';
+import button from '../commonComponents/button';
+import { addSorters } from '../bubbleSort/bubbleSortStateCommunication';
+import './style.css';
 
 const strToArray = (str: string): number[] =>
   str.split('').map((element: string) => Number(element));

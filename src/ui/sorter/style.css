@@ -8,11 +8,6 @@
   --form__button-width: 200px;
   --columns__inner-height: 190px;
   --columns__inner-weight: auto;
-  --columns__close-top: 5px;
-  --columns__close-font-size: 30px;
-  --columns__close-color: gray;
-  --columns__close-hover-bg: red;
-  --columns__close-active: dimgrey;
 }
 
 .form {
@@ -57,35 +52,4 @@
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-start;
-}
-
-.columns__button-inner {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-}
-
-.columns__button {
-  margin: 0 10px;
-}
-
-.columns__close {
-  position: relative;
-  top: var(--columns__close-top);
-  font-weight: normal;
-  font-family: 'Courier New', monospace;
-  font-size: var(--columns__close-font-size);
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: var(--columns__close-color);
-}
-
-.columns__close:hover {
-  background: var(--columns__close-hover-bg);
-  color: var(--main-font-color);
-}
-
-.columns__close:active {
-  color: var(--columns__close-active);
 }
