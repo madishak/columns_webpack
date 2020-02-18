@@ -1,13 +1,17 @@
 import createElement from '../commonComponents/createElement';
 import inputText from '../commonComponents/input';
 import button from '../commonComponents/button';
-import { addSorters } from '../bubbleSort/bubbleSortStateCommunication';
+// import { addSorters } from '../bubbleSort/bubbleSortStateCommunication';
 import './style.css';
+
+type SorterInputProps = {
+  onClick: (arr: number[]) => number[];
+};
 
 const strToArray = (str: string): number[] =>
   str.split('').map((element: string) => Number(element));
 
-const sorterInput = (): HTMLElement => {
+const sorterInput = ({ onClick }: SorterInputProps): HTMLElement => {
   const form = createElement({ tag: 'form', class: 'form' });
 
   const input = inputText({
@@ -31,7 +35,7 @@ const sorterInput = (): HTMLElement => {
 
   startRender.addEventListener('click', () => {
     const newArr = strToArray(input.value);
-    addSorters(newArr);
+    onClick(newArr);
   });
   return form;
 };

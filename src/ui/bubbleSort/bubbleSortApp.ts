@@ -6,6 +6,11 @@ import button from '../commonComponents/button';
 import { getAllSorters, removeSorters, updateSorters } from './bubbleSortStateCommunication';
 import './style.css';
 
+type Props = {
+  sorters: SorterType[];
+  onClick: (id: number) => SorterType[];
+};
+
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
 const renderSorter = (sorterId: number, inputValue: number[]): void => {
@@ -70,7 +75,7 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
   drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
 };
 
-const render = (sorters: SorterType[]): HTMLElement => {
+const render = ({ sorters, onClick }: Props): HTMLElement => {
   const app = document.getElementById('app') as HTMLElement;
   container.innerHTML = '';
   sorters.forEach((elem: SorterType) => renderSorter(elem.sorterId, elem.sorterArr));
