@@ -8,12 +8,18 @@ import './style.css';
 
 type Props = {
   sorters: SorterType[];
-  onClick: (id: number) => SorterType[];
+  onClick: (id: number) => unknown;
+};
+
+type SorterProps = {
+  sorterId: number;
+  inputValue: number[];
+  removeSorter: (id: number) => unknown;
 };
 
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
-const renderSorter = (sorterId: number, inputValue: number[]): void => {
+const renderSorter = ({ sorterId, inputValue, removeSorter }: SorterProps): void => {
   if (inputValue.length === 0) {
     return;
   }
@@ -29,7 +35,9 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
   });
 
   closeButton.addEventListener('click', () => {
-    removeSorters(sorterId);
+    // removeSorters(sorterId);
+    console.log(removeSorter);
+    removeSorter(sorterId);
   });
 
   drawSorter.columnsCloseInner.prepend(closeButton);
@@ -78,7 +86,13 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
 const render = ({ sorters, onClick }: Props): HTMLElement => {
   const app = document.getElementById('app') as HTMLElement;
   container.innerHTML = '';
-  sorters.forEach((elem: SorterType) => renderSorter(elem.sorterId, elem.sorterArr));
+  sorters.forEach((elem: SorterType, i: number) =>
+    renderSorter({
+      sorterId: elem.sorterId,
+      inputValue: elem.sorterArr,
+      removeSorter: () => onClick(i)
+    })
+  );
   app.append(container);
   return container;
 };

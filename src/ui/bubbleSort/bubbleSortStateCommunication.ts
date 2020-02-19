@@ -19,11 +19,12 @@ export const addSorters = (newArr: number[]): number[] => {
   return newArr;
 };
 
-export const removeSorters = (id: number): void => {
+export const removeSorters = (id: number): SorterType[] => {
   state.removeSorter(id);
   // render(getAllSorters());
   // bubbleSortStateLogger(getAllSorters());
   rend();
+  return getAllSorters();
 };
 
 export const updateSorters = (id: number, newState: number[]): void => {
@@ -36,6 +37,6 @@ export const appContainer = (): HTMLElement => {
 };
 
 const rend = (): void => {
-  render(getAllSorters(), removeSorters);
+  render({ sorters: getAllSorters(), onClick: () => removeSorters });
   bubbleSortStateLogger(getAllSorters());
 };
