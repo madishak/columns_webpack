@@ -13,17 +13,15 @@ export const addSorters = (newArr: number[]): number[] => {
   if (newArr.length) {
     state.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
   }
-  // render(getAllSorters());
-  // bubbleSortStateLogger(getAllSorters());
-  rend();
+  render(getAllSorters());
+  bubbleSortStateLogger(getAllSorters());
   return newArr;
 };
 
 export const removeSorters = (id: number): SorterType[] => {
   state.removeSorter(id);
-  // render(getAllSorters());
-  // bubbleSortStateLogger(getAllSorters());
-  rend();
+  render(getAllSorters());
+  bubbleSortStateLogger(getAllSorters());
   return getAllSorters();
 };
 
@@ -34,9 +32,4 @@ export const updateSorters = (id: number, newState: number[]): void => {
 
 export const appContainer = (): HTMLElement => {
   return sorterInput({ onClick: addSorters });
-};
-
-const rend = (): void => {
-  render({ sorters: getAllSorters(), onClick: () => removeSorters });
-  bubbleSortStateLogger(getAllSorters());
 };

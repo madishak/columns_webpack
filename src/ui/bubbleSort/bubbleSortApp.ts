@@ -6,20 +6,9 @@ import button from '../commonComponents/button';
 import { getAllSorters, removeSorters, updateSorters } from './bubbleSortStateCommunication';
 import './style.css';
 
-type Props = {
-  sorters: SorterType[];
-  onClick: (id: number) => unknown;
-};
-
-type SorterProps = {
-  sorterId: number;
-  inputValue: number[];
-  removeSorter: (id: number) => unknown;
-};
-
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
-const renderSorter = ({ sorterId, inputValue, removeSorter }: SorterProps): void => {
+const renderSorter = (sorterId: number, inputValue: number[]): void => {
   if (inputValue.length === 0) {
     return;
   }
@@ -35,9 +24,7 @@ const renderSorter = ({ sorterId, inputValue, removeSorter }: SorterProps): void
   });
 
   closeButton.addEventListener('click', () => {
-    // removeSorters(sorterId);
-    console.log(removeSorter);
-    removeSorter(sorterId);
+    removeSorters(sorterId);
   });
 
   drawSorter.columnsCloseInner.prepend(closeButton);
@@ -83,16 +70,10 @@ const renderSorter = ({ sorterId, inputValue, removeSorter }: SorterProps): void
   drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
 };
 
-const render = ({ sorters, onClick }: Props): HTMLElement => {
+const render = (sorters: SorterType[]): HTMLElement => {
   const app = document.getElementById('app') as HTMLElement;
   container.innerHTML = '';
-  sorters.forEach((elem: SorterType, i: number) =>
-    renderSorter({
-      sorterId: elem.sorterId,
-      inputValue: elem.sorterArr,
-      removeSorter: () => onClick(i)
-    })
-  );
+  sorters.forEach((elem: SorterType) => renderSorter(elem.sorterId, elem.sorterArr));
   app.append(container);
   return container;
 };
