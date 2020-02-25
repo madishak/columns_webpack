@@ -1,3 +1,5 @@
 import createElement from '../CommonComponents/createElement';
 
-export const container = createElement({ tag: 'div', class: 'wrapperColumns' });
+const container = createElement({ tag: 'div', class: 'wrapperColumns' });
+
+export default container;

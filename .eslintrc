@@ -1,18 +1,24 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "prettier", "airbnb"],
   "env": {
     "browser": true,
     "es6": true
   },
-  "extends": ["plugin:@typescript-eslint/recommended", "airbnb", "prettier"],
-//  "parser": "babel-eslint",
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "error"
+      }
+    }
+  ],
   "rules": {
     "linebreak-style": 0,
     "no-param-reassign": 0,
-    "prettier/prettier": "error",
+    //"prettier/prettier": "error",
     "func-names": ["error", "never"],
     "lines-between-class-members": "off"
-//    "exceptAfterSingleLine": true
   }
 }
