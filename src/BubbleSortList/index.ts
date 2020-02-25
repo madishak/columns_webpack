@@ -3,12 +3,18 @@ import { container } from '../BubbleSortListContainer';
 import '../BubbleSortListItem/style.css';
 import bubbleSortListItem from '../BubbleSortListItem';
 
-const render = (sorters: SorterType[]): HTMLElement => {
-  const app = document.getElementById('app') as HTMLElement;
+type Props = {
+  sorters: SorterType[];
+  removeSorter: (id: number) => unknown;
+};
+
+const bubbleSortList = ({ sorters, removeSorter }: Props): HTMLElement => {
   container.innerHTML = '';
-  sorters.forEach((elem: SorterType) => bubbleSortListItem(elem.sorterId, elem.sorterArr));
-  app.append(container);
+  // sorters.forEach((elem: SorterType) => bubbleSortListItem(elem.sorterId, elem.sorterArr));
+  sorters.forEach((elem: SorterType) =>
+    bubbleSortListItem({ sorter: elem.sorterArr, removeSorter: () => removeSorter(elem.sorterId) })
+  );
   return container;
 };
 
-export default render;
+export default bubbleSortList;

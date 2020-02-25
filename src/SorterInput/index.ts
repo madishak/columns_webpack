@@ -1,7 +1,6 @@
 import createElement from '../CommonComponents/createElement';
 import inputText from '../CommonComponents/input';
 import button from '../CommonComponents/button';
-// import { addSorters } from '../bubbleSort/bubbleSortStateCommunication';
 import './style.css';
 
 type SorterInputProps = {

@@ -6,12 +6,17 @@ import { container } from '../BubbleSortListContainer';
 import { SorterType } from '../types';
 import createElement from '../CommonComponents/createElement';
 
-const bubbleSortListItem = (sorterId: number, inputValue: number[]): void => {
-  if (inputValue.length === 0) {
+type Props = {
+  sorter: number[];
+  removeSorter: () => unknown;
+};
+
+const bubbleSortListItem = ({ sorter, removeSorter }: Props): void => {
+  if (sorter.length === 0) {
     return;
   }
-  const bubbleSort = new BubbleSort(inputValue);
-  const drawSorter = new Draw(inputValue);
+  const bubbleSort = new BubbleSort(sorter);
+  const drawSorter = new Draw(sorter);
 
   drawSorter.drawArray();
 
@@ -21,9 +26,7 @@ const bubbleSortListItem = (sorterId: number, inputValue: number[]): void => {
     type: 'button'
   });
 
-  closeButton.addEventListener('click', () => {
-    removeSorters(sorterId);
-  });
+  closeButton.addEventListener('click', () => removeSorter());
 
   drawSorter.columnsCloseInner.prepend(closeButton);
   container.append(drawSorter.columnsButtonsContainer);
@@ -41,23 +44,23 @@ const bubbleSortListItem = (sorterId: number, inputValue: number[]): void => {
     id: 'inc',
     type: 'button'
   });
-  const updateSorterAnimation = (states: SorterType[]): void => {
-    return states.forEach((elem: SorterType): number[] => {
-      if (sorterId === elem.sorterId) {
-        drawSorter.movement(elem.sorterArr);
-        return elem.sorterArr;
-      }
-      return elem.sorterArr;
-    });
-  };
+  // const updateSorterAnimation = (states: SorterType[]): void => {
+  //   return states.forEach((elem: SorterType): number[] => {
+  //     if (sorterId === elem.sorterId) {
+  //       drawSorter.movement(elem.sorterArr);
+  //       return elem.sorterArr;
+  //     }
+  //     return elem.sorterArr;
+  //   });
+  // };
   buttonNext.addEventListener('click', () => {
-    updateSorters(sorterId, bubbleSort.increaseSort());
-    updateSorterAnimation(getAllSorters());
+    // updateSorters(sorterId, bubbleSort.increaseSort());
+    // updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
-    updateSorters(sorterId, bubbleSort.decreaseSort());
-    updateSorterAnimation(getAllSorters());
+    // updateSorters(sorterId, bubbleSort.decreaseSort());
+    // updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({
     tag: 'div',
