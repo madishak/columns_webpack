@@ -8,7 +8,7 @@ import createElement from '../CommonComponents/createElement';
 
 type Props = {
   sorter: number[];
-  removeSorter: () => unknown;
+  removeSorter: () => SorterType[];
 };
 
 const bubbleSortListItem = ({ sorter, removeSorter }: Props): void => {

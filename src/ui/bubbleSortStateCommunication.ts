@@ -11,7 +11,7 @@ const state = new State();
 
 export const getAllSorters = (): SorterType[] => state.getState().sorters;
 
-const renderAll = () => {
+const renderAll = (): void => {
   app.append(bubbleSortList({ sorters: getAllSorters(), removeSorter: removeSorters }));
   bubbleSortStateLogger(getAllSorters());
 };

@@ -5,7 +5,7 @@ import bubbleSortListItem from '../BubbleSortListItem';
 
 type Props = {
   sorters: SorterType[];
-  removeSorter: (id: number) => unknown;
+  removeSorter: (id: number) => SorterType[];
 };
 
 const bubbleSortList = ({ sorters, removeSorter }: Props): HTMLElement => {
