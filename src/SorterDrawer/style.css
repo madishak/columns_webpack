@@ -4,30 +4,8 @@
   --column-height: 150px;
   --column-width: 20px;
   --column-margin: 15px;
-  --form__input-width: 350px;
-  --form__button-width: 200px;
   --columns__inner-height: 190px;
   --columns__inner-weight: auto;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: auto;
-  padding: 30px 0 0 0;
-}
-
-.form__input {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: var(--form__input-width);
-}
-
-.form__button {
-  margin: 20px auto 5px auto;
-  width: var(--form__button-width);
 }
 
 .columns__inner {

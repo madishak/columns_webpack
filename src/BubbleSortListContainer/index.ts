@@ -1,3 +1,3 @@
-import createElement from '../commonComponents/createElement';
+import createElement from '../CommonComponents/createElement';
 
 export const container = createElement({ tag: 'div', class: 'wrapperColumns' });

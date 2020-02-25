@@ -1,4 +1,4 @@
-import { SorterType, StateTypes } from './types';
+import { SorterType, StateTypes } from '../types';
 
 class State {
   state: StateTypes;

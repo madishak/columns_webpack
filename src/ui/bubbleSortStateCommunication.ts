@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { SorterType } from '../types';
-import State from '../state';
-import render from './bubbleSortApp';
-import bubbleSortStateLogger from './bubbleSortLogger';
-import sorterInput from '../sorter/sorterInput';
+import State from '../State';
+import render from '../BubbleSortList';
+import bubbleSortStateLogger from '../BubbleSortLogger';
+import sorterInput from '../SorterInput';
 
 const state = new State();
 

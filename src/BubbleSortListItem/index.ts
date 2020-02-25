@@ -1,17 +1,17 @@
-import BubbleSort from './bubbleSort';
-import DrawSorter from '../sorter/drawSorter';
-import button from '../commonComponents/button';
-import { getAllSorters, removeSorters, updateSorters } from './bubbleSortStateCommunication';
-import { container } from './sorterContainer';
+import BubbleSort from '../BubbleSort';
+import Draw from '../SorterDrawer';
+import button from '../CommonComponents/button';
+import { getAllSorters, removeSorters, updateSorters } from '../ui/bubbleSortStateCommunication';
+import { container } from '../BubbleSortListContainer';
 import { SorterType } from '../types';
-import createElement from '../commonComponents/createElement';
+import createElement from '../CommonComponents/createElement';
 
-const renderSorter = (sorterId: number, inputValue: number[]): void => {
+const bubbleSortListItem = (sorterId: number, inputValue: number[]): void => {
   if (inputValue.length === 0) {
     return;
   }
   const bubbleSort = new BubbleSort(inputValue);
-  const drawSorter = new DrawSorter(inputValue);
+  const drawSorter = new Draw(inputValue);
 
   drawSorter.drawArray();
 
@@ -67,4 +67,4 @@ const renderSorter = (sorterId: number, inputValue: number[]): void => {
   drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
 };
 
-export default renderSorter;
+export default bubbleSortListItem;
