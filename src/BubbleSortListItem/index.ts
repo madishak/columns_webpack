@@ -7,11 +7,13 @@ import { SorterType } from '../types';
 import createElement from '../CommonComponents/createElement';
 
 type Props = {
+  sorterId: number;
   sorter: number[];
   removeSorter: () => SorterType[];
+  updateSorter: (id: number, newArr: number[]) => SorterType[];
 };
 
-const bubbleSortListItem = ({ sorter, removeSorter }: Props): void => {
+const bubbleSortListItem = ({ sorterId, sorter, removeSorter, updateSorter }: Props): void => {
   if (sorter.length === 0) {
     return;
   }
@@ -44,18 +46,20 @@ const bubbleSortListItem = ({ sorter, removeSorter }: Props): void => {
     id: 'inc',
     type: 'button'
   });
-  // const updateSorterAnimation = (states: SorterType[]): void => {
-  //   return states.forEach((elem: SorterType): number[] => {
-  //     if (sorterId === elem.sorterId) {
-  //       drawSorter.movement(elem.sorterArr);
-  //       return elem.sorterArr;
-  //     }
-  //     return elem.sorterArr;
-  //   });
-  // };
+  const updateSorterAnimation = (states: SorterType[]): void => {
+    return states.forEach((elem: SorterType): number[] => {
+      if (sorterId === elem.sorterId) {
+        drawSorter.movement(elem.sorterArr);
+        return elem.sorterArr;
+      }
+      return elem.sorterArr;
+    });
+  };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    // updateSorterAnimation(getAllSorters());
+    updateSorter(sorterId, bubbleSort.increaseSort());
+    console.log(sorterId, bubbleSort.increaseSort());
+    updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
