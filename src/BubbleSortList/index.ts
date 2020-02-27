@@ -18,11 +18,12 @@ type MappingDate = {
 const sort = (arr: number[], selector: string) => {
   const bubbleSort = new BubbleSort(arr);
   const mapping: MappingDate = {
-    inc: (arr: number[]) => bubbleSort.increaseSort(),
-    dec: (arr: number[]) => bubbleSort.decreaseSort()
+    inc: bubbleSort.increaseSort(),
+    dec: bubbleSort.decreaseSort()
   };
-  return mapping[selector](arr);
+  return mapping[selector]();
 };
+sort([2, 3, 4, 5, 6], 'inc');
 
 const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
   container.innerHTML = '';

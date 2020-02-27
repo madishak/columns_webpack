@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { SorterType } from '../types';
+import { StateTypes, SorterType } from '../types';
 import State from '../State';
 import bubbleSortList from '../BubbleSortList';
 import bubbleSortStateLogger from '../BubbleSortLogger';
