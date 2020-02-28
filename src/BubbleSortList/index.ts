@@ -3,6 +3,7 @@ import container from '../BubbleSortListContainer';
 import '../BubbleSortListItem/style.css';
 import bubbleSortListItem from '../BubbleSortListItem';
 import BubbleSort from '../BubbleSort';
+
 type Props = {
   sorters: SorterType[];
   removeSorter: (id: number) => SorterType[];
