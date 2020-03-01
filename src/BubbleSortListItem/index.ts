@@ -10,10 +10,11 @@ type Props = {
   sorterId: number;
   sorter: number[];
   removeSorter: () => SorterType[];
-  updateSorter: (id: number, newArr: number[]) => SorterType[];
+  incSorter: () => SorterType[];
+  decSorter: () => SorterType[];
 };
 
-const bubbleSortListItem = ({ sorterId, sorter, removeSorter, updateSorter }: Props): void => {
+const bubbleSortListItem = ({ sorterId, sorter, removeSorter, incSorter, decSorter }: Props): void => {
   if (sorter.length === 0) {
     return;
   }
@@ -57,14 +58,15 @@ const bubbleSortListItem = ({ sorterId, sorter, removeSorter, updateSorter }: Pr
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    updateSorter(sorterId, bubbleSort.increaseSort());
+    incSorter();
     console.log(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.decreaseSort());
-    // updateSorterAnimation(getAllSorters());
+    decSorter();
+    updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({
     tag: 'div',

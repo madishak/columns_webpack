@@ -16,15 +16,20 @@ type MappingDate = {
   dec: number[];
 };
 
-// const sort = (arr: number[], selector: string) => {
-//   const bubbleSort = new BubbleSort(arr);
-//   const mapping: MappingDate = {
-//     inc: bubbleSort.increaseSort(),
-//     dec: bubbleSort.decreaseSort()
-//   };
-//   return mapping[selector]();
-// };
-// sort([2, 3, 4, 5, 6], 'inc');
+const sort = (arr: number[], selector: string) => {
+    console.log(selector);
+  const bubbleSort = new BubbleSort(arr);
+  if (selector === 'inc') {
+      return bubbleSort.increaseSort();
+  }
+    return bubbleSort.decreaseSort();
+  // const mapping: MappingDate = {
+  //   inc: bubbleSort.increaseSort(),
+  //   dec: bubbleSort.decreaseSort()
+  // };
+  // return mapping['inc']();
+};
+
 
 const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
   container.innerHTML = '';
@@ -34,7 +39,8 @@ const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLEle
       sorterId: elem.sorterId,
       sorter: elem.sorterArr,
       removeSorter: () => removeSorter(elem.sorterId),
-      updateSorter: () => updateSorter(elem.sorterId, elem.sorterArr)
+      incSorter: () => updateSorter(elem.sorterId, sort(elem.sorterArr, 'inc')),
+      decSorter: () => updateSorter(elem.sorterId, sort(elem.sorterArr, 'dec'))
     })
   );
   return container;
