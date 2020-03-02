@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { StateTypes, SorterType } from '../types';
 import State from '../State';
+import SortersState from './sortersState';
 import bubbleSortList from '../BubbleSortList';
 import bubbleSortStateLogger from '../BubbleSortLogger';
 import sorterInput from '../SorterInput';
@@ -8,10 +9,11 @@ import sorterInput from '../SorterInput';
 const app = document.getElementById('app') as HTMLElement;
 
 const state = new State();
+const sortersState = new SortersState();
 
-export const getAllSorters = (): SorterType[] => state.getState().sorters;
+export const getAllSorters = (): SorterType[] => sortersState.getSorter();
 
-const renderAll = (): void => {
+const render = (): void => {
   app.append(
     bubbleSortList({
       sorters: getAllSorters(),
@@ -24,21 +26,24 @@ const renderAll = (): void => {
 
 export const addSorters = (newArr: number[]): number[] => {
   if (newArr.length) {
-    state.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
+    sortersState.addSorter({ sorterId: _.uniqueId() as number, sorterArr: newArr });
+    state.addState({
+      sorters: sortersState.getSorter()
+    });
   }
-  renderAll();
+  render();
   return newArr;
 };
 
 export const removeSorters = (id: number): SorterType[] => {
-  state.removeSorter(id);
-  renderAll();
+  sortersState.removeSorter(id);
+  render();
   return getAllSorters();
 };
 
 export const updateSorters = (id: number, newState: number[]): SorterType[] => {
-  state.updateSorter(id, newState);
-  renderAll();
+  sortersState.updateSorter(id, newState);
+  render();
   // bubbleSortStateLogger(getAllSorters());
   return getAllSorters();
 };
@@ -46,3 +51,5 @@ export const updateSorters = (id: number, newState: number[]): SorterType[] => {
 export const appContainer = (): HTMLElement => {
   return sorterInput({ onClick: addSorters });
 };
+
+console.log(state.getState());

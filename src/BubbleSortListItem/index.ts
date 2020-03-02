@@ -14,11 +14,17 @@ type Props = {
   decSorter: () => SorterType[];
 };
 
-const bubbleSortListItem = ({ sorterId, sorter, removeSorter, incSorter, decSorter }: Props): void => {
+const bubbleSortListItem = ({
+  sorterId,
+  sorter,
+  removeSorter,
+  incSorter,
+  decSorter
+}: Props): void => {
   if (sorter.length === 0) {
     return;
   }
-  const bubbleSort = new BubbleSort(sorter);
+  // const bubbleSort = new BubbleSort(sorter);
   const drawSorter = new Draw(sorter);
 
   drawSorter.drawArray();
@@ -59,7 +65,7 @@ const bubbleSortListItem = ({ sorterId, sorter, removeSorter, incSorter, decSort
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
     incSorter();
-    console.log(sorterId, bubbleSort.increaseSort());
+    //console.log(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
 

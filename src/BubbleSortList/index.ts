@@ -17,19 +17,18 @@ type MappingDate = {
 };
 
 const sort = (arr: number[], selector: string) => {
-    console.log(selector);
+  console.log(selector);
   const bubbleSort = new BubbleSort(arr);
   if (selector === 'inc') {
-      return bubbleSort.increaseSort();
+    return bubbleSort.increaseSort();
   }
-    return bubbleSort.decreaseSort();
+  return bubbleSort.decreaseSort();
   // const mapping: MappingDate = {
   //   inc: bubbleSort.increaseSort(),
   //   dec: bubbleSort.decreaseSort()
   // };
   // return mapping['inc']();
 };
-
 
 const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
   container.innerHTML = '';

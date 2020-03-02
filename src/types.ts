@@ -24,7 +24,7 @@ export type AnimationValues = {
 };
 
 export type StateTypes = {
-  sorters: SorterType[];
+  sorters?: SorterType[];
 };
 
 export type SorterType = {
