@@ -7,14 +7,13 @@ import BubbleSort from '../BubbleSort';
 type Props = {
   sorters: SorterType[];
   removeSorter: (id: number) => SorterType[];
-  updateSorter: (id: number, sorter: number[]) => SorterType[];
-  //  updateSorter: (id: number, sorter: number[]) => SorterType[];
+  updateSorter: (id: number) => SorterType[];
 };
 
-type MappingDate = {
-  inc: number[];
-  dec: number[];
-};
+// type MappingDate = {
+//   inc: number[];
+//   dec: number[];
+// };
 
 const sort = (arr: number[], selector: string) => {
   console.log(selector);
@@ -33,15 +32,15 @@ const sort = (arr: number[], selector: string) => {
 const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
   container.innerHTML = '';
   // sorters.forEach((elem: SorterType) => bubbleSortListItem(elem.sorterId, elem.sorterArr));
-  sorters.forEach((elem: SorterType) =>
+  sorters.forEach((elem: SorterType) => {
     bubbleSortListItem({
       sorterId: elem.sorterId,
       sorter: elem.sorterArr,
       removeSorter: () => removeSorter(elem.sorterId),
-      incSorter: () => updateSorter(elem.sorterId, sort(elem.sorterArr, 'inc')),
-      decSorter: () => updateSorter(elem.sorterId, sort(elem.sorterArr, 'dec'))
-    })
-  );
+      incSorter: () => updateSorter(elem.sorterId),
+      decSorter: () => updateSorter(elem.sorterId)
+    });
+  });
   return container;
 };
 

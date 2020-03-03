@@ -18,7 +18,7 @@ const render = (): void => {
     bubbleSortList({
       sorters: getAllSorters(),
       removeSorter: removeSorters,
-      updateSorter: updateSorters
+      updateSorter: uptSorters
     })
   );
   bubbleSortStateLogger(getAllSorters());
@@ -42,14 +42,17 @@ export const removeSorters = (id: number): SorterType[] => {
 };
 
 export const updateSorters = (id: number, newState: number[]): SorterType[] => {
+  console.log(id, newState);
   sortersState.updateSorter(id, newState);
   render();
   // bubbleSortStateLogger(getAllSorters());
   return getAllSorters();
 };
 
+let uptSorters = _.curry(updateSorters);
+// let t = uptSorters(1);
+// let t1 = t([1,4,5,6,7, 2]);
+
 export const appContainer = (): HTMLElement => {
   return sorterInput({ onClick: addSorters });
 };
-
-console.log(state.getState());
