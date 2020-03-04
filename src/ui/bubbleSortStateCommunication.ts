@@ -43,6 +43,7 @@ export const removeSorters = (id: number): SorterType[] => {
 
 export const updateSorters = (id: number, newState: number[]): SorterType[] => {
   console.log(id, newState);
+  console.log('madina');
   sortersState.updateSorter(id, newState);
   render();
   // bubbleSortStateLogger(getAllSorters());

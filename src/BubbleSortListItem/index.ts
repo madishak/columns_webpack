@@ -10,7 +10,7 @@ type Props = {
   sorterId: number;
   sorter: number[];
   removeSorter: () => SorterType[];
-  incSorter: (newArr: number[]) => SorterType[];
+  incSorter: () => SorterType[];
   decSorter: (newArr: number[]) => SorterType[];
 };
 
@@ -64,7 +64,7 @@ const bubbleSortListItem = ({
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    incSorter(bubbleSort.increaseSort());
+    incSorter();
     //console.log(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
