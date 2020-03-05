@@ -7,7 +7,7 @@ import BubbleSort from '../BubbleSort';
 type Props = {
   sorters: SorterType[];
   removeSorter: (id: string) => SorterType[];
-  updateSorter: (id: string, arr: number[]) => SorterType[];
+  updateSorter: (id: string) => SorterType[];
 };
 
 // type MappingData = {
@@ -40,8 +40,8 @@ const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLEle
       sorterId: elem.sorterId,
       sorter: elem.sorterArr,
       removeSorter: () => removeSorter(elem.sorterId),
-      incSorter: () => updateSorter(elem.sorterId, elem.sorterArr),
-      decSorter: () => updateSorter(elem.sorterId, elem.sorterArr)
+      incSorter: () => updateSorter(elem.sorterId),
+      decSorter: () => updateSorter(elem.sorterId)
     });
   });
   return container;

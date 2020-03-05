@@ -14,7 +14,7 @@ type Props = {
   sorterId: string;
   sorter: number[];
   removeSorter: () => SorterType[];
-  incSorter: () => SorterType[];
+  incSorter: (newArr: number[]) => SorterType[];
   decSorter: (newArr: number[]) => SorterType[];
 };
 
@@ -68,7 +68,7 @@ const bubbleSortListItem = ({
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    incSorter();
+    incSorter(bubbleSort.increaseSort());
     // console.log(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
