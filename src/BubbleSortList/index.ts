@@ -6,31 +6,30 @@ import BubbleSort from '../BubbleSort';
 
 type Props = {
   sorters: SorterType[];
-  removeSorter: (id: number) => SorterType[];
-  updateSorter: (id: number, arr: number[]) => SorterType[];
+  removeSorter: (id: string) => SorterType[];
+  updateSorter: (id: string, arr: number[]) => SorterType[];
 };
 
-type MappingData = {
-  inc: number[];
-  dec: number[];
-};
+// type MappingData = {
+//   inc: number[];
+//   dec: number[];
+// };
+//
+// type C = {
+//   [selector: string]: number[];
+// };
 
-type C = {
-  [selector: string]: number[];
-};
-
-const sort = (arr: number[], selector: C) => {
-  console.log(selector);
+const sort = (arr: number[], selector: string) => {
   const bubbleSort = new BubbleSort(arr);
   if (selector === 'inc') {
     return bubbleSort.increaseSort();
   }
-  // return bubbleSort.decreaseSort();
-  const mapping: MappingData = {
-    inc: bubbleSort.increaseSort(),
-    dec: bubbleSort.decreaseSort()
-  };
-  return mapping[selector]();
+  return bubbleSort.decreaseSort();
+  // const mapping: MappingData = {
+  //   inc: bubbleSort.increaseSort(),
+  //   dec: bubbleSort.decreaseSort()
+  // };
+  // return mapping[selector]();
 };
 
 const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {

@@ -7,7 +7,7 @@ import { SorterType } from '../types';
 import createElement from '../CommonComponents/createElement';
 
 type Props = {
-  sorterId: number;
+  sorterId: string;
   sorter: number[];
   removeSorter: () => SorterType[];
   incSorter: () => SorterType[];
@@ -65,7 +65,7 @@ const bubbleSortListItem = ({
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
     incSorter();
-    //console.log(sorterId, bubbleSort.increaseSort());
+    // console.log(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
 

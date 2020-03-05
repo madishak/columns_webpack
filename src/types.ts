@@ -28,6 +28,6 @@ export type StateTypes = {
 };
 
 export type SorterType = {
-  sorterId: number;
+  sorterId: string;
   sorterArr: number[];
 };

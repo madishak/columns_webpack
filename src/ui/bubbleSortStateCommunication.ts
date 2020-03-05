@@ -26,7 +26,7 @@ const render = (): void => {
 
 export const addSorters = (newArr: number[]): number[] => {
   if (newArr.length) {
-    sortersState.addSorter({ sorterId: _.uniqueId() as number, sorterArr: newArr });
+    sortersState.addSorter({ sorterId: _.uniqueId(), sorterArr: newArr });
     state.addState({
       sorters: sortersState.getSorter()
     });
@@ -35,15 +35,14 @@ export const addSorters = (newArr: number[]): number[] => {
   return newArr;
 };
 
-export const removeSorters = (id: number): SorterType[] => {
+export const removeSorters = (id: string): SorterType[] => {
   sortersState.removeSorter(id);
   render();
   return getAllSorters();
 };
 
-export const updateSorters = (id: number, newState: number[]): SorterType[] => {
+export const updateSorters = (id: string, newState: number[]): SorterType[] => {
   console.log(id, newState);
-  console.log('madina');
   sortersState.updateSorter(id, newState);
   render();
   // bubbleSortStateLogger(getAllSorters());

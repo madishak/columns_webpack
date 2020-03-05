@@ -13,12 +13,12 @@ class SortersState {
     return this.sorters;
   }
 
-  public removeSorter(index: number): SorterType[] {
+  public removeSorter(index: string): SorterType[] {
     this.sorters = this.sorters.filter((elem: SorterType) => elem.sorterId !== index);
     return this.sorters;
   }
 
-  public updateSorter(index: number, newState: number[]): void {
+  public updateSorter(index: string, newState: number[]): void {
     return this.sorters.forEach((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
