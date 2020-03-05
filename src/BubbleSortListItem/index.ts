@@ -1,7 +1,11 @@
 import BubbleSort from '../BubbleSort';
 import Draw from '../SorterDrawer';
 import button from '../CommonComponents/button';
-import { getAllSorters, removeSorters, updateSorters } from '../ui/bubbleSortStateCommunication';
+import {
+  getAllSorters,
+  removeSorters,
+  updateSorters
+} from '../SorterControllers/sortersController';
 import container from '../BubbleSortListContainer';
 import { SorterType } from '../types';
 import createElement from '../CommonComponents/createElement';

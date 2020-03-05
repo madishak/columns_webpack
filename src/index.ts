@@ -1,6 +1,5 @@
-// import sorterInput from './ui/sorter/sorterInput';
 import './css__reset.css';
-import { appContainer } from './ui/bubbleSortStateCommunication';
+import { appContainer } from './SorterControllers/sortersController';
 
 const app = document.getElementById('app') as HTMLElement;
 app.append(appContainer());

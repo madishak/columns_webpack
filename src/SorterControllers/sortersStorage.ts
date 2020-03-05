@@ -1,6 +1,6 @@
 import { SorterType } from '../types';
 
-class SortersState {
+class SortersStorage {
   sorters: SorterType[];
   public constructor() {
     this.sorters = [];
@@ -29,4 +29,4 @@ class SortersState {
   }
 }
 
-export default SortersState;
+export default SortersStorage;
