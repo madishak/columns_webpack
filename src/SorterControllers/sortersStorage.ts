@@ -2,12 +2,15 @@ import { SorterType } from '../types';
 
 class SortersStorage {
   sorters: SorterType[];
+
   public constructor() {
     this.sorters = [];
   }
+
   public getSorter(): SorterType[] {
     return this.sorters;
   }
+
   public addSorter(value: SorterType): SorterType[] {
     this.sorters = [...this.sorters, value];
     return this.sorters;

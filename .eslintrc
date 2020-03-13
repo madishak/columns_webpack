@@ -2,16 +2,22 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
 //  "extends": ["eslint:recommended", "prettier", "airbnb"],
-  "extends": [
-    "airbnb",
-//    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
-
-  ],
+  "extends": ["eslint:recommended", "airbnb-typescript-prettier", "prettier"],
+//  "extends": [
+//    "airbnb",
+////    "plugin:@typescript-eslint/recommended",
+//    "plugin:prettier/recommended",
+//    "prettier/@typescript-eslint"
+//
+//  ],
   "env": {
     "browser": true,
+    "node": true,
     "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
   },
   "overrides": [
     {
@@ -21,10 +27,13 @@
       }
     }
   ],
+//  "rules": {
+//    "no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+//  }
   "rules": {
     "linebreak-style": 0,
     "no-param-reassign": 0,
-//    "prettier/prettier": "error",
+    "prettier/prettier": "error",
     "func-names": ["error", "never"],
     "lines-between-class-members": "off"
   }
