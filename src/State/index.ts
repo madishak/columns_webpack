@@ -12,7 +12,8 @@ class State {
   }
 
   public addState(value: StateTypes): StateTypes {
-    this.state.sorters = value.sorters;
+    console.log(value);
+    this.state = value;
     return this.state;
   }
 }

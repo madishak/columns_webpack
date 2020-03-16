@@ -1,7 +1,7 @@
 import { SorterType } from '../types';
 
-const bubbleSortStateLogger = (sorters: SorterType[]): void => {
-  sorters.forEach((elem: SorterType): void => {
+const bubbleSortStateLogger = (sorters: SorterType[]) => {
+  sorters.forEach((elem: SorterType) => {
     console.log(`Current state is ${elem.sorterId} - ${elem.sorterArr}`);
   });
 };

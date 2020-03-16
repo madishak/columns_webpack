@@ -11,7 +11,15 @@ const app = document.getElementById('app') as HTMLElement;
 const state = new State();
 const sortersStorage = new SortersStorage();
 
-export const getAllSorters = (): SorterType[] => sortersStorage.getSorter();
+export const getAllSorters = (): SorterType[] => {
+  const { sorters } = state.getState();
+  console.log('dshbfhasbdhj', sorters);
+  console.log(typeof sorters);
+  if (sorters === undefined) {
+    throw new Error("Sorters' array is empty");
+  }
+  return sorters;
+};
 
 const render = (): void => {
   app.append(
@@ -34,7 +42,13 @@ export const addSorters = (newArr: number[]): number[] => {
   render();
   return newArr;
 };
-
+const t = () => {
+  Math.random();
+  state.addState({
+    numbers: [5, 5, 5, 5, 5, 5, 5, Math.random()]
+  });
+  console.log(state.getState());
+};
 export const removeSorters = (id: string): SorterType[] => {
   sortersStorage.removeSorter(id);
   render();
@@ -48,5 +62,5 @@ export const updateSorters = (id: string, newState: number[]): SorterType[] => {
 };
 
 export const appContainer = (): HTMLElement => {
-  return sorterInput({ onClick: addSorters });
+  return sorterInput({ onClick: addSorters, onTuck: t });
 };

@@ -17,6 +17,7 @@ class SortersStorage {
   }
 
   public removeSorter(index: string): SorterType[] {
+    console.log(this.sorters);
     this.sorters = this.sorters.filter((elem: SorterType) => elem.sorterId !== index);
     return this.sorters;
   }
