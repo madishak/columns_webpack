@@ -17,12 +17,11 @@ class SortersStorage {
   }
 
   public removeSorter(index: string): SorterType[] {
-    console.log(this.sorters);
     this.sorters = this.sorters.filter((elem: SorterType) => elem.sorterId !== index);
     return this.sorters;
   }
 
-  public updateSorter(index: string, newState: number[]): void {
+  public updateSorter(index: string, newState: number[]) {
     return this.sorters.forEach((elem: SorterType): number[] => {
       if (index === elem.sorterId) {
         elem.sorterArr = newState;

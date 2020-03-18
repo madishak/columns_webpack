@@ -5,13 +5,12 @@ import './style.css';
 
 type SorterInputProps = {
   onClick: (arr: number[]) => number[];
-  onTuck: () => void;
 };
 
 const strToArray = (str: string): number[] =>
   str.split('').map((element: string) => Number(element));
 
-const sorterInput = ({ onClick, onTuck }: SorterInputProps): HTMLElement => {
+const sorterInput = ({ onClick }: SorterInputProps): HTMLElement => {
   const form = createElement({ tag: 'form', class: 'form' });
 
   const input = inputText({
@@ -28,14 +27,14 @@ const sorterInput = ({ onClick, onTuck }: SorterInputProps): HTMLElement => {
     id: 'start',
     type: 'button'
   });
-  const startRender2 = button({
-    class: 'form__button',
-    text: 'Start render',
-    id: 'start',
-    type: 'button'
-  });
+  // const startRender2 = button({
+  //   class: 'form__button',
+  //   text: 'Start render',
+  //   id: 'start',
+  //   type: 'button'
+  // });
   form.appendChild(startRender);
-  form.appendChild(startRender2);
+  // form.appendChild(startRender2);
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
   });
@@ -44,9 +43,9 @@ const sorterInput = ({ onClick, onTuck }: SorterInputProps): HTMLElement => {
     const newArr = strToArray(input.value);
     onClick(newArr);
   });
-  startRender2.addEventListener('click', () => {
-    onTuck();
-  });
+  // startRender2.addEventListener('click', () => {
+  //   onTuck();
+  // });
   return form;
 };
 

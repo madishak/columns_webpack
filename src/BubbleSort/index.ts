@@ -14,6 +14,7 @@ class BubbleSort {
   }
 
   public increaseSort(): number[] {
+    console.log(this.listOfIndexes);
     if (this.currentIndex === this.listOfIndexes.length) {
       for (let i = 0; i < this.arrCopy.length - 1; i += 1) {
         for (let j = this.currentPosition; j < this.arrCopy.length - i - 1; j += 1) {

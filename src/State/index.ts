@@ -12,7 +12,6 @@ class State {
   }
 
   public addState(value: StateTypes): StateTypes {
-    console.log(value);
     this.state = value;
     return this.state;
   }

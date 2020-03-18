@@ -10,8 +10,8 @@ type Props = {
   sorterId: string;
   sorter: number[];
   removeSorter: () => SorterType[];
-  incSorter: (newArr: number[]) => SorterType[];
-  decSorter: (newArr: number[]) => SorterType[];
+  incSorter: (id: string, arr: number[]) => SorterType[];
+  decSorter: (id: string, arr: number[]) => SorterType[];
 };
 
 const bubbleSortListItem = ({
@@ -64,14 +64,13 @@ const bubbleSortListItem = ({
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    incSorter(bubbleSort.increaseSort());
-    // console.log(sorterId, bubbleSort.increaseSort());
+    incSorter(sorterId, bubbleSort.increaseSort());
     updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.decreaseSort());
-    decSorter(bubbleSort.decreaseSort());
+    decSorter(sorterId, bubbleSort.decreaseSort());
     updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({
