@@ -1,4 +1,4 @@
-import BubbleSort from '../BubbleSort';
+import BubbleSort from '../BubbleSort/test';
 import Draw from '../SorterDrawer';
 import button from '../CommonComponents/button';
 import { getAllSorters } from '../SorterControllers/sortersController';
@@ -14,17 +14,19 @@ type Props = {
   decSorter: (id: string, arr: number[]) => SorterType[];
 };
 
+const bubbleSort = new BubbleSort();
+
 const bubbleSortListItem = ({
   sorterId,
   sorter,
   removeSorter,
   incSorter,
-  decSorter
+  decSorter,
 }: Props): void => {
   if (sorter.length === 0) {
     return;
   }
-  const bubbleSort = new BubbleSort(sorter);
+
   const drawSorter = new Draw(sorter);
 
   drawSorter.drawArray();
@@ -32,7 +34,7 @@ const bubbleSortListItem = ({
   const closeButton = button({
     class: 'columns__close',
     text: '&times;',
-    type: 'button'
+    type: 'button',
   });
 
   closeButton.addEventListener('click', () => removeSorter());
@@ -44,14 +46,14 @@ const bubbleSortListItem = ({
     class: 'columns__button',
     text: 'назад',
     id: 'dec',
-    type: 'button'
+    type: 'button',
   });
 
   const buttonNext = button({
     class: 'columns__button',
     text: 'вперед',
     id: 'inc',
-    type: 'button'
+    type: 'button',
   });
   const updateSorterAnimation = (states: SorterType[]): void => {
     return states.forEach((elem: SorterType): number[] => {
@@ -64,18 +66,18 @@ const bubbleSortListItem = ({
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    incSorter(sorterId, bubbleSort.increaseSort());
+    incSorter(sorterId, bubbleSort.increaseSort(sorterId, sorter));
     updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.decreaseSort());
-    decSorter(sorterId, bubbleSort.decreaseSort());
+    decSorter(sorterId, bubbleSort.decreaseSort(sorter));
     updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({
     tag: 'div',
-    class: 'columns__button-inner'
+    class: 'columns__button-inner',
   });
   buttonsInner.append(buttonBack, buttonNext);
   drawSorter.columnsButtonsContainer.appendChild(buttonsInner);
