@@ -32,3 +32,9 @@ export type SorterType = {
   sorterId: string;
   sorterArr: number[];
 };
+
+
+export type IndexStorage = {
+  id: string;
+  arr: number[];
+};
