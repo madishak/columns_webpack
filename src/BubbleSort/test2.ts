@@ -1,16 +1,20 @@
 class BubbleSort {
   arr: number[];
   arrCopy: number[];
+  indList: number[];
   listOfIndexes: number[];
   currentIndex: number;
   currentPosition: number;
+  index: number;
 
-  public constructor(array: number[]) {
+  public constructor(array: number[], indexList: number[]) {
     this.arr = array;
     this.arrCopy = [...this.arr];
-    this.listOfIndexes = [];
+    this.indList = indexList;
+    this.listOfIndexes = [...this.indList];
     this.currentIndex = 0;
     this.currentPosition = 0;
+    this.index = 0;
   }
 
   public increaseSort(): number[] {
@@ -20,7 +24,8 @@ class BubbleSort {
           if (this.arrCopy[j] > this.arrCopy[j + 1]) {
             BubbleSort.swapElements(this.arrCopy, j);
             this.listOfIndexes = [...this.listOfIndexes, j];
-            console.log(this.listOfIndexes);
+            // this.index = j;
+            console.log('Indexes', this.listOfIndexes);
             this.currentPosition = j;
             this.currentIndex += 1;
             return this.arrCopy;
@@ -46,6 +51,10 @@ class BubbleSort {
       }
     }
     return this.arrCopy;
+  }
+
+  public getIndex(): number[] {
+    return this.listOfIndexes;
   }
 
   static swapElements(array: number[], index: number): number[] {

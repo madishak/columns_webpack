@@ -25,16 +25,15 @@ export type AnimationValues = {
 
 export type StateTypes = {
   sorters?: SorterType[];
-  // numbers?: number[];
 };
 
 export type SorterType = {
   sorterId: string;
   sorterArr: number[];
+  indexList?: number[];
 };
 
-
 export type IndexStorage = {
-  id: string;
-  arr: number[];
+  id?: string;
+  arr?: number[];
 };

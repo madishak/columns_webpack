@@ -1,4 +1,4 @@
-import BubbleSort from '../BubbleSort/test';
+import BubbleSort from '../BubbleSort/test2';
 import Draw from '../SorterDrawer';
 import button from '../CommonComponents/button';
 import { getAllSorters } from '../SorterControllers/sortersController';
@@ -9,16 +9,18 @@ import createElement from '../CommonComponents/createElement';
 type Props = {
   sorterId: string;
   sorter: number[];
+  indexList: number[];
   removeSorter: () => SorterType[];
-  incSorter: (id: string, arr: number[]) => SorterType[];
-  decSorter: (id: string, arr: number[]) => SorterType[];
+  incSorter: (id: string, arr: number[], indexList: number[]) => SorterType[];
+  decSorter: (id: string, arr: number[], indexList: number[]) => SorterType[];
 };
 
-const bubbleSort = new BubbleSort();
+// const bubbleSort = new BubbleSort();
 
 const bubbleSortListItem = ({
   sorterId,
   sorter,
+  indexList,
   removeSorter,
   incSorter,
   decSorter,
@@ -27,6 +29,7 @@ const bubbleSortListItem = ({
     return;
   }
 
+  const bubbleSort = new BubbleSort(sorter, indexList);
   const drawSorter = new Draw(sorter);
 
   drawSorter.drawArray();
@@ -66,13 +69,14 @@ const bubbleSortListItem = ({
   };
   buttonNext.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.increaseSort());
-    incSorter(sorterId, bubbleSort.increaseSort(sorterId, sorter));
+    incSorter(sorterId, bubbleSort.increaseSort(), bubbleSort.getIndex());
+    console.log(getAllSorters());
     updateSorterAnimation(getAllSorters());
   });
 
   buttonBack.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.decreaseSort());
-    decSorter(sorterId, bubbleSort.decreaseSort(sorter));
+    decSorter(sorterId, bubbleSort.decreaseSort(), bubbleSort.getIndex());
     updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({
