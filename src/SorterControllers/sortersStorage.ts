@@ -21,16 +21,10 @@ class SortersStorage {
     return this.sorters;
   }
 
-  public updateSorter(index: string, newState: number[], indexList: number[]) {
-    console.log('IndexList', indexList);
+  public updateSorter(index: string, newState: number[]) {
     return this.sorters.forEach((elem: SorterType): number[] => {
-      if (elem.indexList === undefined) {
-        throw new Error('IndexList is undefined');
-      }
       if (index === elem.sorterId) {
         elem.sorterArr = newState;
-        console.log('elem.indexList', elem.indexList);
-        elem.indexList = [...indexList];
         return elem.sorterArr;
       }
       return elem.sorterArr;

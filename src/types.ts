@@ -30,7 +30,6 @@ export type StateTypes = {
 export type SorterType = {
   sorterId: string;
   sorterArr: number[];
-  indexList?: number[];
 };
 
 export type IndexStorage = {

@@ -21,7 +21,7 @@ export const getAllSorters = (): SorterType[] => {
 
 export const addSorters = (newArr: number[]): number[] => {
   if (newArr.length) {
-    sortersStorage.addSorter({ sorterId: uniqueId(), sorterArr: newArr, indexList: [] });
+    sortersStorage.addSorter({ sorterId: uniqueId(), sorterArr: newArr });
     state.addState({
       sorters: sortersStorage.getSorter(),
     });
@@ -39,12 +39,8 @@ export const removeSorters = (id: string): SorterType[] => {
   return getAllSorters();
 };
 
-export const updateSorters = (
-  id: string,
-  newState: number[],
-  indexList: number[],
-): SorterType[] => {
-  sortersStorage.updateSorter(id, newState, indexList);
+export const updateSorters = (id: string, newState: number[]): SorterType[] => {
+  sortersStorage.updateSorter(id, newState);
   state.addState({
     sorters: sortersStorage.getSorter(),
   });
