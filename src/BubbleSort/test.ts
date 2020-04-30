@@ -12,12 +12,8 @@ class BubbleSort {
     // this.arr = array;
     // this.arrCopy = [];
     this.listOfIndexes = [];
-    // this.indexStorage = [{ id: '', arr: [] }];
-    this.indexStorage = {
-      id: '',
-      arr: [],
-    };
-    // this.indexStorage = {};
+    // this.indexStorage = { id: '', arr: [] };
+    this.indexStorage = {};
     this.currentIndex = 0;
     this.currentPosition = 0;
   }
@@ -25,15 +21,24 @@ class BubbleSort {
   public increaseSort(id: string, arrCopy: number[]): number[] {
     console.log('List', this.listOfIndexes);
     console.log(this.indexStorage);
+
+    const keys = Object.keys(this.indexStorage);
+    console.log('Key', keys, id);
+    if (!keys.includes(id)) {
+      console.log(keys.includes(id));
+      this.indexStorage[id] = [];
+    }
+
     if (this.currentIndex === this.listOfIndexes.length) {
       for (let i = 0; i < arrCopy.length - 1; i += 1) {
         for (let j = this.currentPosition; j < arrCopy.length - i - 1; j += 1) {
           if (arrCopy[j] > arrCopy[j + 1]) {
             BubbleSort.swapElements(arrCopy, j);
-            // this.listOfIndexes = [...this.listOfIndexes, j];
-            this.storageI(id, j);
-            //this.indexStorage = [...this.indexStorage, { id, arr: this.listOfIndexes }];
-            // console.log(this.indexStorage);
+
+            console.log(keys.includes(id));
+            this.listOfIndexes = [...this.listOfIndexes, j];
+            this.indexStorage[id] = [...this.indexStorage[id], j];
+
             this.currentPosition = j;
             this.currentIndex += 1;
             return arrCopy;
@@ -66,29 +71,29 @@ class BubbleSort {
     return array;
   }
 
-  private storageI(id: string, j: number): IndexStorage {
-    // this.indexStorage = [...this.indexStorage, {id:'',arr: []}];
-
-    const indexes = Object.entries(this.indexStorage);
-
-    // indexes.forEach((ind: string) => {
-    for (const [ind, value] of indexes) {
-      // for (const elem of this.indexStorage) {
-
-      if (ind === id) {
-        this.listOfIndexes = [...this.listOfIndexes, j];
-        // elem.arr = this.listOfIndexes;
-        // elem.arr = [...elem.arr, j];
-        this.indexStorage = { ...this.indexStorage, id, arr: this.listOfIndexes };
-      } else {
-        this.listOfIndexes = [...this.listOfIndexes, j];
-        // elem.arr = [...elem.arr, j];
-        this.indexStorage = { ...this.indexStorage, id, arr: this.listOfIndexes };
-        // this.indexStorage = [...this.indexStorage, {id, arr: elem.arr}];
-      }
-    }
-    return this.indexStorage;
-  }
+  // private storageI(id: string, j: number): IndexStorage {
+  //   // this.indexStorage = [...this.indexStorage, {id:'',arr: []}];
+  //
+  //   const indexes = Object.entries(this.indexStorage);
+  //
+  //   // indexes.forEach((ind: string) => {
+  //   for (const [ind, value] of indexes) {
+  //     // for (const elem of this.indexStorage) {
+  //
+  //     if (ind === id) {
+  //       this.listOfIndexes = [...this.listOfIndexes, j];
+  //       // elem.arr = this.listOfIndexes;
+  //       // elem.arr = [...elem.arr, j];
+  //       this.indexStorage = { ...this.indexStorage, id, arr: this.listOfIndexes };
+  //     } else {
+  //       this.listOfIndexes = [...this.listOfIndexes, j];
+  //       // elem.arr = [...elem.arr, j];
+  //       this.indexStorage = { ...this.indexStorage, id, arr: this.listOfIndexes };
+  //       // this.indexStorage = [...this.indexStorage, {id, arr: elem.arr}];
+  //     }
+  //   }
+  //   return this.indexStorage;
+  // }
 }
 
 export default BubbleSort;

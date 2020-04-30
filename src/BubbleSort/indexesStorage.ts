@@ -2,18 +2,22 @@ import { IndexStorage } from '../types';
 
 class IndexesStorage {
   listOfIndexes: number[];
-  indexStorage: IndexStorage[];
+  indexStorage: IndexStorage;
 
   constructor() {
     this.listOfIndexes = [];
-    this.indexStorage = [{ id: '' }];
+    this.indexStorage = {};
   }
 
-  getIndexes(): number[] {
-    return this.listOfIndexes;
+  getIndexes(): IndexStorage {
+    return this.indexStorage;
   }
-  addIndexes(index: number): number[] {
+  createStorage(id: string) {
+    this.indexStorage[id] = [];
+  }
+  addIndexes(id: string, index: number): number[] {
     this.listOfIndexes = [...this.listOfIndexes, index];
+    this.indexStorage[id] = this.listOfIndexes;
     return this.listOfIndexes;
   }
 }
