@@ -73,7 +73,7 @@ const bubbleSortListItem = ({
 
   buttonBack.addEventListener('click', () => {
     // updateSorters(sorterId, bubbleSort.decreaseSort());
-    decSorter(sorterId, bubbleSort.decreaseSort(sorter));
+    decSorter(sorterId, bubbleSort.decreaseSort(sorterId, sorter));
     updateSorterAnimation(getAllSorters());
   });
   const buttonsInner = createElement({

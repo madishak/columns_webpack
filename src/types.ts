@@ -32,8 +32,14 @@ export type SorterType = {
   sorterArr: number[];
 };
 
-export interface IndexStorage {
-  [id: string]: number[];
+export type IndexStorage = {
+  [id: string]: Indexes;
   // id?: string;
   // arr?: number[];
-}
+};
+
+export type Indexes = {
+  list: number[];
+  currentIndex: number;
+  currentPosition: number;
+};
