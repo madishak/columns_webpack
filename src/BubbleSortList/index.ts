@@ -9,9 +9,14 @@ type Props = {
   updateSorter: (id: string, arr: number[]) => SorterType[];
 };
 
-const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
+// let virtualDom: string[] = [];
+
+export const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLElement => {
   container.innerHTML = '';
   sorters.forEach((elem: SorterType) => {
+    // if (!virtualDom.includes(elem.sorterId)) {
+    //   virtualDom = [...virtualDom, elem.sorterId];
+
     bubbleSortListItem({
       sorterId: elem.sorterId,
       sorter: elem.sorterArr,
@@ -19,6 +24,14 @@ const bubbleSortList = ({ sorters, removeSorter, updateSorter }: Props): HTMLEle
       incSorter: (id: string, el: number[]) => updateSorter(elem.sorterId, el),
       decSorter: (id: string, el: number[]) => updateSorter(elem.sorterId, el),
     });
+
+    // bubbleSortListItemActions({
+    //   sorterId: elem.sorterId,
+    //   sorter: elem.sorterArr,
+    //   removeSorter: () => removeSorter(elem.sorterId),
+    //   incSorter: (id: string, el: number[]) => updateSorter(elem.sorterId, el),
+    //   decSorter: (id: string, el: number[]) => updateSorter(elem.sorterId, el),
+    // });
   });
   return container;
 };

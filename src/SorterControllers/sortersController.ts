@@ -52,7 +52,7 @@ export const appContainer = (): HTMLElement => {
   return sorterInput({ onClick: addSorters });
 };
 
-const render = (): void => {
+const render = () => {
   app.append(
     bubbleSortList({
       sorters: getAllSorters(),

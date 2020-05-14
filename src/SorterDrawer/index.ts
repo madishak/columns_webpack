@@ -1,6 +1,14 @@
 import createElement from '../CommonComponents/createElement';
-import { AnimationValues } from '../types';
+import { AnimationValues, SorterType } from '../types';
 import './style.css';
+
+type Props = {
+  sorterId: string;
+  sorter: number[];
+  removeSorter: () => SorterType[];
+  incSorter: (id: string, arr: number[]) => SorterType[];
+  decSorter: (id: string, arr: number[]) => SorterType[];
+};
 
 class Draw {
   static FIXED_COLUMN_HEIGHT = 15;
@@ -19,13 +27,14 @@ class Draw {
   public constructor(array: number[]) {
     this.arr = array;
     this.arrCopy = [...this.arr];
+    // this.arrCopy = [];
     this.columnsButtonsContainer = createElement({
       tag: 'div',
-      class: 'columns-buttons__container'
+      class: 'columns-buttons__container',
     });
     this.columnsCloseInner = createElement({
       tag: 'div',
-      class: 'columns-close__inner'
+      class: 'columns-close__inner',
     });
     this.columns = [];
     this.previousAnimElement = '';
@@ -37,7 +46,7 @@ class Draw {
       const newDiv = createElement({
         tag: 'div',
         class: 'column',
-        text: String(element)
+        text: String(element),
       });
       newDiv.style.height = `${Draw.FIXED_COLUMN_HEIGHT * element}px`;
       newDiv.style.left = Draw.moveColumnLeft(index);
@@ -46,12 +55,14 @@ class Draw {
         Draw.OFFSET * Draw.OFFSET_MARGIN}px`;
       return newDiv;
     });
+    // this.arrCopy = [...arrCopy];
     this.columnsCloseInner.append(columnsInner);
     this.columnsButtonsContainer.append(this.columnsCloseInner);
     return this.columnsButtonsContainer;
   }
 
   public movement(newArr: number[]): number[] {
+    console.log('Comparison', newArr, this.arrCopy);
     let currentElements: number[] = [];
     for (let i = 0; i < newArr.length; i += 1) {
       if (newArr[i] !== this.arrCopy[i]) {
@@ -63,11 +74,11 @@ class Draw {
     }
     [this.columns[currentElements[0]], this.columns[currentElements[1]]] = [
       this.columns[currentElements[1]],
-      this.columns[currentElements[0]]
+      this.columns[currentElements[0]],
     ];
     const animationValues: AnimationValues = Draw.compareColumns(
       this.columns[currentElements[0]],
-      this.columns[currentElements[1]]
+      this.columns[currentElements[1]],
     );
     const { currentElem, previousElem } = animationValues;
     for (let i = 0; i < this.columns.length; i += 1) {
