@@ -1,51 +1,60 @@
-class BubbleSort {
-  arr: number[];
-  arrCopy: number[];
-  listOfIndexes: number[];
-  currentIndex: number;
-  currentPosition: number;
+import { IndexStorage, Indexes } from '../types';
 
-  public constructor(array: number[]) {
-    this.arr = array;
-    this.arrCopy = [...this.arr];
-    this.listOfIndexes = [];
-    this.currentIndex = 0;
-    this.currentPosition = 0;
+class BubbleSort {
+  indexStorage: IndexStorage;
+  indexes: Indexes;
+  public constructor() {
+    this.indexStorage = {};
+    this.indexes = { list: [], currentIndex: 0, currentPosition: 0 };
   }
 
-  public increaseSort(): number[] {
-    if (this.currentIndex === this.listOfIndexes.length) {
-      for (let i = 0; i < this.arrCopy.length - 1; i += 1) {
-        for (let j = this.currentPosition; j < this.arrCopy.length - i - 1; j += 1) {
-          if (this.arrCopy[j] > this.arrCopy[j + 1]) {
-            BubbleSort.swapElements(this.arrCopy, j);
-            this.listOfIndexes = [...this.listOfIndexes, j];
-            console.log(this.listOfIndexes);
-            this.currentPosition = j;
-            this.currentIndex += 1;
-            return this.arrCopy;
+  public increaseSort(id: string, arrCopy: number[]): number[] {
+    const indexes: Indexes = { list: [], currentIndex: 0, currentPosition: 0 };
+
+    const indexesKeys = Object.keys(this.indexStorage);
+    if (!indexesKeys.includes(id)) {
+      this.indexStorage[id] = indexes;
+      this.indexStorage[id].list = [];
+    }
+    if (this.indexStorage[id].currentIndex === this.indexStorage[id].list.length) {
+      for (let i = 0; i < arrCopy.length - 1; i += 1) {
+        for (let j = this.indexStorage[id].currentPosition; j < arrCopy.length - i - 1; j += 1) {
+          if (arrCopy[j] > arrCopy[j + 1]) {
+            BubbleSort.swapElements(arrCopy, j);
+            this.indexStorage[id].list = [...this.indexStorage[id].list, j];
+            this.indexStorage[id].currentPosition = j;
+            this.indexStorage[id].currentIndex += 1;
+            return arrCopy;
           }
-          this.currentPosition = 0;
+          this.indexStorage[id].currentPosition = 0;
         }
       }
     } else {
-      BubbleSort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex]);
-      this.currentIndex += 1;
-      return this.arrCopy;
+      BubbleSort.swapElements(
+        arrCopy,
+        this.indexStorage[id].list[this.indexStorage[id].currentIndex],
+      );
+      this.indexStorage[id].currentIndex += 1;
+      return arrCopy;
     }
-    return this.arrCopy;
+    return arrCopy;
   }
 
-  public decreaseSort(): number[] {
-    for (let i = 0; i < this.arrCopy.length; i += 1) {
-      if (this.currentIndex > 0) {
-        BubbleSort.swapElements(this.arrCopy, this.listOfIndexes[this.currentIndex - 1]);
-        this.currentIndex -= 1;
-        this.currentPosition = this.listOfIndexes[this.currentIndex];
-        return this.arrCopy;
+  public decreaseSort(id: string, arrCopy: number[]): number[] {
+    for (let i = 0; i < arrCopy.length; i += 1) {
+      if (this.indexStorage[id].currentIndex > 0) {
+        BubbleSort.swapElements(
+          arrCopy,
+          this.indexStorage[id].list[this.indexStorage[id].currentIndex - 1],
+        );
+        this.indexStorage[id].currentIndex -= 1;
+        this.indexStorage[id].currentPosition = this.indexStorage[id].list[
+          this.indexStorage[id].currentIndex
+        ];
+        return arrCopy;
       }
     }
-    return this.arrCopy;
+    return arrCopy;
   }
 
   static swapElements(array: number[], index: number): number[] {
