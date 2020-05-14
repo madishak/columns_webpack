@@ -34,8 +34,6 @@ export type SorterType = {
 
 export type IndexStorage = {
   [id: string]: Indexes;
-  // id?: string;
-  // arr?: number[];
 };
 
 export type Indexes = {
