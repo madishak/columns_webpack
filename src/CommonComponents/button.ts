@@ -5,7 +5,7 @@ const button = (attribute: buttonAttributes): HTMLButtonElement => {
   const buttonElement: HTMLButtonElement = createElement({
     tag: 'button',
     class: attribute.class,
-    text: attribute.text
+    text: attribute.text,
   }) as HTMLButtonElement;
   buttonElement.type = attribute.type;
   if (attribute.id) {

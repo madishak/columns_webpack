@@ -17,7 +17,7 @@ const sorterInput = ({ onClick }: SorterInputProps): HTMLElement => {
     type: 'text',
     class: 'form__input',
     id: 'input',
-    placeholder: 'Enter numbers'
+    placeholder: 'Enter numbers',
   });
   form.appendChild(input);
 
@@ -25,16 +25,9 @@ const sorterInput = ({ onClick }: SorterInputProps): HTMLElement => {
     class: 'form__button',
     text: 'Start render',
     id: 'start',
-    type: 'button'
+    type: 'button',
   });
-  // const startRender2 = button({
-  //   class: 'form__button',
-  //   text: 'Start render',
-  //   id: 'start',
-  //   type: 'button'
-  // });
   form.appendChild(startRender);
-  // form.appendChild(startRender2);
   input.addEventListener('input', (evt: Event) => {
     input.value = String((evt.target as HTMLInputElement).value.match(/\d+/g) || []);
   });
@@ -43,9 +36,6 @@ const sorterInput = ({ onClick }: SorterInputProps): HTMLElement => {
     const newArr = strToArray(input.value);
     onClick(newArr);
   });
-  // startRender2.addEventListener('click', () => {
-  //   onTuck();
-  // });
   return form;
 };
 
