@@ -18,14 +18,14 @@ export const addSorters = (newArr: number[]): number[] => {
   return newArr;
 };
 
-export const removeSorters = (id: number): SorterType[] => {
+export const removeSorters = (id: string): SorterType[] => {
   state.removeSorter(id);
   render(getAllSorters());
   bubbleSortStateLogger(getAllSorters());
   return getAllSorters();
 };
 
-export const updateSorters = (id: number, newState: number[]): void => {
+export const updateSorters = (id: string, newState: number[]): void => {
   state.updateSorter(id, newState);
   bubbleSortStateLogger(getAllSorters());
 };

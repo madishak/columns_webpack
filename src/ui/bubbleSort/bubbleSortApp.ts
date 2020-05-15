@@ -8,7 +8,7 @@ import './style.css';
 
 const container = createElement({ tag: 'div', class: 'wrapperColumns' });
 
-const renderSorter = (sorterId: number, inputValue: number[]): void => {
+const renderSorter = (sorterId: string, inputValue: number[]): void => {
   if (inputValue.length === 0) {
     return;
   }
